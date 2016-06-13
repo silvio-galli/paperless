@@ -1,1 +1,26 @@
-<h1>Product#show page</h1>
+<h1><%= @product.description %></h1>
+<br />
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <tr>
+        <th>Initiative</th>
+        <th>Local code</th>
+        <th>Barcode</th>
+        <th>Default price</th>
+        <th>Promo price</th>
+        <th>Arriving date</th>
+        <th>Quantity</th>
+      </tr>
+      <tr>
+        <td><%= @product.initiative %></td>
+        <td><%= @product.local_code %></td>
+        <td><%= @product.barcode %></td>
+        <td><%= @product.default_price %> &euro;</td>
+        <td><%= @product.promo_price %> &euro;</td>
+        <td><%= @product.arriving_date.strftime("%a, %d %b %Y") %></td>
+        <td><%= @product.quantity %></td>
+      </tr>
+    </table>
+  </div>
+</div>

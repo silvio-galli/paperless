@@ -1,6 +1,6 @@
 <h1>Add New Product</h1>
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-4">
     <%= form_for @product do |f| %>
       <div class="form-group">
         <%= f.label :initiative %>
@@ -8,7 +8,7 @@
       </div>
       <div class="form-group">
         <%= f.label :local_code %>
-        <%= f.number_field :local_code, class: 'form-control' %>
+        <%= f.text_field :local_code, class: 'form-control' %>
       </div>
       <div class="form-group">
         <%= f.label :description %>
@@ -16,7 +16,7 @@
       </div>
       <div class="form-group">
         <%= f.label :barcode %>
-        <%= f.number_field :barcode, class: 'form-control' %>
+        <%= f.text_field :barcode, class: 'form-control' %>
       </div>
       <div class="form-group">
         <%= f.label :default_price %>
@@ -38,7 +38,5 @@
         <%= f.submit "Save", class: 'btn btn-success' %>
       </div>
     <% end %>
-  </div>
-  <div class="col-md-4">
   </div>
 </div>

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :products, only: [:new, :create, :index, :show, :edit]
+  resources :products
 
   get 'welcome/index'
 

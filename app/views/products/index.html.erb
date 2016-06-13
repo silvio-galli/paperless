@@ -1,2 +1,34 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<h1>Products</h1>
+<br />
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <tr>
+        <th>Description</th>
+        <th>Initiative</th>
+        <th>Local code</th>
+        <th>Barcode</th>
+        <th>Default price</th>
+        <th>Promo price</th>
+        <th>Arriving date</th>
+        <th>Quantity</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= link_to product.description, product %></td>
+          <td><%= product.initiative %></td>
+          <td><%= product.local_code %></td>
+          <td><%= product.barcode %></td>
+          <td><%= product.default_price %> &euro;</td>
+          <td><%= product.promo_price %> &euro;</td>
+          <td><%= product.arriving_date.strftime("%a, %d %b %Y") %></td>
+          <td><%= product.quantity %></td>
+          <td><%= link_to "Show", product_path(product) %></td>
+          <td><%= link_to "Edit", edit_product_path(product) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

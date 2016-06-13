@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   def index
+    @products = Product.all
   end
 
   def new
@@ -8,6 +9,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+
     if @product.save
       flash[:notice] = "Product correctly saved in the database."
       redirect_to product_path(@product)
@@ -17,7 +19,25 @@ class ProductsController < ApplicationController
     end
   end
 
+  def show
+    @product = Product.find(params[:id])
+  end
+
   def edit
+    @product = Product.find(params[:id])
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    @product.assign_attributes(product_params)
+
+    if @product.save
+      flash[:notice] = "Product correctly updated in the database."
+      redirect_to products_path
+    else
+      flash[:alert] = "Error! Product not updated. Plaese try again."
+      render :edit
+    end
   end
 
   private
