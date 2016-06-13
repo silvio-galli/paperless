@@ -1,4 +1,10 @@
-<h1>Products</h1>
+<h1>Products
+  <small style="float: right;">
+    <%= link_to "New Product", new_product_path, class: 'btn btn-primary' %>
+  </small>
+</h1>
+
+</div>
 <br />
 <div class="row">
   <div class="col-md-12">
@@ -21,8 +27,8 @@
           <td><%= product.initiative %></td>
           <td><%= product.local_code %></td>
           <td><%= product.barcode %></td>
-          <td><%= product.default_price %> &euro;</td>
-          <td><%= product.promo_price %> &euro;</td>
+          <td><%= sprintf("%.2f", product.default_price) %> &euro;</td>
+          <td><%= sprintf("%.2f", product.promo_price) %> &euro;</td>
           <td><%= product.arriving_date.strftime("%a, %d %b %Y") %></td>
           <td><%= product.quantity %></td>
           <td><%= link_to "Show", product_path(product) %></td>

@@ -1,3 +1,3 @@
 class Product < ActiveRecord::Base
-  enum status: [:arriving, :arrived]
+  default_scope { order('created_at DESC') }
 end
