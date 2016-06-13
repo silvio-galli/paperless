@@ -11,19 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160613104050) do
+ActiveRecord::Schema.define(version: 20160613114817) do
 
   create_table "products", force: :cascade do |t|
     t.string   "initiative"
-    t.integer  "local_code"
+    t.string   "local_code"
     t.string   "description"
-    t.integer  "barcode"
+    t.string   "barcode"
     t.decimal  "default_price", precision: 6, scale: 2
     t.decimal  "promo_price",   precision: 6, scale: 2
     t.integer  "quantity"
-    t.datetime "arriving_date"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+    t.datetime "arriving_date"
   end
 
 end
