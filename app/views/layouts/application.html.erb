@@ -9,14 +9,29 @@
 </head>
 <body>
   <div class="container">
-    <ul class="nav nav-tabs">
-      <li><%= link_to "Home", welcome_index_path %></li>
-      <li><%= link_to "About", welcome_about_path %></li>
-    </ul>
+    <div class="row">
+      <ul class="nav nav-tabs">
+        <li><%= link_to "Home", welcome_index_path %></li>
+        <li><%= link_to "About", welcome_about_path %></li>
+        <li><a href="#">Customers</a></li>
+        <li><%= link_to "Products", products_path %></li>
+        <li><a href="#">Orders</a></li>
+      </ul>
+      <% if flash[:notice] %>
+    		<div class="alert alert-success">
+    			<button type="button" class="close" data-dismiss="alert">&times;</button>
+    			<p class="notice"><%= notice %></p>
+    		</div>
+  	  <% elsif flash[:alert] %>
+    		<div class="alert alert-danger">
+    			<button type="button" class="close" data-dismiss="alert">&times;</button>
+    			<p class="alert"><%= alert %></p>
+    		</div>
+      <% end %>
 
-    <%= yield %>
+      <%= yield %>
 
+    </div>
   </div>
-
 </body>
 </html>
