@@ -1,0 +1,59 @@
+<h1>Order #<%= @order.id %> for customer <%= link_to @order.customer.full_name, customer_path(@order.customer) %></h1>
+<br />
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <tr>
+        <th>id</th>
+        <th>date</th>
+        <th>email</th>
+        <th>phone</th>
+        <th>items</th>
+        <th>shipping</th>
+        <th>total price</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+        <tr>
+          <td><%= @order.id %></td>
+          <td><%= @order.created_at.strftime("%a, %d %b %Y") %></td>
+          <td><%= @order.customer.email %></td>
+          <td><%= @order.customer.phone %></td>
+          <td>number of @ordered items</td>
+          <td>yes or not</td>
+          <td>total cost</td>
+          <td><%= link_to "Show", order_path(@order) %></td>
+          <td><%= link_to "Edit", edit_order_path(@order) %></td>
+          <td>Cancel</td>
+        </tr>
+    </table>
+  </div>
+</div>
+<h2>Order Items</h2>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <tr>
+        <th>description</th>
+        <th>pieces</th>
+        <th>default price</th>
+        <th>promo price</th>
+        <th>shipping cost</th>
+        <th>subtotal</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <td>xxxxxxxxxxxxxx</td>
+        <td>xx</td>
+        <td>xxx.xx &euro;</td>
+        <td>xxx.xx &euro;</td>
+        <td>xx.xx &euro;</td>
+        <td>xxx.xx &euro;</td>
+        <td>Edit</td>
+        <td>Remove</td>
+      </tr>
+    </table>
+  </div>
+</div>
