@@ -9,28 +9,20 @@
         <th>email</th>
         <th>phone</th>
         <th>items</th>
-        <th>shipping</th>
         <th>total price</th>
-        <th></th>
-        <th></th>
-        <th></th>
       </tr>
         <tr>
           <td><%= @order.id %></td>
           <td><%= @order.created_at.strftime("%a, %d %b %Y") %></td>
           <td><%= @order.customer.email %></td>
           <td><%= @order.customer.phone %></td>
-          <td>number of @ordered items</td>
-          <td>yes or not</td>
-          <td>total cost</td>
-          <td><%= link_to "Show", order_path(@order) %></td>
-          <td><%= link_to "Edit", edit_order_path(@order) %></td>
-          <td>Cancel</td>
+          <td><%= @total_quantity.sum %></td>
+          <td><%= calculate_total_cost(@order) %> &euro;</td>
         </tr>
     </table>
   </div>
 </div>
-<h2>Order Items</h2>
+<h2>Items in this order</h2>
 <div class="row">
   <div class="col-md-12">
     <table class="table table-hover">
@@ -39,21 +31,41 @@
         <th>pieces</th>
         <th>default price</th>
         <th>promo price</th>
-        <th>shipping cost</th>
         <th>subtotal</th>
         <th></th>
         <th></th>
       </tr>
-      <tr>
-        <td>xxxxxxxxxxxxxx</td>
-        <td>xx</td>
-        <td>xxx.xx &euro;</td>
-        <td>xxx.xx &euro;</td>
-        <td>xx.xx &euro;</td>
-        <td>xxx.xx &euro;</td>
-        <td>Edit</td>
-        <td>Remove</td>
-      </tr>
+      <% @ordered_items.each do |ordered_item| %>
+        <tr>
+          <td><%= ordered_item.product.description %></td>
+          <td><%= ordered_item.quantity %></td>
+          <td><%= ordered_item.product.default_price %> &euro;</td>
+          <td><%= ordered_item.product.promo_price %> &euro;</td>
+          <td><%= calculate_subtotal(ordered_item) %> &euro;</td>
+          <td>Edit</td>
+          <td>Remove</td>
+        </tr>
+      <% end %>
     </table>
+  </div>
+</div>
+<h2>Add Items to this order</h2>
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for [@order, @order_item] do |f| %>
+      <div class="form-group">
+        <%= f.select(:product_id) do %>
+          <% products_array = @products.map { |product| [product.description, product.id] } %>
+          <%= options_for_select(products_array) %>
+        <% end %>
+      </div>
+      <div class="form-group">
+        <%= f.label :quantity %>
+        <%= f.number_field :quantity %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "Add Item", class: 'btn btn-success' %>
+      </div>
+    <% end %>
   </div>
 </div>

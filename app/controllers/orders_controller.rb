@@ -22,9 +22,17 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @order_item = OrderItem.new
+    @products = Product.all
+    @ordered_items = OrderItem.all.where(order_id: @order.id)
+    @total_quantity = @ordered_items.map { |o| o.quantity }
   end
 
   def edit
+  end
+
+  def subtotal(order)
+    order.order_items
   end
 
   private
