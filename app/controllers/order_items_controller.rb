@@ -14,4 +14,15 @@ class OrderItemsController < ApplicationController
       redirect_to order_path(@order_item.order)
     end
   end
+
+  def destroy
+    @order_item = OrderItem.find(params[:id])
+    if @order_item.destroy
+      flash[:notice] = "Item removed from order"
+      redirect_to order_path(@order_item.order_id)
+    else
+      flash[:alert] = "Item wasn't removed. Please try again."
+      redirect_to order_path (@order_item.order_id)
+    end
+  end
 end

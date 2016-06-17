@@ -16,23 +16,22 @@
           <td><%= @order.created_at.strftime("%a, %d %b %Y") %></td>
           <td><%= @order.customer.email %></td>
           <td><%= @order.customer.phone %></td>
-          <td><%= @total_quantity.sum %></td>
+          <td><%= @total_quantity %></td>
           <td><%= calculate_total_cost(@order) %> &euro;</td>
         </tr>
     </table>
   </div>
 </div>
-<h2>Items in this order</h2>
+<h2>Order Details</h2>
 <div class="row">
   <div class="col-md-12">
     <table class="table table-hover">
       <tr>
-        <th>description</th>
+        <th>items</th>
         <th>pieces</th>
         <th>default price</th>
         <th>promo price</th>
         <th>subtotal</th>
-        <th></th>
         <th></th>
       </tr>
       <% @ordered_items.each do |ordered_item| %>
@@ -42,8 +41,7 @@
           <td><%= ordered_item.product.default_price %> &euro;</td>
           <td><%= ordered_item.product.promo_price %> &euro;</td>
           <td><%= calculate_subtotal(ordered_item) %> &euro;</td>
-          <td>Edit</td>
-          <td>Remove</td>
+          <td><%= link_to "Remove", ordered_item, method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: "Are you sure you want to remove #{pluralize(ordered_item.quantity, 'piece')} of #{ordered_item.product.description} from this order?" } %></td>
         </tr>
       <% end %>
     </table>
@@ -51,9 +49,11 @@
 </div>
 <h2>Add Items to this order</h2>
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-4">
     <%= form_for [@order, @order_item] do |f| %>
       <div class="form-group">
+        <label>Select a product:</label>
+        <br />
         <%= f.select(:product_id) do %>
           <% products_array = @products.map { |product| ["#{product.initiative} - #{product.description} - available: #{update_quantity(product)} pcs.", product.id] } %>
           <%= options_for_select(products_array) %>
@@ -61,7 +61,7 @@
       </div>
       <div class="form-group">
         <%= f.label :quantity %>
-        <%= f.number_field :quantity %>
+        <%= f.number_field :quantity, class: 'form-control' %>
       </div>
       <div class="form-group">
         <%= f.submit "Add Item", class: 'btn btn-success' %>

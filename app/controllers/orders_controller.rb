@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
     @order_item = OrderItem.new
     @products = Product.all
     @ordered_items = OrderItem.all.where(order_id: @order.id)
-    @total_quantity = @ordered_items.map { |o| o.quantity }
+    @total_quantity = (@ordered_items.map { |o| o.quantity }).sum
   end
 
   def edit
