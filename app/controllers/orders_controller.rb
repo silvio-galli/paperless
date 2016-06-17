@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
     @order = @customer.orders.build(order_params)
     if @order.save
       flash[:notice] = "Order successfully saved."
-      redirect_to edit_order_path(@order)
+      redirect_to order_path(@order)
     else
       flash[:alert] = "Order NOT saved. Please try again."
       render :new
@@ -29,10 +29,6 @@ class OrdersController < ApplicationController
   end
 
   def edit
-  end
-
-  def subtotal(order)
-    order.order_items
   end
 
   private

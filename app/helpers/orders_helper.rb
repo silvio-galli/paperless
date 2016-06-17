@@ -1,6 +1,11 @@
 module OrdersHelper
-  def calculate_total_cost(order)
-    subtotal_array = order.order_items.map { |item| calculate_subtotal(item) }
-    subtotal_array.sum
+  def calculate_total_price(order)
+    subtotal = order.order_items.map { |order_item| calculate_subtotal(order_item) }
+    subtotal.sum
+  end
+
+  def calculate_total_items(order)
+    items = order.order_items.map { |item| item.quantity }
+    items.sum
   end
 end
