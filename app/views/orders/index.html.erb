@@ -22,8 +22,8 @@
           <td><%= link_to order.customer.full_name, customer_path(order.customer) %></td>
           <td><%= order.customer.email %></td>
           <td><%= order.customer.phone %></td>
-          <td>TODO</td>
-          <td>number of ordered items</td>
+          <td><%= calculate_total_price(order) %> &euro;</td>
+          <td><%= calculate_total_items(order) %></td>
           <td><%= link_to "Show", order_path(order) %></td>
           <td><%= link_to "Edit", edit_order_path(order) %></td>
         </tr>
