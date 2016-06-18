@@ -7,13 +7,31 @@
 <br />
 <div class="row">
   <div class="col-md-12">
+    <%= form_tag(customers_path, :method => "get", id: 'search_form') do %>
+      <div class="form-group">
+        <%= search_field(:search, :last_name, class: 'form-control', placeholder: "Enter last name") %>
+      </div>
+      <div class="form-group">
+        <%= search_field(:search, :email, class: 'form-control', placeholder: "OR email") %>
+      </div>
+      <div class="form-group">
+        <%= search_field(:search, :phone, class: 'form-control', placeholder: "OR phone") %>
+      </div>
+      <div class="form-group">
+        <%= submit_tag "Search", class: 'btn btn-default' %>
+      </div>
+    <%end%>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
     <table class="table table-hover">
       <tr>
         <th>Name</th>
         <th>Email</th>
         <th>Phone</th>
         <th>Address</th>
-        <th>total orders</th>
+        <th>orders</th>
         <th></th>
         <th></th>
         <th></th>
