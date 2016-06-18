@@ -15,7 +15,7 @@
         <li><%= link_to "About", welcome_about_path %></li>
         <li><%= link_to "Customers", customers_path %></li>
         <li><%= link_to "Products", products_path %></li>
-        <li><a href="#">Orders</a></li>
+        <li><%= link_to "Orders", orders_path %></li>
       </ul>
       <% if flash[:notice] %>
     		<div class="alert alert-success">

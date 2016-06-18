@@ -1,6 +1,15 @@
 class CustomersController < ApplicationController
   def index
-    @customers = Customer.all
+    if params[:search] && params[:search].select { |k, v| v != "" }.empty?
+        flash[:alert] = "You did not enter search parameters."
+        @customers = Customer.all
+        redirect_to customers_path
+    elsif params[:search]
+        key = params[:search].select { |k, v| v != "" }.keys[0]
+        @customers = Customer.where(key => params[:search][key])
+    else
+      @customers = Customer.all
+    end
   end
 
   def new
@@ -38,6 +47,10 @@ class CustomersController < ApplicationController
       flash[:alert] = "Customer was NOT updated. Please try again."
       render :edit
     end
+  end
+
+  def search_by_name(data)
+    @customer = Customer.find_by(last_name: data)
   end
 
   private

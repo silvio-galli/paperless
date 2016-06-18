@@ -7,12 +7,32 @@
 <br />
 <div class="row">
   <div class="col-md-12">
+    <%= form_tag(customers_path, :method => "get", id: 'search_form') do %>
+      <div class="form-group">
+        <%= search_field(:search, :last_name, class: 'form-control', placeholder: "Enter last name") %>
+      </div>
+      <div class="form-group">
+        <%= search_field(:search, :email, class: 'form-control', placeholder: "OR email") %>
+      </div>
+      <div class="form-group">
+        <%= search_field(:search, :phone, class: 'form-control', placeholder: "OR phone") %>
+      </div>
+      <div class="form-group">
+        <%= submit_tag "Search", class: 'btn btn-default' %>
+      </div>
+    <%end%>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
     <table class="table table-hover">
       <tr>
         <th>Name</th>
         <th>Email</th>
         <th>Phone</th>
         <th>Address</th>
+        <th>orders</th>
+        <th></th>
         <th></th>
         <th></th>
       </tr>
@@ -24,8 +44,10 @@
           <td>
             <%= "#{customer.address}, #{customer.city} #{customer.postcode} (#{customer.country})" %>
           </td>
+          <td><%= customer.orders.count %></td>
           <td><%= link_to "Show", customer_path(customer) %></td>
           <td><%= link_to "Edit", edit_customer_path(customer) %></td>
+          <td><%= link_to "New Order", new_customer_order_path(customer, Order.new), class: 'btn btn-default btn-sm' %></td>
         </tr>
       <% end %>
     </table>

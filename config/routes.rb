@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  resources :customers
+  resources :customers do
+    resources :orders, only: [:new, :create]
+  end
+
+  resources :orders, only: [:edit, :show, :index] do
+    resources :order_items, only: [:new, :create]
+  end
+
+  resources :order_items, except: [:new, :create]
 
   resources :products
 
