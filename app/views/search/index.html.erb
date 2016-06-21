@@ -7,7 +7,7 @@
         <%= link_to "New Customer", new_customer_path, class: 'btn btn-primary' %>
       <% elsif request.env["HTTP_REFERER"].include? "product" %>
         <strong>No Product found</strong>
-        <%= link_to "New Product", class: 'btn btn-primary' %>
+        <%= link_to "New Product", new_product_path, class: 'btn btn-primary' %>
       <% end %>
     <% else %>
       <% if request.env["HTTP_REFERER"].include? "customer" %>
@@ -20,7 +20,7 @@
             <th></th>
             <th></th>
           </tr>
-          <% @results.each do |result| %>
+          <% @results.uniq.each do |result| %>
             <tr>
               <td><%= link_to "#{result.last_name} #{result.first_name}", result %></td>
               <td><%= result.email %></td>
