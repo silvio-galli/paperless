@@ -1,15 +1,6 @@
 class CustomersController < ApplicationController
   def index
-    if params[:search] && params[:search].select { |k, v| v != "" }.empty?
-        flash[:alert] = "You did not enter search parameters."
-        @customers = Customer.all
-        redirect_to customers_path
-    elsif params[:search]
-        key = params[:search].select { |k, v| v != "" }.keys[0]
-        @customers = Customer.where(key => params[:search][key])
-    else
-      @customers = Customer.all
-    end
+    @customers = Customer.all
   end
 
   def new
