@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   # Redirects user to users#index if admin or orders#index if not admin after signing in
   def after_sign_in_path_for(resource)
     if current_user.admin?
-      root_path #TODO: this must become users_path
+      admin_dashboard_path
     else
       orders_path
     end
@@ -18,6 +18,15 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
   	devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation, :remember_me) }
+  end
+
+  private
+  # call to prevent non admin users to access resources
+  def require_admin
+    unless current_user && current_user.admin?
+      flash[:alert] = "You do not have permission to do this."
+      redirect_to root_path
+    end
   end
 
 end

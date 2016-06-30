@@ -11,13 +11,5 @@ class RegistrationsController < Devise::RegistrationsController
   def sign_up(resource_name, resource)
     true
   end
-  
-  private
-  def require_admin
-    unless current_user && current_user.admin?
-      flash[:alert] = "You do not have permission to do this."
-      redirect_to root_path
-    end
-  end
 
 end
