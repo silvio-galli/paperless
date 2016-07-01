@@ -7,11 +7,7 @@ class ApplicationController < ActionController::Base
 
   # Redirects user to users#index if admin or orders#index if not admin after signing in
   def after_sign_in_path_for(resource)
-    if current_user.admin?
-      admin_dashboard_path
-    else
-      orders_path
-    end
+    welcome_index_path
   end
 
   protected

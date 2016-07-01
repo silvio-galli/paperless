@@ -1,5 +1,72 @@
-<br />
-<div class="jumbotron">
-	<h1>PaperLess</h1>
-	<p class="lead">Manage your products, customers and customers' orders.</p>
-</div
+<% if current_user && current_user.admin? %>
+	<br />
+	<div class="row">
+		<div class="col-md-12">
+			<%= link_to "Admin Panel", admin_dashboard_path, class: 'btn btn-primary' %>
+		</div>
+	</div>
+<% end %>
+<% if current_user %>
+	<br />
+	<div class="row">
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h1 class="panel-title">Products Report - arriving products</h1>
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped">
+						<tr>
+			        <th>Initiative</th>
+			        <th>Description</th>
+			        <th>Arriving Quantity</th>
+			        <th>Available Quantity</th>
+			        <th>Arriving date</th>
+			      </tr>
+			      <% @products.each do |product| %>
+			        <tr>
+			          <td><%= product.initiative %></td>
+			          <td><%= link_to product.description, product %></td>
+			          <td><strong><%= product.quantity %></strong> pcs.</td>
+			          <td><strong><%= update_quantity(product) %></strong> pcs.</td>
+			          <td><%= product.arriving_date.strftime("%a, %d %b %Y") %></td>
+			        </tr>
+			      <% end %>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h1 class="panel-title">Orders Report - opened orders</h1>
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped">
+						<tr>
+			        <th>id</th>
+			        <th>date</th>
+			        <th>customer</th>
+			        <th>total price</th>
+			        <th></th>
+			      </tr>
+			      <% @orders.each do |order| %>
+			        <tr>
+			          <td><%= order.id %></td>
+			          <td><%= order.created_at.strftime("%a, %d %b %Y") %></td>
+			          <td><%= link_to order.customer.full_name, customer_path(order.customer) %></td>
+			          <td><%= calculate_total_price(order) %> &euro;</td>
+			          <td><%= link_to "Show", order_path(order) %></td>
+			        </tr>
+			      <% end %>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+<% else %>
+	<div class="jumbotron">
+		<h1>PaperLess</h1>
+		<p class="lead">Manage your products, customers and customers' orders.</p>
+	</div>
+<% end %>
