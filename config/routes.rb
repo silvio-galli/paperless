@@ -2,13 +2,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'dashboard', to: "dashboard#index"
+    resources :users, only: [:show, :edit, :update]
   end
 
   devise_for :users, controllers: { registrations: "registrations" }
-
-  scope "/admin" do
-    resources :users
-  end
 
   resources :customers do
     resources :orders, only: [:new, :create]
