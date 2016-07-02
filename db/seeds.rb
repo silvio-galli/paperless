@@ -5,6 +5,23 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+5.times do
+  user = User.create!(
+    name: "#{Faker::Name.first_name}.#{Faker::Name.last_name}",
+    password: "password",
+    admin: false
+  )
+end
+
+User.create!(
+  name: "silvio.galli",
+  email: "sg@example.com",
+  password: "helloworld",
+  admin: true
+)
+
+users = User.all
+
 15.times do
   price = Faker::Number.decimal(3,2).to_d
   discount = rand(50..100).to_d
@@ -25,8 +42,9 @@
     default_price: price,
     promo_price: promo,
     quantity: rand(5..15),
-    status: rand(0..2),
-    arriving_date: arriving_date
+    status: status,
+    arriving_date: arriving_date,
+    user: users.sample
   )
 end
 
@@ -44,21 +62,6 @@ end
     country: Faker::Address.country
   )
 end
-
-5.times do
-  user = User.create!(
-    name: "#{Faker::Name.first_name}.#{Faker::Name.last_name}",
-    password: "password",
-    admin: false
-  )
-end
-
-User.create!(
-  name: "silvio.galli",
-  email: "sg@example.com",
-  password: "helloworld",
-  admin: true
-)
 
 puts "Created #{Product.count} new products."
 puts "Created #{Customer.count} new customers."

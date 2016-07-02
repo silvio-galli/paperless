@@ -3,7 +3,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
           :rememberable, :trackable, :validatable
- 
+
+  has_many :products
+
   def email_required?
     false
   end
