@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   get 'search' => 'search#index', as: :search
 
-  get 'welcome/index'
+  get 'welcome', to: "welcome#index"
 
   get 'welcome/about'
 

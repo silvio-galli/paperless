@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   # Redirects user to users#index if admin or orders#index if not admin after signing in
   def after_sign_in_path_for(resource)
-    welcome_index_path
+    welcome_path
   end
 
   protected
