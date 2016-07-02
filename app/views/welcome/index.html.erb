@@ -29,7 +29,7 @@
 			          <td><%= link_to product.description, product %></td>
 			          <td><strong><%= product.quantity %></strong> pcs.</td>
 			          <td><strong><%= update_quantity(product) %></strong> pcs.</td>
-			          <td><%= product.arriving_date.strftime("%a, %d %b %Y") %></td>
+			          <td><%= product.arriving_date ? product.arriving_date.strftime("%a, %d %b %Y") : "nil" %></td>
 			        </tr>
 			      <% end %>
 					</table>

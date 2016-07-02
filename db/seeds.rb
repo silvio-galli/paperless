@@ -9,6 +9,14 @@
   price = Faker::Number.decimal(3,2).to_d
   discount = rand(50..100).to_d
   promo = price - discount
+  status = rand(0..2)
+  if status == 0
+    arriving_date = nil
+  elsif status == 2
+    arriving_date = Faker::Time.between(DateTime.now, DateTime.now - 7)
+  else
+    arriving_date = Faker::Time.between(DateTime.now, DateTime.now + 10)
+  end
   product = Product.create!(
     initiative: "#{Faker::Number.between(10, 13)}/2016",
     local_code: Faker::Number.number(7),
@@ -17,7 +25,8 @@
     default_price: price,
     promo_price: promo,
     quantity: rand(5..15),
-    arriving_date: Faker::Time.between(DateTime.now, DateTime.now + 7)
+    status: rand(0..2),
+    arriving_date: arriving_date
   )
 end
 
@@ -36,5 +45,21 @@ end
   )
 end
 
+5.times do
+  user = User.create!(
+    name: "#{Faker::Name.first_name}.#{Faker::Name.last_name}",
+    password: "password",
+    admin: false
+  )
+end
+
+User.create!(
+  name: "silvio.galli",
+  email: "sg@example.com",
+  password: "helloworld",
+  admin: true
+)
+
 puts "Created #{Product.count} new products."
 puts "Created #{Customer.count} new customers."
+puts "Created #{User.count} new users."
