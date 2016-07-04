@@ -40,3 +40,51 @@
     </table>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-6">
+    <h3><%= get_label_for(@product.order_items) %> customers waiting for this product</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>phone</th>
+          <th>email</th>
+          <th>quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @product.order_items.each do |order_item| %>
+          <tr>
+            <td>
+              <%= link_to "#{order_item.order.customer.last_name} #{order_item.order.customer.first_name}", customer_path(order_item.order.customer.id) %>
+            </td>
+            <td><%= order_item.order.customer.phone %></td>
+            <td><%= order_item.order.customer.email %></td>
+            <td><%= order_item.quantity %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <h3><%= get_label_for(@product.order_items) %> orders containing this product</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>order</th>
+          <th>date</th>
+          <th>quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @product.order_items.each do |order_item| %>
+          <tr>
+            <td># <%= link_to order_item.order.id, order_path(order_item.order.id) %></td>
+            <td><%= order_item.order.created_at.strftime("%a, %d %b %Y") %></td>
+            <td><%= order_item.quantity %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
