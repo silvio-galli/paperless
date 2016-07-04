@@ -23,32 +23,44 @@
 <div class="row">
   <div class="col-md-12">
     <table class="table table-hover">
-      <tr>
-        <th>Initiative</th>
-        <th>Description</th>
-        <th>Arriving Quantity</th>
-        <th>Available Quantity</th>
-        <th>Local code</th>
-        <th>Default price</th>
-        <th>Promo price</th>
-        <th>Arriving date</th>
-        <th></th>
-        <th></th>
-      </tr>
-      <% @products.each do |product| %>
+      <thead>
         <tr>
-          <td><%= product.initiative %></td>
-          <td><%= link_to product.description, product %></td>
-          <td><strong><%= product.quantity %></strong> pcs.</td>
-          <td><strong><%= update_quantity(product) %></strong> pcs.</td>
-          <td><%= product.local_code %></td>
-          <td><%= sprintf("%.2f", product.default_price) %> &euro;</td>
-          <td><%= sprintf("%.2f", product.promo_price) %> &euro;</td>
-          <td><%= product.arriving_date.strftime("%a, %d %b %Y") %></td>
-          <td><%= link_to "Show", product_path(product) %></td>
-          <td><%= link_to "Edit", edit_product_path(product) %></td>
+          <th>Initiative</th>
+          <th>Description</th>
+          <th>Arriving Quantity</th>
+          <th><span class="text-green">Available Quantity</span></th>
+          <th>Local code</th>
+          <th>Default price</th>
+          <th>Promo price</th>
+          <th>Arriving date</th>
+          <th>Status</th>
+          <th></th>
+          <th></th>
+          <th></th>
         </tr>
-      <% end %>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= product.initiative %></td>
+            <td><%= link_to product.description, product %></td>
+            <td><%= product.quantity %></td>
+            <td><strong><%= update_quantity(product) %></strong></td>
+            <td><%= product.local_code %></td>
+            <td><%= sprintf("%.2f", product.default_price) %> &euro;</td>
+            <td><%= sprintf("%.2f", product.promo_price) %> &euro;</td>
+            <% if product.arriving_date %>
+              <td><%= product.arriving_date.strftime("%a, %d %b %Y") %></td>
+            <% else %>
+              <td>nil</td>
+            <% end %>
+            <td><%= get_status_label(product.status, product.arriving_date) %></td>
+            <td><%= link_to "Show", product_path(product) %></td>
+            <td><%= link_to "Edit", edit_product_path(product) %></td>
+            <%= render partial: "arrived_button", locals: { product: product } %>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
   </div>
 </div>

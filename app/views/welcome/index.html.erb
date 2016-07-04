@@ -16,24 +16,28 @@
 				</div>
 				<div class="panel-body">
 					<table class="table table-striped">
-						<tr>
-			        <th>Initiative</th>
-			        <th>Description</th>
-							<th>Status</th>
-			        <th>Arriving Quantity</th>
-			        <th>Available Quantity</th>
-			        <th>Arriving date</th>
-			      </tr>
-			      <% @products.each do |product| %>
-			        <tr>
-			          <td><%= product.initiative %></td>
-			          <td><%= link_to product.description, product %></td>
-								<td><%= product.status %></td>
-								<td><strong><%= product.quantity %></strong> pcs.</td>
-			          <td><strong><%= update_quantity(product) %></strong> pcs.</td>
-			          <td><%= product.arriving_date ? product.arriving_date.strftime("%a, %d %b %Y") : "nil" %></td>
-			        </tr>
-			      <% end %>
+						<thead>
+							<tr>
+				        <th>Initiative</th>
+				        <th>Description</th>
+								<th>Status</th>
+				        <th>Available Quantity</th>
+				        <th>Arriving date</th>
+								<th>&nbsp;</th>
+				      </tr>
+						</thead>
+						<tbody>
+				      <% @products.each do |product| %>
+				        <tr>
+				          <td><%= product.initiative %></td>
+				          <td><%= link_to product.description, product %></td>
+									<td><%= get_status_label(product.status, product.arriving_date) %></td>
+				          <td class="quantity"><strong><%= update_quantity(product) %></strong></td>
+				          <td><%= product.arriving_date ? product.arriving_date.strftime("%a, %d %b %Y") : "nil" %></td>
+									<%= render partial: "products/arrived_button", locals: { product: product } %>
+				        </tr>
+				      <% end %>
+						</tbody>
 					</table>
 				</div>
 			</div>

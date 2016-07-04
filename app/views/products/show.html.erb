@@ -3,24 +3,40 @@
 <div class="row">
   <div class="col-md-12">
     <table class="table table-hover">
-      <tr>
-        <th>Initiative</th>
-        <th>Local code</th>
-        <th>Barcode</th>
-        <th>Default price</th>
-        <th>Promo price</th>
-        <th>Arriving date</th>
-        <th>Quantity</th>
-      </tr>
-      <tr>
-        <td><%= @product.initiative %></td>
-        <td><%= @product.local_code %></td>
-        <td><%= @product.barcode %></td>
-        <td><%= @product.default_price %> &euro;</td>
-        <td><%= @product.promo_price %> &euro;</td>
-        <td><%= @product.arriving_date.strftime("%a, %d %b %Y") %></td>
-        <td><%= @product.quantity %></td>
-      </tr>
+      <thead>
+        <tr>
+          <th>created by</th>
+          <th>Initiative</th>
+          <th>Local code</th>
+          <th>Barcode</th>
+          <th>Default price</th>
+          <th>Promo price</th>
+          <% if !@product.in_stock? %>
+            <th>Arriving date</th>
+          <% end %>
+          <th>Quantity</th>
+          <th>Available Quantity</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @product.user.name %></td>
+          <td><%= @product.initiative %></td>
+          <td><%= @product.local_code %></td>
+          <td><%= @product.barcode %></td>
+          <td><%= @product.default_price %> &euro;</td>
+          <td><%= @product.promo_price %> &euro;</td>
+          <% if !@product.in_stock? %>
+            <td><%= @product.arriving_date.strftime("%a, %d %b %Y") %></td>
+          <% end %>
+          <td><%= @product.quantity %></td>
+          <td><%= update_quantity(@product) %></td>
+          <td><%= get_status_label(@product.status, @product.arriving_date) %></td>
+          <%= render partial: "arrived_button", locals: { product: @product } %>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>

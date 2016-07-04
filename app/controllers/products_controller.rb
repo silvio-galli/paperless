@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
 
     if @product.save
       flash[:notice] = "Product correctly updated in the database."
-      redirect_to products_path
+      redirect_to request.referer
     else
       flash[:alert] = "Error! Product not updated. Plaese try again."
       render :edit

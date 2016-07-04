@@ -1,0 +1,10 @@
+<% if product.arriving? %>
+  <td>
+    <%= form_for product do |f| %>
+      <%= f.hidden_field :status, value: "arrived" %>
+      <%= f.submit "Arrived!" %>
+    <% end %>
+  </td>
+<% else %>
+  <td>&nbsp;</td>
+<% end %>
