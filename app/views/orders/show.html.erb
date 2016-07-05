@@ -79,7 +79,7 @@
         <label>Select a product:</label>
         <br />
         <%= f.select(:product_id) do %>
-          <% products_array = @products.map { |product| ["#{product.initiative} - #{product.description} - available: #{update_quantity(product)} pcs.", product.id] } %>
+          <% products_array = @products.select { |product| available_items?(product) > 0 }.map { |product| ["#{product.initiative} - #{product.description} - available: #{available_items?(product)} pcs.", product.id] } %>
           <%= options_for_select(products_array) %>
         <% end %>
       </div>

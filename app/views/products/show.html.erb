@@ -32,7 +32,7 @@
             <td><%= @product.arriving_date.strftime("%a, %d %b %Y") %></td>
           <% end %>
           <td><%= @product.quantity %></td>
-          <td><%= update_quantity(@product) %></td>
+          <td><%= check_product_availability(@product) %></td>
           <td><%= get_status_label(@product.status, @product.arriving_date) %></td>
           <%= render partial: "arrived_button", locals: { product: @product } %>
         </tr>

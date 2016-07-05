@@ -32,7 +32,7 @@
 				          <td><%= product.initiative %></td>
 				          <td><%= link_to product.description, product %></td>
 									<td><%= get_status_label(product.status, product.arriving_date) %></td>
-				          <td class="quantity"><strong><%= update_quantity(product) %></strong></td>
+				          <td class="quantity"><%= check_product_availability(product) %></td>
 				          <td><%= product.arriving_date ? product.arriving_date.strftime("%a, %d %b %Y") : "nil" %></td>
 									<%= render partial: "products/arrived_button", locals: { product: product } %>
 				        </tr>
