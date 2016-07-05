@@ -1,0 +1,10 @@
+<% if order.open? %>
+  <td>
+    <%= form_for order do |o| %>
+      <%= o.hidden_field :status, value: "closed" %>
+      <%= o.submit "Close!" %>
+    <% end %>
+  </td>
+<% else %>
+  <td>&nbsp;</td>
+<% end %>

@@ -1,0 +1,99 @@
+<h1>
+  Order #<%= @order.id %>
+  <small>(<%= @order.created_at.strftime("%a, %d %b %Y") %>)</small>
+  <%= order_status_label(@order) %>
+</h1>
+<br />
+<div class="row">
+  <div class="col-md-5">
+    <div class="panel panel-default" id="customer_details">
+      <div class="panel-heading">
+        <h4>Customer</h4>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <li>Name: <%= link_to @order.customer.full_name, customer_path(@order.customer) %></li>
+          <li>Email: <%= @order.customer.email %></li>
+          <li>Phone: <%= @order.customer.phone %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1">&nbsp;</div>
+  <div class="col-md-6" id="shop_details">
+    <div class="panel panel-default" id="customer_details">
+      <div class="panel-heading">
+        <h4>Shop Name <img class="pull-right" src="" alt="Shop Logo" /></h4>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <li>Address: </li>
+          <li>Contacts: </li>
+          <li>Fiscal details: </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12" id="items_list">
+    <h2>Order details</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>EAN</th>
+          <th>items</th>
+          <th>pieces</th>
+          <th>default price</th>
+          <th>promo price</th>
+          <th>subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tboby>
+        <% @ordered_items.each do |ordered_item| %>
+          <tr>
+            <td class="barcode-cell">
+              <img id="barcode-product-<%= ordered_item.product.id %>"/>
+              <script>
+                $("#barcode-product-<%= ordered_item.product.id %>").barcode("<%= ordered_item.product.barcode %>", "ean13", { barWidth: 2, fontSize: 12 });
+              </script>
+            </td>
+            <td class="description-cell"><%= ordered_item.product.description %></td>
+            <td class="quantity-cell"><%= ordered_item.quantity %></td>
+            <td class="default-price-cell"><%= ordered_item.product.default_price %> &euro;</td>
+            <td class="promo-price-cell"><%= ordered_item.product.promo_price %> &euro;</td>
+            <td class="subtotal-cell"><%= calculate_subtotal(ordered_item) %> &euro;</td>
+            <td class="buttons"><%= link_to "Remove", ordered_item, method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: "Are you sure you want to remove #{pluralize(ordered_item.quantity, 'piece')} of #{ordered_item.product.description} from this order?" } %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td colspan="5" class="text-right">total</td>
+          <td colspan="2"><strong><%= calculate_total_price(@order) %> &euro;</strong></td>
+        </tr>
+      </tboby>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4" id="products_list">
+    <h2>Add Items to this order</h2>
+    <%= form_for [@order, @order_item] do |f| %>
+      <div class="form-group">
+        <label>Select a product:</label>
+        <br />
+        <%= f.select(:product_id) do %>
+          <% products_array = @products.select { |product| available_items?(product) > 0 }.map { |product| ["#{product.initiative} - #{product.description} - available: #{available_items?(product)} pcs.", product.id] } %>
+          <%= options_for_select(products_array) %>
+        <% end %>
+      </div>
+      <div class="form-group">
+        <%= f.label :quantity %>
+        <%= f.number_field :quantity, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "Add Item", class: 'btn btn-success' %>
+      </div>
+    <% end %>
+  </div>
+</div>

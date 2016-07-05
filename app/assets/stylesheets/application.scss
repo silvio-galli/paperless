@@ -15,3 +15,12 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+#keyword {
+  width: 80%;
+  display: inline;
+}
+
+.search-box .btn {
+   float: right;
+ }
