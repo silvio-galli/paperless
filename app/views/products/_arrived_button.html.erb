@@ -1,7 +1,7 @@
 <% if product.arriving? %>
   <td>
     <%= form_for product do |f| %>
-      <%= f.hidden_field :status, value: "arrived" %>
+      <%= f.hidden_field :status, value: "in_stock" %>
       <%= f.submit "Arrived!" %>
     <% end %>
   </td>

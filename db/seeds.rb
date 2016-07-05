@@ -26,12 +26,11 @@ users = User.all
   price = Faker::Number.decimal(3,2).to_d
   discount = rand(50..100).to_d
   promo = price - discount
-  status = rand(0..2)
+  status = rand(0..1)
   if status == 0
-    arriving_date = nil
-  elsif status == 2
-    arriving_date = Faker::Time.between(DateTime.now, DateTime.now - 7)
-  else
+    choices = [ nil, Faker::Time.between(DateTime.now, DateTime.now - 7) ]
+    arriving_date = choices.sample
+  elsif status == 1
     arriving_date = Faker::Time.between(DateTime.now, DateTime.now + 10)
   end
   product = Product.create!(
