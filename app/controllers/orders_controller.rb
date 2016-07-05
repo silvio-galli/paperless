@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @orders = Order.all
   end
@@ -33,9 +33,22 @@ class OrdersController < ApplicationController
   def edit
   end
 
+  def update
+    @order = Order.find(params[:id])
+    @order.assign_attributes(order_params)
+
+    if @order.save
+      flash[:notice] = "Order correctly updated in the database."
+      redirect_to request.referer
+    else
+      flash[:alert] = "Error! Order not updated. Plaese try again."
+      render :edit
+    end
+  end
+
   private
 
   def order_params
-    params.require(:order).permit(:notes, :total_price)
+    params.require(:order).permit(:notes, :total_price, :status)
   end
 end

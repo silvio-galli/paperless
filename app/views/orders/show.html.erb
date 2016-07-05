@@ -1,4 +1,8 @@
-<h1>Order #<%= @order.id %> <small>(<%= @order.created_at.strftime("%a, %d %b %Y") %>)</small></h1>
+<h1>
+  Order #<%= @order.id %>
+  <small>(<%= @order.created_at.strftime("%a, %d %b %Y") %>)</small>
+  <%= order_status_label(@order) %>
+</h1>
 <br />
 <div class="row">
   <div class="col-md-5">

@@ -12,7 +12,10 @@
 		<div class="col-md-6">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h1 class="panel-title">Products Report - arriving products</h1>
+					<h1 class="panel-title">
+						Products Report
+						<small class="pull-right"><%= link_to "View All Products", products_path %></small>
+					</h1>
 				</div>
 				<div class="panel-body">
 					<table class="table table-striped">
@@ -31,7 +34,7 @@
 				        <tr>
 				          <td><%= product.initiative %></td>
 				          <td><%= link_to product.description, product %></td>
-									<td><%= get_status_label(product.status, product.arriving_date) %></td>
+									<td><%= product_status_label(product, product.arriving_date) %></td>
 				          <td class="quantity"><%= check_product_availability(product) %></td>
 				          <td><%= product.arriving_date ? product.arriving_date.strftime("%a, %d %b %Y") : "nil" %></td>
 									<%= render partial: "products/arrived_button", locals: { product: product } %>
@@ -45,24 +48,31 @@
 		<div class="col-md-6">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h1 class="panel-title">Orders Report - opened orders</h1>
+					<h1 class="panel-title">
+						Orders Report - opened orders
+						<small class="pull-right"><%= link_to "View All Orders", orders_path %></small>
+					</h1>
 				</div>
 				<div class="panel-body">
 					<table class="table table-striped">
 						<tr>
 			        <th>id</th>
+							<th>status</th>
 			        <th>date</th>
 			        <th>customer</th>
 			        <th>total price</th>
 			        <th></th>
+							<th></th>
 			      </tr>
 			      <% @orders.each do |order| %>
 			        <tr>
-			          <td><%= order.id %></td>
+			          <td><%= link_to "# #{order.id}", order_path(order) %></td>
+								<td><%= order_status_label(order) %></td>
 			          <td><%= order.created_at.strftime("%a, %d %b %Y") %></td>
 			          <td><%= link_to order.customer.full_name, customer_path(order.customer) %></td>
 			          <td><%= calculate_total_price(order) %> &euro;</td>
 			          <td><%= link_to "Show", order_path(order) %></td>
+								<%= render partial: "orders/close_button", locals: { order: order } %>
 			        </tr>
 			      <% end %>
 					</table>

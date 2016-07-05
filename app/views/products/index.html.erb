@@ -54,7 +54,7 @@
             <% else %>
               <td>nil</td>
             <% end %>
-            <td><%= get_status_label(product.status, product.arriving_date) %></td>
+            <td><%= product_status_label(product, product.arriving_date) %></td>
             <td><%= link_to "Show", product_path(product) %></td>
             <td><%= link_to "Edit", edit_product_path(product) %></td>
             <%= render partial: "arrived_button", locals: { product: product } %>

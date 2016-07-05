@@ -13,7 +13,7 @@
   )
 end
 
-User.create!(
+admin = User.create!(
   name: "silvio.galli",
   email: "sg@example.com",
   password: "helloworld",
@@ -48,6 +48,8 @@ users = User.all
   )
 end
 
+products = Product.all
+
 15.times do
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
@@ -63,6 +65,25 @@ end
   )
 end
 
+customers = Customer.all
+
+10.times do
+  order = Order.create!(
+    customer: customers.sample
+  )
+end
+
+orders = Order.all
+
+10.times do
+  order_item = OrderItem.create!(
+    order: orders.sample,
+    product: products.sample,
+    quantity: rand(1..3)
+  )
+end
+
 puts "Created #{Product.count} new products."
 puts "Created #{Customer.count} new customers."
 puts "Created #{User.count} new users."
+puts "Created #{Order.count} new orders with #{OrderItem.count} items inside."

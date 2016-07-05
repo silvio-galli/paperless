@@ -1,4 +1,6 @@
 class OrderItemsController < ApplicationController
+  before_action :closed_order_cannot_modify, only: [ :create ]
+
   def create
     @order = Order.find(params[:order_id])
     @order_item =OrderItem.new
@@ -23,6 +25,15 @@ class OrderItemsController < ApplicationController
     else
       flash[:alert] = "Item wasn't removed. Please try again."
       redirect_to order_path (@order_item.order_id)
+    end
+  end
+
+  private
+  def closed_order_cannot_modify
+    @order = Order.find(params[:order_id])
+    if @order.closed?
+      flash[:alert] = "This order cannot be modified any more."
+      redirect_to request.referrer
     end
   end
 end
