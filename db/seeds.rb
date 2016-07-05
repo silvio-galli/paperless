@@ -31,7 +31,7 @@ users = User.all
     choices = [ nil, Faker::Time.between(DateTime.now, DateTime.now - 7) ]
     arriving_date = choices.sample
   elsif status == 1
-    arriving_date = Faker::Time.between(DateTime.now, DateTime.now + 10)
+    arriving_date = Faker::Time.between(DateTime.now - 3, DateTime.now + 10)
   end
   product = Product.create!(
     initiative: "#{Faker::Number.between(10, 13)}/2016",
