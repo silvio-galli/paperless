@@ -12,8 +12,8 @@ class Admin::UsersController < ApplicationController
   def update
     # I want admin to update only password
     @user = User.find(params[:id])
-    @user.assign_attributes(user_params)
-    if @user.save
+
+    if @user.update(user_params)
       flash[:notice] = "#{@user.name} has a new password"
       redirect_to admin_dashboard_path
     else

@@ -35,7 +35,7 @@
       </tr>
       <% @customers.each do |customer| %>
         <tr>
-          <td><%= link_to "#{customer.last_name} #{customer.first_name}", customer %></td>
+          <td><%= link_to "#{customer.full_name}", customer %></td>
           <td><%= customer.email %></td>
           <td><%= customer.phone %></td>
           <td>
