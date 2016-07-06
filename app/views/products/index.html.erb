@@ -47,8 +47,8 @@
             <td><%= product.quantity %></td>
             <td><%= check_product_availability(product) %></td>
             <td><%= product.local_code %></td>
-            <td><%= sprintf("%.2f", product.default_price) %> &euro;</td>
-            <td><%= sprintf("%.2f", product.promo_price) %> &euro;</td>
+            <td><%= product.default_price ? sprintf("%.2f €", product.default_price) : nil %></td>
+            <td><%= product.promo_price ? sprintf("%.2f €", product.promo_price) : nil %></td>
             <% if product.arriving_date %>
               <td><%= product.arriving_date.strftime("%a, %d %b %Y") %></td>
             <% else %>

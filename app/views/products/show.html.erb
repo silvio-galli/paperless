@@ -11,7 +11,7 @@
           <th>Barcode</th>
           <th>Default price</th>
           <th>Promo price</th>
-          <% if !@product.in_stock? %>
+          <% if @product.arriving? %>
             <th>Arriving date</th>
           <% end %>
           <th>Quantity</th>
@@ -28,7 +28,7 @@
           <td><%= @product.barcode %></td>
           <td><%= @product.default_price %> &euro;</td>
           <td><%= @product.promo_price %> &euro;</td>
-          <% if !@product.in_stock? %>
+          <% if @product.arriving? %>
             <td><%= @product.arriving_date.strftime("%a, %d %b %Y") %></td>
           <% end %>
           <td><%= @product.quantity %></td>
