@@ -18,10 +18,15 @@ class Product < ActiveRecord::Base
 
   enum status: [:in_stock, :arriving]
 
+  def is_arrived?
+    previous_changes && previous_changes['status'] == ["arriving", "in_stock"]
+  end
+
   private
   def arriving_status_validation
     if self.status == "arriving" && self.arriving_date == nil
       errors.add(:arriving_date, "cannot be blank if product has 'arriving' status")
     end
   end
+
 end
