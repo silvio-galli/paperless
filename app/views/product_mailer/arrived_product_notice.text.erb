@@ -1,14 +1,37 @@
-Ordered product has arrived at SHOP_NAME.
+<% if @arriving_items.empty? %>
+  Order #<%= @order.id %> ready!
 
-Hi <%= @customer.first_name.capitalize %>, we're glad to inform you that
-the product you ordered has arrived and is ready to be collected at our shop.
+  Hi <%= @customer.first_name.capitalize %>, we're glad to inform you that
+  all products you ordered arrived and are ready to be collected at our shop.
 
-Product details:
-  Order number: #<%= @order.id %>
-  Product: <%= @product.description %>
-  Quantity: <%= @order.order_items.find_by(product_id: @product.id).quantity %>
+  Order #<%= @order.id %>
+  Product details:</h4>
+  <% @order.order_items.each do |item| %>
+    ** Product: <%= item.product.description %> | Quantity: <%= item.quantity %>
+  <% end %>
+<% else %>
+  Product for order #<%= @order.id %> has arrived at SHOP_NAME.
 
-Additional info.
+  Hi <%= @customer.first_name.capitalize %>, we're glad to inform you that
+  a product contained in your order arrived and is ready to be collected at our shop.
+
+  Product details:</h4>
+    Product: <%= @product.description %>
+    Quantity: <%= @order.order_items.find_by(product_id: @product.id).quantity %>
+
+  *** Attention! ***
+  Your order contains products not arrived yet</h2>
+
+  Feel free to come and collect the product arrived or expect until all
+  other products arrive.
+
+  *** Still missing product for order #<%= @order.id %> ***
+
+  <% @arriving_items.each do |item| %>
+    Product: <%= item.product.description %> | Quantity: <%= item.quantity %>
+  <% end %>
+
+  Additional info.
 
   SHOP_ADDRESS
 
@@ -19,3 +42,4 @@ Additional info.
   EMAIL
 
   PHONE
+<% end %>

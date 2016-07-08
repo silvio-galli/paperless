@@ -11,7 +11,7 @@ module WelcomeHelper
       if arriving_date >= Time.now
         "<span class=\"label label-warning\">#{product.status}</span>".html_safe
       else
-        "<span class=\"label label-danger\">delay</span>".html_safe
+        "<span class=\"label label-danger\">delayed</span>".html_safe
       end
     end
   end

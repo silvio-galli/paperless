@@ -6,8 +6,13 @@ class ProductMailer < ApplicationMailer
     @product = product
     @order = order
     @customer = customer
+    @arriving_items = @order.order_items.select { |item| item.product.arriving? }
 
-    mail(to: customer.email, subject: "test email from paperless - The product you ordered has arrived at SHOP_NAME")
+    if @arriving_items.empty?
+      mail(to: customer.email, subject: "Your order is ready at SHOP_NAME")
+    else
+      mail(to: customer.email, subject: "The product you ordered has arrived at SHOP_NAME")
+    end
   end
 
 end

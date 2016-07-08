@@ -15,9 +15,10 @@
 }
 #items_list td {
   vertical-align: middle;
+  text-align: center;
 }
-#items_list .barcode-cell {
-  padding-left: 0;
+#items_list .description-cell {
+  text-align: left;
 }
 
 @media print {
@@ -34,9 +35,6 @@
     width: 83.33333333333334%;
   }
   .col-md-9 {
-    width: 75%;
-  }
-  .col-md-8 {
     width: 66.66666666666666%;
   }
   .col-md-7 {
@@ -75,7 +73,7 @@
   a[href]:after {
     content: "" !important;
   }
-  ul.nav, .buttons, #products_list {
+  span.label, span.label-warning, ul.nav, .status-label-cell, .buttons, #products_list,  {
     display: none;
   }
 }

@@ -4,44 +4,50 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Ordered product has arrived at SHOP_NAME.</h1>
-
-    <p>
-      Hi <%= @customer.first_name.capitalize %>, we're glad to inform you that
-      the product you ordered has arrived and is ready to be collected at our shop.
-    </p>
-
-    <div style="border: 2px solid green; padding: 10px;">
-      <h3>Product details:</h3>
-      <p>
-        <ul>
-          <li><strong>Order number:</strong> #<%= @order.id %></li>
-          <li><strong>Product:</strong> <%= @product.description %></li>
-          <li><strong>Quantity:</strong> <%= @order.order_items.find_by(product_id: @product.id).quantity %></li>
-        </ul>
-      </p>
-    </div>
-
-    <br />
-
-    <% arriving_items = @order.order_items.select { |item| item.product.arriving? } %>
-    <% if arriving_items.empty? %>
+    <% if @arriving_items.empty? %>
     	<h2>Order #<%= @order.id %> ready!</h2>
+      <p>
+        Hi <%= @customer.first_name.capitalize %>, we're glad to inform you that
+        all products you ordered arrived and are ready to be collected at our shop.
+      </p>
+      <h3>Order #<%= @order.id %></h3>
     	<p>
-    	  All products you where waiting for, arrived at our shop.
-    	  <br />
-    	  You can come and collect them.
+        <div style="border: 2px solid green; padding: 10px;">
+          <h4>Product details:</h4>
+          <p>
+            <ul>
+              <% @order.order_items.each do |item| %>
+                <li><strong>Product:</strong> <%= item.product.description %> | <strong>Quantity:</strong> <%= item.quantity %></li>
+              <% end %>
+            </ul>
+          </p>
+        </div>
     	</p>
     <% else %>
-      <div style="border: 2px solid red; padding: 10px;">
-      	<h2>Attention! Your order contains other products</h2>
+      <h1>Product for order #<%= @order.id %> has arrived at SHOP_NAME.</h1>
+      <p>
+        Hi <%= @customer.first_name.capitalize %>, we're glad to inform you that
+        a product contained in your order arrived and is ready to be collected at our shop.
+      </p>
+      <div style="border: 2px solid green; padding: 10px;">
+        <h4>Product details:</h4>
         <p>
-          Feel free to come and collect the product arrived or expcet the arrival
-          of other products.
+          <ul>
+            <li><strong>Product:</strong> <%= @product.description %></li>
+            <li><strong>Quantity:</strong> <%= @order.order_items.find_by(product_id: @product.id).quantity %></li>
+          </ul>
         </p>
-      	<p>Still missing product for order #<%= @order.id %>:</p>
+      </div>
+      <br />
+      <div style="border: 2px solid red; padding: 10px;">
+      	<h2>Attention! Your order contains products not arrived yet</h2>
+        <h4>
+          Feel free to come and collect the product arrived or expect until all
+          other products arrive.
+        </h4>
+      	<h3>Still missing product for order #<%= @order.id %>:</h3>
       	<ul>
-      	  <% arriving_items.each do |item| %>
+      	  <% @arriving_items.each do |item| %>
       	    <li><strong>Product:</strong> <%= item.product.description %></li>
       	    <li><strong>Quantity:</strong> <%= item.quantity %></li>
       	  <% end %>
@@ -60,10 +66,6 @@
       EMAIL
       <br />
       PHONE
-    </p>
-
-    <p>
-      See you soon.
     </p>
 
   </body>
