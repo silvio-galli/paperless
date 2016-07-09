@@ -36,10 +36,7 @@ class ProductsController < ApplicationController
 
     if @product.save
       if @product.is_arrived?
-        orders = @product.orders.where(status: "open")
-        orders.each do |order|
-          ProductMailer.arrived_product_notice(@product, order, order.customer).deliver_now
-        end
+        SendEmailNotificationJob.set(wait: 1.seconds).perform_later(@product)
       end
       flash[:notice] = "Product correctly updated in the database."
       redirect_to request.referer
