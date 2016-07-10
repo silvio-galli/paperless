@@ -14,7 +14,7 @@
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "About", welcome_about_path %></li>
         <li><%= link_to "Customers", customers_path %></li>
-        <li><%= link_to "Products", products_path %></li>
+        <li><%= link_to Product.model_name.human(count: :many).capitalize, products_path %></li>
         <li><%= link_to "Orders", orders_path %></li>
         <% if current_user && current_user.admin? %>
           <li><%= link_to "Admin", admin_dashboard_path %></li>

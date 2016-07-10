@@ -1,31 +1,33 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'dashboard', to: "dashboard#index"
-    resources :users, only: [:show, :edit, :update]
+  scope "(:locale)", locale: /en|it/ do
+    devise_for :users, controllers: { registrations: "registrations" }
+
+    namespace :admin do
+      get 'dashboard', to: "dashboard#index"
+      resources :users, only: [:show, :edit, :update]
+    end
+
+    resources :customers do
+      resources :orders, only: [:new, :create]
+    end
+
+    resources :orders, only: [:edit, :show, :index, :update] do
+      resources :order_items, only: [:new, :create]
+    end
+
+    resources :order_items, except: [:new, :create]
+
+    resources :products
+
+    get 'search' => 'search#index', as: :search
+
+    get 'welcome', to: "welcome#index"
+
+    get 'welcome/about'
+
+    root to: 'welcome#index'
   end
-
-  devise_for :users, controllers: { registrations: "registrations" }
-
-  resources :customers do
-    resources :orders, only: [:new, :create]
-  end
-
-  resources :orders, only: [:edit, :show, :index, :update] do
-    resources :order_items, only: [:new, :create]
-  end
-
-  resources :order_items, except: [:new, :create]
-
-  resources :products
-
-  get 'search' => 'search#index', as: :search
-
-  get 'welcome', to: "welcome#index"
-
-  get 'welcome/about'
-
-  root to: 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

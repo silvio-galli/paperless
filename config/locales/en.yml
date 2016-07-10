@@ -21,3 +21,9 @@
 
 en:
   hello: "Hello world"
+  jumbotron_subtitle: "Manage your products, your customers and your customers' orders"
+  switch_language: "Se preferisci, puoi passare a:"
+  welcome:
+    index:
+      jumbotron_subtitle: "Manage your products, your customers and your customers' orders"
+      switch_language: "Se preferisci, puoi passare a:"

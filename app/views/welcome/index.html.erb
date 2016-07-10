@@ -87,7 +87,15 @@
 <% else %>
 	<br />
 	<div class="jumbotron">
+		<p class="lead">
+			<%= t :switch_language %>
+			<% if I18n.locale == :en %>
+				<%= link_to "Italiano", "/?locale=it" %>
+			<% else %>
+				<%= link_to "English", "/?locale=en" %>
+			<% end %>
+		</p>
 		<h1>PaperLess</h1>
-		<p class="lead">Manage your products, customers and customers' orders.</p>
+		<p class="lead"><%= t :jumbotron_subtitle %></p>
 	</div>
 <% end %>

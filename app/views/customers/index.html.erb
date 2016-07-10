@@ -44,7 +44,7 @@
           <td><%= customer.orders.count %></td>
           <td><%= link_to "Show", customer_path(customer) %></td>
           <td><%= link_to "Edit", edit_customer_path(customer) %></td>
-          <td><%= link_to "New Order", new_customer_order_path(customer, Order.new), class: 'btn btn-default btn-sm' %></td>
+          <td><%= link_to "New Order", new_customer_order_path(customer), class: 'btn btn-default btn-sm' %></td>
         </tr>
       <% end %>
     </table>
