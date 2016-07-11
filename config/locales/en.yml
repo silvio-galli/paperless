@@ -21,9 +21,51 @@
 
 en:
   hello: "Hello world"
+
+  # RECURRING EXPRESSIONS
+  recurring:
+    about: "About"
+    customers: "Customers"
+    products: "Products"
+    orders: "Orders"
+    show: "Show"
+    edit: "Edit"
+    close: "Close"
+    arrived: "Arrived"
+    arriving: "arriving"
+    in_stock: "in stock"
+    delayed: "delayed"
+
+  # ROOT
   jumbotron_subtitle: "Manage your products, your customers and your customers' orders"
   switch_language: "Se preferisci, puoi passare a:"
+
+  # VIEWS
   welcome:
     index:
       jumbotron_subtitle: "Manage your products, your customers and your customers' orders"
       switch_language: "Se preferisci, puoi passare a:"
+  products:
+    index:
+      new_product: "New Product"
+      search_placeholder: "Search Product: description"
+
+  # CONTROLLERS
+  admin:
+    users:
+      update:
+        notice: "%{user_name} has a new password."
+        alert: "Password for %{unser_name} has NOT changed. Please try again."
+
+  # HELPERS
+  helpers:
+    placeholder:
+      product:
+        initiative: "promo number/aaaa or no promo"
+        local_code: "Enter local code"
+        description: "Enter description"
+        barcode: "Enter barcode"
+        default_price: "e.i. 100.00"
+        promo_price: "e.i. 80.00"
+        quantity: "max 50 items"
+        arriving_date: "dd/mm/yyyy"

@@ -18,29 +18,63 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
-
 it:
-  # VIEWS
   hello: "Ciao a tutti"
-  switch_language: "If you prefer, switch to:"
+
+  # ESPRESSIONI RICORRENTI
+  recurring:
+    about: "Info"
+    customers: "Clienti"
+    products: "Prodotti"
+    orders: "Ordini"
+    show: "Mostra"
+    edit: "Modifica"
+    close: "Chiudi"
+    arrived: "Arrivato!"
+    arriving: "in arrivo"
+    in_stock: "in stock"
+    delayed: "in ritardo"
+
+  # ROOT
   jumbotron_subtitle: "Gestisci i tuoi prodotti, i tuoi clienti e gli ordini dei tuoi clienti"
+  switch_language: "If you prefer, switch to:"
+
+  # VIEWS
   welcome:
     index:
       jumbotron_subtitle: "Gestisci i tuoi prodotti, i tuoi clienti e gli ordini dei tuoi clienti"
       switch_language: "If you prefer, switch to:"
-  # DEVISE
-  devise:
-    failure:
-      not_found_in_database: "Password o %{authentication_keys} non validi."
-      user:
-        unauthenticated: "Devi essere connesso o registrarti prima di poter accedere."
-    sessions:
-      user:
-        signed_in: "Autenticato correttamente."
-        signed_out: "Disconnesso correttamente."
-  # MODELS
-  activerecord:
-    models:
+  products:
+    index:
+      new_product: "Nuovo Prodotto"
+      search_placeholder: "Ricerca Prodotto: descrizione"
+      arriving: "In Arrivo"
+      in_stock: "A Magazzino"
+      initiative: "Iniziativa"
+      description: "Descrizione"
+      arriving_quantity: "Quant. in arrivo"
+      available_quantity: "Quant. disponibile"
+      local_code: "Cod. articolo"
+      default_price: "Prezzo cont."
+      promo_price: "Prezzo promo"
+      arriving_date: "Data arrivo"
+
+  # CONTROLLERS
+  admin:
+    users:
+      update:
+        notice: "%{user_name} ha una nuova password."
+        alert: "La password di %{unser_name} NON è cambiata. Prova ancora."
+
+  # HELPERS
+  helpers:
+    placeholder:
       product:
-        one: "prodotto"
-        other: "prodotti"
+        initiative: "numero promo/aaaa oppure no promo"
+        local_code: "Inserire codice articolo"
+        description: "Inserire descrizione prodotto"
+        barcode: "Inserire codice EAN"
+        default_price: "es: 100.00"
+        promo_price: "es: 80.00"
+        quantity: "max 50 pezzi"
+        arriving_date: "gg/mm/aaaa"

@@ -1,0 +1,13 @@
+en:
+  activerecord:
+    models:
+      product:
+        one: "product"
+        other: "products"
+      customer:
+        one: "customer"
+        other: "customers"
+      order:
+        one: "order"
+        other: "orders"
+    

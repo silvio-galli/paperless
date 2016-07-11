@@ -1,0 +1,26 @@
+it:
+  # MODELS
+  activerecord:
+    models:
+      product:
+        one: "prodotto"
+        other: "prodotti"
+      customer:
+        one: "cliente"
+        other: "clienti"
+      order:
+        one: "ordine"
+        other: "ordini"
+    attributes:
+      product:
+        initiative: "Iniziativa"
+        description: "Descrizione"
+        local_code: "Codice Locale"
+        barcode: "Codice a Barre"
+        default_price: "Prezzo Continuo"
+        promo_price: "Prezzo Promo"
+        quantity: "Quantità"
+        arriving_date: "Data Arrivo"
+        created_at: "creato il"
+        updated_at: "aggiornato il"
+        status: "Status"

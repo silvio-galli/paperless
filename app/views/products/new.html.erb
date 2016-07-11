@@ -1,4 +1,4 @@
-<h1>Add New Product</h1>
+<h1><%= t :new_resource %></h1>
 <div class="row">
   <div class="col-md-4">
     <%= form_for @product do |f| %>
@@ -14,41 +14,41 @@
       <% end %>
       <div class="form-group">
         <%= f.label :initiative %>
-        <%= f.text_field :initiative, class: 'form-control', placeholder: 'promo_number/yyyy or no promo' %>
+        <%= f.text_field :initiative, class: 'form-control', placeholder: true %>
       </div>
       <div class="form-group">
         <%= f.label :local_code %>
-        <%= f.text_field :local_code, class: 'form-control' %>
+        <%= f.text_field :local_code, class: 'form-control', placeholder: true %>
       </div>
       <div class="form-group">
         <%= f.label :description %>
-        <%= f.text_field :description, class: 'form-control', placeholder: "Enter product description" %>
+        <%= f.text_field :description, class: 'form-control', placeholder: true %>
       </div>
       <div class="form-group">
         <%= f.label :barcode %>
-        <%= f.text_field :barcode, class: 'form-control' %>
+        <%= f.text_field :barcode, class: 'form-control', placeholder: true %>
       </div>
       <div class="form-group">
         <%= f.label :default_price %>
-        <%= f.number_field :default_price, in: 0.01..9999.99, step: 0.01, class: 'form-control' %>
+        <%= f.number_field :default_price, in: 0.01..9999.99, step: 0.01, class: 'form-control', placeholder: true %>
       </div>
       <div class="form-group">
         <%= f.label :promo_price %>
-        <%= f.number_field :promo_price, in: 0.01..9999.99, step: 0.01, class: 'form-control' %>
+        <%= f.number_field :promo_price, in: 0.01..9999.99, step: 0.01, class: 'form-control', placeholder: true %>
       </div>
       <div class="form-group">
         <%= f.label :quantity %>
-        <%= f.number_field :quantity, class: 'form-control' %>
+        <%= f.number_field :quantity, class: 'form-control', placeholder: true %>
       </div>
       <div class="form-group">
         <%= f.radio_button(:status, "arriving", checked: true) %>
-        <%= f.label(:status, "Arriving") %>
+        <%= f.label(:status, t('.arriving')) %>
         <%= f.radio_button(:status, "in_stock") %>
-        <%= f.label(:status, "In Stock") %>
+        <%= f.label(:status, t('.in_stock')) %>
       </div>
       <div class="form-group">
         <%= f.label :arriving_date %>
-        <%= f.datetime_field :arriving_date, class: 'form-control', placeholder: "yyyy/mm/dd" %>
+        <%= f.datetime_field :arriving_date, class: 'form-control', placeholder: true %>
       </div>
       <div class="form-group">
         <%= f.submit "Save", class: 'btn btn-success' %>

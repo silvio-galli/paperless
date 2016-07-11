@@ -22,8 +22,8 @@
 						<thead>
 							<tr>
 				        <th>Initiative</th>
-				        <th>Description</th>
-								<th>Status</th>
+				        <th class="description-cell">Description</th>
+								<th></th>
 				        <th>Available Quantity</th>
 				        <th>Arriving date</th>
 								<th>&nbsp;</th>
@@ -33,7 +33,7 @@
 				      <% @products.each do |product| %>
 				        <tr>
 				          <td><%= product.initiative %></td>
-				          <td><%= link_to product.description, product %></td>
+				          <td class="description-cell"><%= link_to product.description, product %></td>
 									<td><%= product_status_label(product, product.arriving_date) %></td>
 				          <td class="quantity"><%= check_product_availability(product) %></td>
 				          <td><%= product.arriving_date ? product.arriving_date.strftime("%a, %d %b %Y") : "nil" %></td>
@@ -58,7 +58,6 @@
 						<thead>
 							<tr>
 				        <th>id</th>
-								<th>status</th>
 				        <th>date</th>
 				        <th>customer</th>
 				        <th>total price</th>
@@ -70,7 +69,6 @@
 							<% @orders.each do |order| %>
 				        <tr>
 				          <td><%= link_to "# #{order.id}", order_path(order) %></td>
-									<td><%= order_status_label(order) %></td>
 				          <td><%= order.created_at.strftime("%a, %d %b %Y") %></td>
 				          <td><%= link_to order.customer.full_name, customer_path(order.customer) %></td>
 				          <td><%= calculate_total_price(order) %> &euro;</td>
@@ -90,9 +88,10 @@
 		<p class="lead">
 			<%= t :switch_language %>
 			<% if I18n.locale == :en %>
-				<%= link_to "Italiano", "/?locale=it" %>
+				<%= link_to "Italiano", locale: :it %>
+				<% I18n.locale == :it %>
 			<% else %>
-				<%= link_to "English", "/?locale=en" %>
+				<%= link_to "English", locale: :en %>
 			<% end %>
 		</p>
 		<h1>PaperLess</h1>

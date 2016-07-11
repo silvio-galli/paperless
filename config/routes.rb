@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  scope "(:locale)", locale: /en|it/ do
+  scope "/:locale" do
     devise_for :users, controllers: { registrations: "registrations" }
 
     namespace :admin do
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
     get 'welcome', to: "welcome#index"
 
-    get 'welcome/about'
+    get '/about', to: "welcome#about"
 
     root to: 'welcome#index'
   end
