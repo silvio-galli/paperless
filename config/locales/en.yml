@@ -21,24 +21,37 @@
 
 en:
   hello: "Hello world"
+  errors:
+    one: "%{count} error"
+    other: "%{count} errors"
 
   # RECURRING EXPRESSIONS
   recurring:
-    about: "About"
-    customers: "Customers"
-    products: "Products"
-    orders: "Orders"
-    show: "Show"
-    edit: "Edit"
-    close: "Close"
-    arrived: "Arrived"
-    arriving: "arriving"
-    in_stock: "in stock"
-    delayed: "delayed"
+    customers: &customers "Customers"
+    products: &products "Products"
+    orders: &orders "Orders"
+    show: &show "Show"
+    edit: &edit "Edit"
+    close: &close "Close"
+    save: &save "Save"
+    arrived: &arrived "Arrived"
+    arriving: &arriving "arriving"
+    in_stock: &in_stock "in stock"
+    delayed: &delayed "delayed"
+    new_product: &new_product "New Product"
+    arrived_confirmation_notice: &arrived_confirmation_notice "Marking the product as arrived will send emails to every customer waiting for it. Are you sure you want to continue?"
 
   # ROOT
   jumbotron_subtitle: "Manage your products, your customers and your customers' orders"
   switch_language: "Se preferisci, puoi passare a:"
+
+  #NAVBAR
+  layouts:
+    application:
+      about: "About"
+      customers: *customers
+      products: *products
+      orders: *orders
 
   # VIEWS
   welcome:
@@ -47,15 +60,12 @@ en:
       switch_language: "Se preferisci, puoi passare a:"
   products:
     index:
-      new_product: "New Product"
+      title: *products
+      new_product_link: *new_product
       search_placeholder: "Search Product: description"
-
-  # CONTROLLERS
-  admin:
-    users:
-      update:
-        notice: "%{user_name} has a new password."
-        alert: "Password for %{unser_name} has NOT changed. Please try again."
+    new:
+      title: *new_product
+      save: *save
 
   # HELPERS
   helpers:

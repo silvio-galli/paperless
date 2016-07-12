@@ -1,0 +1,16 @@
+it:
+  products:
+    create:
+      flash:
+        notice: "Nuovo prodotto salvato correttamente nel database."
+        alert: "Errore! Prodotto NON salvato. Prova di nuovo."
+    update:
+      flash:
+        notice: "Prodotto aggiornato correttamente nel databse."
+        alert: "Errore! Prodotto NON aggiornato correttamente. Prova di nuovo."
+  admin:
+    users:
+      update:
+        flash:
+          notice: "%{user_name} ha una nuova password."
+          alert: "La password di %{unser_name} NON è cambiata. Prova ancora."

@@ -1,5 +1,4 @@
 it:
-  # MODELS
   activerecord:
     models:
       product:
@@ -24,3 +23,24 @@ it:
         created_at: "creato il"
         updated_at: "aggiornato il"
         status: "Status"
+    # VALIDATION ERRORS
+    errors:
+      models:
+        product:
+          arriving_date: "non può essere vuoto se il prodotto è in arrivo."
+          attributes:
+            description:
+              blank: "non può essere vuoto."
+            initiative:
+              blank: "non può essere vuoto."
+            barcode:
+              blank: "non può essere vuoto."
+            default_price:
+              blank: "non può essere vuoto."
+            promo_price:
+              blank: "non può essere vuoto."
+              not_a_number: "Sei pregato di inserire un numero."
+            quantity:
+              blank: "non può essere vuoto."
+              not_a_number: "deve essere un numero"
+              less_than: "non può essere superiore a 50."

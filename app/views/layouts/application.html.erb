@@ -12,10 +12,10 @@
     <div class="row">
       <ul class="nav nav-tabs">
         <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to t('recurring.about'), about_path %></li>
-        <li><%= link_to t('recurring.customers'), customers_path %></li>
-        <li><%= link_to t('recurring.products'), products_path %></li>
-        <li><%= link_to t('recurring.orders'), orders_path %></li>
+        <li><%= link_to t('.about'), about_path %></li>
+        <li><%= link_to t('.customers'), customers_path %></li>
+        <li><%= link_to t('.products'), products_path %></li>
+        <li><%= link_to t('.orders'), orders_path %></li>
         <% if current_user && current_user.admin? %>
           <li><%= link_to "Admin", admin_dashboard_path %></li>
         <% end %>

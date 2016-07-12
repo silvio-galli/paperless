@@ -10,4 +10,8 @@ en:
       order:
         one: "order"
         other: "orders"
-    
+    # VALIDATION ERRORS
+    errors:
+      models:
+        product:
+          arriving_date: "cannot be blank if product has \"arriving\" status."

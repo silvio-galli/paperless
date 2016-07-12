@@ -1,0 +1,16 @@
+en:
+  products:
+    create:
+      flash:
+        notice: "Product correctly saved in the database."
+        alert: "Error! Product not saved. Plaese try again."
+    update:
+      flash:
+        notice: "Product correctly updated in the database."
+        alert: "Error! Product NOT updated. Please try again."
+  admin:
+    users:
+      update:
+        flash:
+          notice: "%{user_name} has a new password."
+          alert: "Password for %{unser_name} has NOT changed. Please try again."

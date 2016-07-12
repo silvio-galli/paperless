@@ -20,24 +20,37 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 it:
   hello: "Ciao a tutti"
+  errors:
+    one: "%{count} errore"
+    other: "%{count} errori"
 
   # ESPRESSIONI RICORRENTI
   recurring:
-    about: "Info"
-    customers: "Clienti"
-    products: "Prodotti"
-    orders: "Ordini"
-    show: "Mostra"
-    edit: "Modifica"
-    close: "Chiudi"
-    arrived: "Arrivato!"
-    arriving: "in arrivo"
-    in_stock: "in stock"
-    delayed: "in ritardo"
+    customers: &customers "Clienti"
+    products: &products "Prodotti"
+    orders: &orders "Ordini"
+    show: &show "Mostra"
+    edit: &edit "Modifica"
+    close: &close "Chiudi"
+    save: &save "Salva"
+    new_product: &new_product "Nuovo Prodotto"
+    arrived: &arrived "Arrivato"
+    arriving: &arriving "in arrivo"
+    in_stock: &in_stock "in stock"
+    delayed: &delayed "in ritardo"
+    arrived_confirmation_notice: &arrived_confirmation_notice "Preseguendo con questa operazione verranno inviate email a tutti i clienti che attendono questo prodotto. Sei sicuro di voler continuare?"
 
   # ROOT
   jumbotron_subtitle: "Gestisci i tuoi prodotti, i tuoi clienti e gli ordini dei tuoi clienti"
   switch_language: "If you prefer, switch to:"
+
+  #NAVBAR
+  layouts:
+    application:
+      about: "Info"
+      customers: *customers
+      products: *products
+      orders: *orders
 
   # VIEWS
   welcome:
@@ -46,10 +59,12 @@ it:
       switch_language: "If you prefer, switch to:"
   products:
     index:
-      new_product: "Nuovo Prodotto"
+      title: *products
+      new_product_link: *new_product
       search_placeholder: "Ricerca Prodotto: descrizione"
-      arriving: "In Arrivo"
-      in_stock: "A Magazzino"
+      arriving: *arriving
+      in_stock: *in_stock
+      delayed: *delayed
       initiative: "Iniziativa"
       description: "Descrizione"
       arriving_quantity: "Quant. in arrivo"
@@ -58,13 +73,12 @@ it:
       default_price: "Prezzo cont."
       promo_price: "Prezzo promo"
       arriving_date: "Data arrivo"
-
-  # CONTROLLERS
-  admin:
-    users:
-      update:
-        notice: "%{user_name} ha una nuova password."
-        alert: "La password di %{unser_name} NON è cambiata. Prova ancora."
+      show: *show
+      edit: *edit
+      arrived_confirmation_notice: *arrived_confirmation_notice
+    new:
+      title: *new_product
+      save: *save
 
   # HELPERS
   helpers:
@@ -74,7 +88,7 @@ it:
         local_code: "Inserire codice articolo"
         description: "Inserire descrizione prodotto"
         barcode: "Inserire codice EAN"
-        default_price: "es: 100.00"
-        promo_price: "es: 80.00"
+        default_price: "es. 100.00"
+        promo_price: "es. 80.00"
         quantity: "max 50 pezzi"
         arriving_date: "gg/mm/aaaa"

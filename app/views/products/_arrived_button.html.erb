@@ -2,7 +2,7 @@
   <td>
     <%= form_for product do |f| %>
       <%= f.hidden_field :status, value: "in_stock" %>
-      <%= f.submit t('recurring.arrived'), data: { confirm: "Marking the product as arrived will send emails to every customer waiting for it. Are you sure you want to continue?"} %>
+      <%= f.submit t('recurring.arrived'), data: { confirm: t('recurring.arrived_confirmation_notice') } %>
     <% end %>
   </td>
 <% else %>

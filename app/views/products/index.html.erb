@@ -1,7 +1,7 @@
 <h1>
-  <%= t 'recurring.products' %>
+  <%= t '.title' %>
   <small class="pull-right">
-    <%= link_to t('.new_product'), new_product_path, class: 'btn btn-primary' %>
+    <%= link_to t('.new_product_link'), new_product_path, class: 'btn btn-primary' %>
   </small>
 </h1>
 <br />
@@ -58,8 +58,8 @@
             <td><%= product.local_code %></td>
             <td><%= product.default_price ? sprintf("%.2f €", product.default_price) : nil %></td>
             <td><%= product.promo_price ? sprintf("%.2f €", product.promo_price) : nil %></td>
-            <td><%= link_to t('recurring.show'), product_path(product) %></td>
-            <td><%= link_to t('recurring.edit'), edit_product_path(product) %></td>
+            <td><%= link_to t('.show'), product_path(product) %></td>
+            <td><%= link_to t('.edit'), edit_product_path(product) %></td>
             <%= render partial: "arrived_button", locals: { product: product } %>
           </tr>
         <% end %>
