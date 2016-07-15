@@ -174,9 +174,6 @@ en:
       orders_panel_title: "orders containing this product"
   # ORDERS
   orders:
-    close_button:
-      close: *close
-      close_order_confirmation: *close_order_confirmation
     index:
       date: "Date"
       customer: *customer
@@ -190,6 +187,8 @@ en:
       close_order_confirmation: *close_order_confirmation
     show:
       order: *order
+      open: *open
+      closed: *closed
       name: *name
       phone: *phone
       order_details: "Order's Details"
@@ -207,6 +206,8 @@ en:
         zero: ""
         one: "piece"
         other: "pieces"
+      remove: "Remove"
+      remove_item_confirmation: "Are you sure you want to remove '%{item}' from this order?"
   # ADMIN
   admin:
     dashboard:

@@ -66,7 +66,11 @@
             <td class="promo-price-cell col-md-1"><%= ordered_item.product.promo_price %> &euro;</td>
             <td class="subtotal-cell col-md-1"><%= calculate_subtotal(ordered_item) %> &euro;</td>
             <td class="status-label-cell col-md-1"><%= product_status_label(ordered_item.product, ordered_item.product.arriving_date) %></td>
-            <td class="buttons col-md-1"><%= link_to "Remove", ordered_item, method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: "Are you sure you want to remove #{pluralize(ordered_item.quantity, 'piece')} of #{ordered_item.product.description} from this order?" } %></td>
+            <td class="buttons col-md-1">
+
+                <%= link_to t('.remove'), ordered_item, method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: t('.remove_item_confirmation', :item => ordered_item.product.description) } %>
+              
+            </td>
           </tr>
         <% end %>
       </tboby>

@@ -174,9 +174,6 @@ it:
       orders_panel_title: "ordini contengono questo prodotto"
   # ORDERS
   orders:
-    close_button:
-      close: *close
-      close_order_confirmation: *close_order_confirmation
     index:
       date: "Data"
       customer: *customer
@@ -184,12 +181,18 @@ it:
       total_price: *total_price
       items_number: *items_number
       show: *show
+      open: *open
+      closed: *closed
       close: *close
       close_order_confirmation: *close_order_confirmation
     show:
       order: *order
+      open: *open
+      closed: *closed
       name: *name
       phone: *phone
+      order_details: "Dettaglio Ordine"
+      product: "Prodotto"
       quantity: *quantity
       default_price: *default_price
       promo_price: *promo_price
@@ -203,6 +206,8 @@ it:
         zero: ""
         one: "pezzo"
         other: "pezzi"
+      remove: "Rimuovi"
+      remove_item_confirmation: "Sicuro di voler rimuovere '%{item}' dall'ordine?"
   # ADMIN
   admin:
     dashboard:

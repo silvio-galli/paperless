@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   # call to prevent non admin users to access resources
   def require_admin
     unless current_user && current_user.admin?
-      flash[:alert] = t '.require_admin'
+      flash[:alert] = t 'registrations.new.flash.require_admin'
       redirect_to root_path
     end
   end

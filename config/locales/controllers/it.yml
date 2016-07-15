@@ -1,11 +1,17 @@
 it:
   registrations:
     new:
-      require_admin: "Non hai il permesso per accedere a questa operazione."
+      flash:
+        require_admin: "Non hai il permesso per accedere a questa operazione."
   customers:
     create:
-      notice: "Nuovo Cliente salvato correttamente nel database."
-      alert: "Errore. Cliente NON salvato. Prova ancora."
+      flash:
+        notice: "Nuovo Cliente salvato correttamente nel database."
+        alert: "Errore. Cliente NON salvato. Prova ancora."
+    update:
+      flash:
+        notice: "Cliente aggiornato correttamente"
+        alert: "Cliente NON aggiornato. Prova ancora."
   products:
     create:
       flash:
@@ -15,9 +21,33 @@ it:
       flash:
         notice: "Prodotto aggiornato correttamente nel databse."
         alert: "Errore! Prodotto NON aggiornato correttamente. Prova di nuovo."
+  orders:
+    create:
+      flash:
+        notice: "Ordine correttamente salvato nel database"
+        alert: "Errore! Ordine NON salvato nel database."
+    update:
+      flash:
+        notice: "Ordine correttamente aggiornato nel databse."
+        alert: "Errore! Ordine NON aggiornato. Prova ancora."
+  order_items:
+    create:
+      flash:
+        notice: "Articolo correttamente aggiunto all'ordine."
+        alert: "Nessun articolo aggiunto all'ordine. Prova ancora."
+        closed_order_cannot_modify: "Un ordine chiuso non può essere modificato."
+    destroy:
+      flash:
+        notice: "Articolo correttamente rimosso all'ordine."
+        alert: "L'articolo NON è stato rimosso dall'ordine. Prova ancora."
+        closed_order_cannot_modify: "Un ordine chiuso non può essere modificato."
   admin:
     users:
       update:
         flash:
           notice: "%{user_name} ha una nuova password."
           alert: "La password di %{unser_name} NON è cambiata. Prova ancora."
+  search:
+    index:
+      flash:
+        alert: "Digitare qualcosa da cercare."

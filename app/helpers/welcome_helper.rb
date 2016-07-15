@@ -18,9 +18,9 @@ module WelcomeHelper
 
   def order_status_label(order)
     if order.open?
-      "<span class=\"label label-warning\">#{t('recurring.open')}</span>".html_safe
+      "<span class=\"label label-warning\">#{t('.open')}</span>".html_safe
     else
-      "<span class=\"label label-primary\">#{t('recurring.closed')}</span>".html_safe
+      "<span class=\"label label-primary\">#{t('.closed')}</span>".html_safe
     end
   end
 end
