@@ -2,6 +2,10 @@ it:
   registrations:
     new:
       require_admin: "Non hai il permesso per accedere a questa operazione."
+  customers:
+    create:
+      notice: "Nuovo Cliente salvato correttamente nel database."
+      alert: "Errore. Cliente NON salvato. Prova ancora."
   products:
     create:
       flash:

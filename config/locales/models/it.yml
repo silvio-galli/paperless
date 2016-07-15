@@ -15,6 +15,7 @@ it:
       customer:
         first_name: "Nome"
         last_name: "Cognome"
+        phone: "Telefono"
         address: "Indirizzo"
         city: "Città"
         postcode: "CAP"
@@ -38,6 +39,14 @@ it:
     # VALIDATION ERRORS
     errors:
       models:
+        customer:
+          attributes:
+            last_name:
+              blank: "non può essere vuoto"
+            phone:
+              blank: "non può essere vuoto"
+            email:
+              taken: "è già associata ad un altro cliente. Non possono esserci due clienti con la stessa email."
         product:
           arriving_date: "non può essere vuoto se il prodotto è in arrivo."
           attributes:

@@ -233,6 +233,7 @@ it:
       customer:
         first_name: "Inserisci Nome cliente"
         last_name: "Inserisci Cognome cliente"
+        phone: "32x-xxxxxxx / 0521-xxxxxx"
         email: "Inserisci Email cliente"
         address: "Via/Piazza .... numero civico"
         city: "Provincia di residenza"

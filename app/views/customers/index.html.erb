@@ -39,7 +39,7 @@
           <td><%= customer.email %></td>
           <td><%= customer.phone %></td>
           <td>
-            <%= "#{customer.address}, #{customer.city} #{customer.postcode} (#{customer.country})" %>
+            <%= full_address(customer.address, customer.postcode, customer.city, customer.country) %>
           </td>
           <td><%= customer.orders.count %></td>
           <td><%= link_to t('.show'), customer_path(customer) %></td>

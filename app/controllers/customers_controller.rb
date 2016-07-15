@@ -13,10 +13,10 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
 
     if @customer.save
-      flash[:notice] = "Customer added to database."
+      flash[:notice] = t('.notice')
       redirect_to customers_path
     else
-      flash[:alert] = "No customer added. Please try again."
+      flash[:alert] = t('.alert')
       render :new
     end
   end
