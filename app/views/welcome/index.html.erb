@@ -13,19 +13,19 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h1 class="panel-title">
-						Products Report
-						<small class="pull-right"><%= link_to "View All Products", products_path %></small>
+						<%= t('.products_report_title') %>
+						<small class="pull-right"><%= link_to t('.products_index_link'), products_path %></small>
 					</h1>
 				</div>
 				<div class="panel-body">
 					<table class="table table-striped">
 						<thead>
 							<tr>
-				        <th>Initiative</th>
-				        <th class="description-cell">Description</th>
+				        <th><%= t 'products.index.initiative' %></th>
+				        <th class="description-cell"><%= t 'products.index.description' %></th>
 								<th></th>
-				        <th>Available Quantity</th>
-				        <th>Arriving date</th>
+				        <th><%= t 'products.index.available_quantity' %></th>
+				        <th><%= t 'products.index.arriving_date' %></th>
 								<th>&nbsp;</th>
 				      </tr>
 						</thead>
@@ -36,8 +36,8 @@
 				          <td class="description-cell"><%= link_to product.description, product %></td>
 									<td><%= product_status_label(product, product.arriving_date) %></td>
 				          <td class="quantity"><%= check_product_availability(product) %></td>
-				          <td><%= product.arriving_date ? product.arriving_date.strftime("%a, %d %b %Y") : "nil" %></td>
-									<%= render partial: "products/arrived_button", locals: { product: product } %>
+				          <td><%= product.arriving_date ? l(product.arriving_date, format: :short) : "nil" %></td>
+									<td><%= arrived_button(product) %></td>
 				        </tr>
 				      <% end %>
 						</tbody>
@@ -49,8 +49,8 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h1 class="panel-title">
-						Orders Report - opened orders
-						<small class="pull-right"><%= link_to "View All Orders", orders_path %></small>
+						<%= t '.orders_report_title' %>
+						<small class="pull-right"><%= link_to t('.orders_index_link'), orders_path %></small>
 					</h1>
 				</div>
 				<div class="panel-body">
@@ -58,9 +58,9 @@
 						<thead>
 							<tr>
 				        <th>id</th>
-				        <th>date</th>
-				        <th>customer</th>
-				        <th>total price</th>
+				        <th><%= t 'orders.index.date' %></th>
+				        <th><%= t 'orders.index.customer' %></th>
+				        <th><%= t 'orders.index.total_price' %></th>
 				        <th></th>
 								<th></th>
 				      </tr>
@@ -69,11 +69,11 @@
 							<% @orders.each do |order| %>
 				        <tr>
 				          <td><%= link_to "# #{order.id}", order_path(order) %></td>
-				          <td><%= order.created_at.strftime("%a, %d %b %Y") %></td>
+				          <td><%= l(order.created_at, format: :short) %></td>
 				          <td><%= link_to order.customer.full_name, customer_path(order.customer) %></td>
 				          <td><%= calculate_total_price(order) %> &euro;</td>
-				          <td><%= link_to "Show", order_path(order) %></td>
-									<%= render partial: "orders/close_button", locals: { order: order } %>
+				          <td><%= link_to t('orders.index.show'), order_path(order) %></td>
+									<td><%= close_button(order) %></td>
 				        </tr>
 				      <% end %>
 						</tbody>

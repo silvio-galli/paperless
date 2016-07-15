@@ -1,12 +1,12 @@
 en:
   activerecord:
     models:
-      product:
-        one: "product"
-        other: "products"
       customer:
         one: "customer"
         other: "customers"
+      product:
+        one: "product"
+        other: "products"
       order:
         one: "order"
         other: "orders"

@@ -1,7 +1,7 @@
 <h1>
-  Customers
+  <%= t '.title' %>
   <small class="pull-right">
-    <%= link_to "New Customer", new_customer_path, class: 'btn btn-primary' %>
+    <%= link_to t('.new_customer_link'), new_customer_path, class: 'btn btn-primary' %>
   </small>
 </h1>
 <br />
@@ -14,7 +14,7 @@
             <span class="input-group-addon">
               <i class="glyphicon glyphicon-search"></i>
             </span>
-            <%= text_field_tag 'keyword', nil, autofocus: true, class: 'form-control', placeholder: 'Search Customer: last name or email or phone' %>
+            <%= text_field_tag 'keyword', nil, autofocus: true, class: 'form-control', placeholder: t('.search_placeholder') %>
         </div>
       <% end %>
     </div>
@@ -24,11 +24,11 @@
   <div class="col-md-12">
     <table class="table table-hover">
       <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Address</th>
-        <th>orders</th>
+        <th><%= t '.name' %></th>
+        <th><%= t '.email' %></th>
+        <th><%= t '.phone' %></th>
+        <th><%= t '.address' %></th>
+        <th><%= t '.orders' %></th>
         <th></th>
         <th></th>
         <th></th>
@@ -42,9 +42,9 @@
             <%= "#{customer.address}, #{customer.city} #{customer.postcode} (#{customer.country})" %>
           </td>
           <td><%= customer.orders.count %></td>
-          <td><%= link_to "Show", customer_path(customer) %></td>
-          <td><%= link_to "Edit", edit_customer_path(customer) %></td>
-          <td><%= link_to "New Order", new_customer_order_path(customer), class: 'btn btn-default btn-sm' %></td>
+          <td><%= link_to t('.show'), customer_path(customer) %></td>
+          <td><%= link_to t('.edit'), edit_customer_path(customer) %></td>
+          <td><%= link_to t('.new_order_link'), new_customer_order_path(I18n.locale, customer, Order.new), class: 'btn btn-default btn-sm' %></td>
         </tr>
       <% end %>
     </table>

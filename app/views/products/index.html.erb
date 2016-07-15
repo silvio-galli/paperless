@@ -27,6 +27,7 @@
         <tr>
           <th><%= t '.initiative' %></th>
           <th class="description-cell"><%= t '.description' %></th>
+          <th>Status</th>
           <th><%= t '.arriving_date' %></th>
           <th><%= t '.arriving_quantity' %></th>
           <th><span class="text-green"><%= t '.available_quantity' %></span></th>
@@ -42,12 +43,8 @@
         <% @products.each do |product| %>
           <tr>
             <td class="initiative-cell"><%= product.initiative %></td>
-            <td class="description-cell">
-              <p>
-                <%= product_status_label(product, product.arriving_date) %>
-                <%= link_to product.description, product %>
-              </p>
-            </td>
+            <td class="description-cell"><%= link_to product.description, product %></td>
+            <td><%= product_status_label(product, product.arriving_date) %></td>
             <% if product.arriving_date %>
               <td><%= I18n.l product.arriving_date, format: :long %></td>
             <% else %>
@@ -60,7 +57,7 @@
             <td><%= product.promo_price ? sprintf("%.2f €", product.promo_price) : nil %></td>
             <td><%= link_to t('.show'), product_path(product) %></td>
             <td><%= link_to t('.edit'), edit_product_path(product) %></td>
-            <%= render partial: "arrived_button", locals: { product: product } %>
+            <td><%= arrived_button(product) %></td>
           </tr>
         <% end %>
       </tbody>

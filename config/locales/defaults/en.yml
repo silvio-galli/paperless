@@ -7,7 +7,8 @@ en:
       # You can provide other formats here if you like!
       default: "%d %b %Y"
       long: "%a %d %b '%y"
-      short: "%d %b"
+      short: "%d-%b"
+      extra_long: "%a, %d %B %Y"
     # am: am
     # formats:
     #   default: "%a %d %b %Y, %H:%M:%S %z"

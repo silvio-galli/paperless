@@ -1,16 +1,24 @@
 it:
   activerecord:
     models:
-      product:
-        one: "prodotto"
-        other: "prodotti"
       customer:
         one: "cliente"
         other: "clienti"
+      product:
+        one: "prodotto"
+        other: "prodotti"
       order:
         one: "ordine"
         other: "ordini"
     attributes:
+      customer:
+        first_name: "Nome"
+        last_name: "Cognome"
+        email: "Email"
+        address: "Indirizzo"
+        city: "Città"
+        postcode: "CAP"
+        country: "Nazione"
       product:
         initiative: "Iniziativa"
         description: "Descrizione"
@@ -23,6 +31,8 @@ it:
         created_at: "creato il"
         updated_at: "aggiornato il"
         status: "Status"
+      order_item:
+        quantity: "Quantità"
     # VALIDATION ERRORS
     errors:
       models:

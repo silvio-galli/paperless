@@ -1,6 +1,6 @@
 <h1>
-  Order #<%= @order.id %>
-  <small>(<%= @order.created_at.strftime("%a, %d %b %Y") %>)</small>
+  <%= t('.order') %> <%= "##{@order.id}".html_safe %>
+  <small>(<%= l(@order.created_at, format: :extra_long) %>)</small>
   <%= order_status_label(@order) %>
 </h1>
 <br />
@@ -12,9 +12,9 @@
       </div>
       <div class="panel-body">
         <ul>
-          <li>Name: <%= link_to @order.customer.full_name, customer_path(@order.customer) %></li>
-          <li>Email: <%= @order.customer.email %></li>
-          <li>Phone: <%= @order.customer.phone %></li>
+          <li><%= t '.name' %>: <%= link_to @order.customer.full_name, customer_path(@order.customer) %></li>
+          <li><%= t '.email' %>: <%= @order.customer.email %></li>
+          <li><%= t '.phone' %>: <%= @order.customer.phone %></li>
         </ul>
       </div>
     </div>
@@ -37,16 +37,16 @@
 </div>
 <div class="row">
   <div class="col-md-12" id="items_list">
-    <h2>Order details</h2>
+    <h2><%= t '.order_details' %></h2>
     <table class="table table-hover">
       <thead>
         <tr>
           <th>EAN</th>
-          <th>items</th>
-          <th>quant.</th>
-          <th>default price</th>
-          <th>promo price</th>
-          <th>subtotal</th>
+          <th><%= t '.product' %></th>
+          <th><%= t '.quantity' %></th>
+          <th><%= t '.default_price' %></th>
+          <th><%= t '.promo_price' %></th>
+          <th><%= t '.subtotal' %></th>
           <th></th>
           <th></th>
         </tr>
@@ -69,23 +69,31 @@
             <td class="buttons col-md-1"><%= link_to "Remove", ordered_item, method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: "Are you sure you want to remove #{pluralize(ordered_item.quantity, 'piece')} of #{ordered_item.product.description} from this order?" } %></td>
           </tr>
         <% end %>
-        <tr>
-          <td colspan="5" class="text-right">total</td>
-          <td colspan="2"><strong><%= calculate_total_price(@order) %> &euro;</strong></td>
-        </tr>
       </tboby>
+      <tfoot>
+        <tr>
+          <td class="col-md-3">&nbsp;</td>
+          <td class="col-md-3">&nbsp;</td>
+          <td class="col-md-1">&nbsp;</td>
+          <td class="col-md-1">&nbsp;</td>
+          <td class="col-md-1 text-right"><%= t '.total' %></td>
+          <td class="col-md-1 text-left"><strong><%= calculate_total_price(@order) %> &euro;</strong></td>
+          <td class="col-md-1">&nbsp;</td>
+          <td class="col-md-1">&nbsp;</td>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </div>
 <div class="row">
   <div class="col-md-4" id="products_list">
-    <h2>Add Items to this order</h2>
+    <h2><%= t '.add_items_section_title' %></h2>
     <%= form_for [@order, @order_item] do |f| %>
       <div class="form-group">
-        <label>Select a product:</label>
+        <label><%= t '.select_product' %></label>
         <br />
         <%= f.select(:product_id) do %>
-          <% products_array = @products.select { |product| available_items?(product) > 0 }.map { |product| ["#{product.initiative} - #{product.description} - available: #{available_items?(product)} pcs.", product.id] } %>
+          <% products_array = @products.select { |product| available_items?(product) > 0 }.map { |product| ["#{product.initiative} - #{product.description} - #{t('.availability')}: #{available_items?(product)} #{t('.pieces', :count => available_items?(product))}", product.id] } %>
           <%= options_for_select(products_array) %>
         <% end %>
       </div>
@@ -94,7 +102,7 @@
         <%= f.number_field :quantity, class: 'form-control' %>
       </div>
       <div class="form-group">
-        <%= f.submit "Add Item", class: 'btn btn-success' %>
+        <%= f.submit t('.add_item'), class: 'btn btn-success' %>
       </div>
     <% end %>
   </div>
