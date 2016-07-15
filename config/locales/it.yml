@@ -28,15 +28,18 @@ it:
 
   # ESPRESSIONI RICORRENTI
   recurring:
+    back: &back "Indietro"
     show: &show "Mostra"
     edit: &edit "Modifica"
     close: &close "Chiudi"
     save: &save "Salva"
+    update: &update "Aggiorna"
     delete: &delete "Elimina"
+    sign_in: &sign_in "Login"
+    sign_out: &sign_out "Logout"
     customers: &customers "Clienti"
     new_customer_link: &new_customer_link "Nuovo Cliente"
     name: &name "Nome"
-    email: &email "Email"
     phone: &phone "Telefono"
     address: &address "Indirizzo"
     products: &products "Prodotti"
@@ -82,8 +85,8 @@ it:
       orders: *orders
       welcome_to_user: "Benvenuto:"
       edit_profile: "Modifica profilo"
-      sign_in: "Login"
-      sign_out: "Logout"
+      sign_in: *sign_in
+      sign_out: *sign_out
   #WELCOME
   welcome:
     index:
@@ -107,7 +110,6 @@ it:
       new_customer_link: *new_customer_link
       search_placeholder: "Ricerca Cliente: cognome o email o telefono"
       name: *name
-      email: *email
       phone: *phone
       address: *address
       orders: *orders
@@ -116,7 +118,6 @@ it:
       new_order_link: *new_order_link
     show:
       new_order_link: *new_order_link
-      email: *email
       phone: *phone
       address: *address
       orders_history: "Riepilogo Ordini"
@@ -167,7 +168,6 @@ it:
       arrived_product_confirmation: *arrived_product_confirmation
       customers_panel_title: "clienti aspettano questo prodotto"
       customer: *customer
-      email: *email
       phone: *phone
       quantity: *quantity
       date: *date
@@ -180,7 +180,6 @@ it:
     index:
       date: "Data"
       customer: *customer
-      email: *email
       phone: *phone
       total_price: *total_price
       items_number: *items_number
@@ -190,7 +189,6 @@ it:
     show:
       order: *order
       name: *name
-      email: *email
       phone: *phone
       quantity: *quantity
       default_price: *default_price
@@ -212,6 +210,22 @@ it:
         title: "Pannello di Controllo"
         name: *name
         change_password: "Cambia Password"
+  # DEVISE
+  devise:
+    sessions:
+      new:
+        title: *sign_in
+        sign_in: *sign_in
+    registrations:
+      edit:
+        title: *edit
+        back: *back
+        new_password: "Nuova Password"
+        new_password_message: "(lascia vuoto se non vuoi cambiare la password)"
+        new_password_confirmation: "Conferma Nuova Password"
+        old_password: "Password Attuale"
+        old_password_message: "(devi inserire la password attuale per confermare l'aggiornamento)"
+        update: *update
 
 # HELPERS
   helpers:
@@ -233,3 +247,5 @@ it:
         promo_price: "es. 80.00"
         quantity: "max 50 pezzi"
         arriving_date: "gg/mm/aaaa"
+      user:
+        name: *name

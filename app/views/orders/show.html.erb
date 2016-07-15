@@ -13,7 +13,7 @@
       <div class="panel-body">
         <ul>
           <li><%= t '.name' %>: <%= link_to @order.customer.full_name, customer_path(@order.customer) %></li>
-          <li><%= t '.email' %>: <%= @order.customer.email %></li>
+          <li>Email: <%= @order.customer.email %></li>
           <li><%= t '.phone' %>: <%= @order.customer.phone %></li>
         </ul>
       </div>

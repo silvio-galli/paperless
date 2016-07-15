@@ -10,11 +10,11 @@ it:
       order:
         one: "ordine"
         other: "ordini"
+      user: "utente"
     attributes:
       customer:
         first_name: "Nome"
         last_name: "Cognome"
-        email: "Email"
         address: "Indirizzo"
         city: "Città"
         postcode: "CAP"
@@ -33,6 +33,8 @@ it:
         status: "Status"
       order_item:
         quantity: "Quantità"
+      user:
+        current_password: "Password Attuale"
     # VALIDATION ERRORS
     errors:
       models:
@@ -54,3 +56,7 @@ it:
               blank: "non può essere vuoto."
               not_a_number: "deve essere un numero"
               less_than: "non può essere superiore a 50."
+        user:
+          attributes:
+            current_password:
+              blank: "non può essere vuoto se vuoi confermare il cambio password"

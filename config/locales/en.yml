@@ -28,15 +28,18 @@ en:
 
   # RECURRING EXPRESSIONS
   recurring:
+    back: &back "Back"
     show: &show "Show"
     edit: &edit "Edit"
     close: &close "Close"
     save: &save "Save"
+    update: &update "Update"
     delete: &delete "Delete"
+    sign_in: &sign_in "Sign In"
+    sign_out: &sign_out "Sign Out"
     customers: &customers "Customers"
     new_customer_link: &new_customer_link "New Customer"
     name: &name "Name"
-    email: &email "Email"
     phone: &phone "Phone"
     address: &address "Address"
     products: &products "Products"
@@ -82,8 +85,8 @@ en:
       orders: *orders
       welcome_to_user: "Welcome:"
       edit_profile: "Edit profile"
-      sign_in: "Sign In"
-      sign_out: "Sign Out"
+      sign_in: *sign_in
+      sign_out: *sign_out
   #WELCOME
   welcome:
     index:
@@ -107,7 +110,6 @@ en:
       new_customer_link: *new_customer_link
       search_placeholder: "Search Customer: last name or email or phone"
       name: *name
-      email: *email
       phone: *phone
       address: *address
       orders: *orders
@@ -116,7 +118,6 @@ en:
       new_order_link: *new_order_link
     show:
       new_order_link: *new_order_link
-      email: *email
       phone: *phone
       address: *address
       orders_history: "Orders History"
@@ -167,7 +168,6 @@ en:
       arrived_product_confirmation: *arrived_product_confirmation
       customer_panel_title: "customers waiting for this product"
       customer: *customer
-      email: *email
       phone: *phone
       quantity: *quantity
       date: *date
@@ -180,7 +180,6 @@ en:
     index:
       date: "Date"
       customer: *customer
-      email: *email
       phone: *phone
       total_price: "Total"
       items_number: "Items quant."
@@ -192,7 +191,6 @@ en:
     show:
       order: *order
       name: *name
-      email: *email
       phone: *phone
       order_details: "Order's Details"
       product: "Product"
@@ -216,6 +214,22 @@ en:
         title: "Control Panel"
         name: *name
         change_password: "Change Password"
+  # DEVISE
+  devise:
+    sessions:
+      new:
+        title: *sign_in
+        sign_in: *sign_in
+    registrations:
+      edit:
+        title: *edit
+        back: *back
+        new_password: "New Passwor"
+        new_password_message: "(leave blank if you don't want to change it)"
+        new_password_confirmation: "New Password Confirmation"
+        old_password: "Current Password"
+        old_password_message: "(we need your current password to confirm your changes)"
+        update: *update
 
 # HELPERS
   helpers:
@@ -237,3 +251,5 @@ en:
         promo_price: "e.i. 80.00"
         quantity: "max 50 items"
         arriving_date: "dd/mm/yyyy"
+      user:
+        name: *name

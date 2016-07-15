@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @customers = Customer.all
   end
@@ -14,7 +14,7 @@ class CustomersController < ApplicationController
 
     if @customer.save
       flash[:notice] = "Customer added to database."
-      redirect customers_path
+      redirect_to customers_path
     else
       flash[:alert] = "No customer added. Please try again."
       render :new

@@ -1,4 +1,7 @@
 it:
+  registrations:
+    new:
+      require_admin: "Non hai il permesso per accedere a questa operazione."
   products:
     create:
       flash:

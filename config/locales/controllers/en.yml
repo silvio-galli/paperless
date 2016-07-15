@@ -1,4 +1,7 @@
 en:
+  registrations:
+    new:
+      require_admin: "You do not have permission to do this."
   products:
     create:
       flash:
