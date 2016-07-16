@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root to: 'welcome#index'
+  
   scope "/:locale" do
     devise_for :users, controllers: { registrations: "registrations" }
 
@@ -26,7 +28,6 @@ Rails.application.routes.draw do
 
     get '/about', to: "welcome#about"
 
-    root to: 'welcome#index'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
