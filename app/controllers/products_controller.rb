@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  require 'csv'
   before_action :authenticate_user!
 
   def index
@@ -44,6 +45,32 @@ class ProductsController < ApplicationController
       flash[:alert] = t('products.update.flash.alert')
       render :edit
     end
+  end
+
+  def import
+    @products_imported = 0
+    CSV.foreach(params[:file].path, headers: true) do |row|
+      if I18n.locale == :it
+        Product.create(
+          initiative: row["Iniziativa"],
+          local_code: row["Codice Locale"],
+          description: row["Descrizione"],
+          barcode: row["Codice a Barre"],
+          default_price: row["Prezzo Continuo"],
+          promo_price: row["Prezzo Promo"],
+          quantity: row["Quantità"],
+          status: row["Status"],
+          arriving_date: row["Data Arrivo"],
+          user: current_user
+        )
+        @products_imported += 1
+      elsif I18n.locale = :en
+        Product.create(row.to_hash)
+        @products_imported += 1
+      end
+    end
+    flash[:notice] = "#{@products_imported} nuovi prodotti importati"
+    redirect_to products_path
   end
 
   private
