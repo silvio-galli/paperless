@@ -5,57 +5,41 @@
   </head>
   <body>
     <% if @arriving_items.empty? %>
-    	<h2>Order #<%= @order.id %> ready!</h2>
-      <p>
-        Hi <%= @customer.first_name.capitalize %>, we're glad to inform you that
-        all products you ordered arrived and are ready to be collected at our shop.
-      </p>
-      <h3>Order #<%= @order.id %></h3>
-    	<p>
-        <div style="border: 2px solid green; padding: 10px;">
-          <h4>Product details:</h4>
-          <p>
-            <ul>
-              <% @order.order_items.each do |item| %>
-                <li><strong>Product:</strong> <%= item.product.description %> | <strong>Quantity:</strong> <%= item.quantity %></li>
-              <% end %>
-            </ul>
-          </p>
-        </div>
-    	</p>
+    	<h2><%= t '.order_title', order_id: @order.id %></h2>
+      <p><%= t '.order_p', customer_first_name: @customer.first_name.capitalize %></p>
+    	<div style="border: 2px solid green; padding: 10px;">
+        <h3><%= t '.order_h3', order_id: @order.id %></h3>
+        <h4><%= t '.order_h4' %></h4>
+        <ul>
+          <% @order.order_items.each do |item| %>
+            <li><strong><%= t '.product' %>:</strong> <%= item.product.description %> | <strong><%= t '.quantity' %>:</strong> <%= item.quantity %></li>
+          <% end %>
+        </ul>
+    	</div>
     <% else %>
-      <h1>Product for order #<%= @order.id %> has arrived at SHOP_NAME.</h1>
-      <p>
-        Hi <%= @customer.first_name.capitalize %>, we're glad to inform you that
-        a product contained in your order arrived and is ready to be collected at our shop.
-      </p>
+      <h1><%= t '.product_title', id: @order.id %></h1>
+      <p><%= t '.product_p', customer_first_name: @customer.first_name.capitalize, order_id: @order.id %></p>
       <div style="border: 2px solid green; padding: 10px;">
-        <h4>Product details:</h4>
-        <p>
+        <h4><%= t '.product_details' %>:</h4>
           <ul>
-            <li><strong>Product:</strong> <%= @product.description %></li>
-            <li><strong>Quantity:</strong> <%= @order.order_items.find_by(product_id: @product.id).quantity %></li>
+            <li><strong><%= t '.description' %>:</strong> <%= @product.description %></li>
+            <li><strong><%= t '.quantity' %>:</strong> <%= @order.order_items.find_by(product_id: @product.id).quantity %></li>
           </ul>
-        </p>
       </div>
       <br />
       <div style="border: 2px solid red; padding: 10px;">
-      	<h2>Attention! Your order contains products not arrived yet</h2>
-        <h4>
-          Feel free to come and collect the product arrived or expect until all
-          other products arrive.
-        </h4>
-      	<h3>Still missing product for order #<%= @order.id %>:</h3>
+      	<h2><%= t '.warning_title' %></h2>
+        <h4><%= t '.warning_h4' %></h4>
+      	<h3><%= t '.warning_h3', order_id: @order.id %>:</h3>
       	<ul>
       	  <% @arriving_items.each do |item| %>
-      	    <li><strong>Product:</strong> <%= item.product.description %></li>
-      	    <li><strong>Quantity:</strong> <%= item.quantity %></li>
+      	    <li><strong><%= t '.description'%>:</strong> <%= item.product.description %> | <strong><%= t '.quantity' %>:</strong> <%= item.quantity %></li>
       	  <% end %>
       	</ul>
       </div>
     <% end %>
 
-    <h3>Additional info.</h3>
+    <h3><%= t '.info_contacts' %></h3>
     <p>
       SHOP_ADDRESS
       <br />

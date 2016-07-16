@@ -1,0 +1,281 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+it:
+  hello: "Ciao a tutti"
+  errors:
+    zero: "Nessun errore"
+    one: "%{count} errore"
+    other: "%{count} errori"
+
+  # ESPRESSIONI RICORRENTI
+  recurring:
+    back: &back "Indietro"
+    show: &show "Mostra"
+    edit: &edit "Modifica"
+    close: &close "Chiudi"
+    save: &save "Salva"
+    update: &update "Aggiorna"
+    delete: &delete "Elimina"
+    sign_in: &sign_in "Login"
+    sign_out: &sign_out "Logout"
+    customers: &customers "Clienti"
+    new_customer_link: &new_customer_link "Nuovo Cliente"
+    name: &name "Nome"
+    phone: &phone "Telefono"
+    address: &address "Indirizzo"
+    products: &products "Prodotti"
+    new_product: &new_product "Nuovo Prodotto"
+    product: &product "Prodotto"
+    initiative: &initiative "Iniziativa"
+    description: &description "Descrizione"
+    arriving_quantity: &arriving_quantity "Quant. in arrivo"
+    available_quantity: &available_quantity "Quant. disponibile"
+    local_code: &local_code "Cod. articolo"
+    default_price: &default_price "Prezzo cont."
+    promo_price: &promo_price "Prezzo promo"
+    arriving_date: &arriving_date "Data arrivo"
+    arrived: &arrived "Arrivato"
+    arriving: &arriving "in arrivo"
+    in_stock: &in_stock "in stock"
+    delayed: &delayed "in ritardo"
+    arrived_product_confirmation: &arrived_product_confirmation "Preseguendo con questa operazione verranno inviate email a tutti i clienti che attendono questo prodotto. Sei sicuro di voler continuare?"
+    product_deletion_confirmation: &product_deletion_confirmation "Il prodotto non è presente in nessun ordine. Continuare?"
+    orders: &orders "Ordini"
+    new_order_link: &new_order_link "Nuovo Ordine"
+    customer: &customer "Cliente"
+    date: &date "Data"
+    total_price: &total_price "Totale"
+    items_number: &items_number "Numero Articoli"
+    notes: &notes "Note"
+    open: &open "aperto"
+    closed: &closed "chiuso"
+    close_order_confirmation: &close_order_confirmation "Una volta dichiarato chiuso, un ordine non può più essere modificato. Continuare?"
+    quantity: &quantity "Quantità"
+    order: &order "Ordine"
+
+  # ROOT
+  jumbotron_subtitle: "Gestisci i tuoi prodotti, i tuoi clienti e gli ordini dei tuoi clienti"
+  switch_language: "If you prefer, switch to:"
+
+# VIEWS
+  # LAYOUTS
+  layouts:
+    application:
+      about: "Info"
+      customers: *customers
+      products: *products
+      orders: *orders
+      welcome_to_user: "Benvenuto:"
+      edit_profile: "Modifica profilo"
+      sign_in: *sign_in
+      sign_out: *sign_out
+  #WELCOME
+  welcome:
+    index:
+      jumbotron_subtitle: "Gestisci i tuoi prodotti, i tuoi clienti e gli ordini dei tuoi clienti"
+      switch_language: "If you prefer, switch to:"
+      products_report_title: "Riepilogo Prodotti"
+      products_index_link: "Visualizza tutti i Prodotti"
+      orders_report_title: "Riepilogo Ordini Aperti"
+      orders_index_link: "Visualizza tutti gli Ordini"
+      arrived: *arrived
+      arrived_product_confirmation: *arrived_product_confirmation
+      close: *close
+      close_order_confirmation: *close_order_confirmation
+  # CUSTOMERS
+  customers:
+    new:
+      title: "Crea Nuovo Cliente"
+      save: *save
+    index:
+      title: *customers
+      new_customer_link: *new_customer_link
+      search_placeholder: "Ricerca Cliente: cognome o email o telefono"
+      name: *name
+      phone: *phone
+      address: *address
+      orders: *orders
+      show: *show
+      edit: *edit
+      new_order_link: *new_order_link
+    show:
+      new_order_link: *new_order_link
+      phone: *phone
+      address: *address
+      orders_history: "Riepilogo Ordini"
+      date: *date
+      total_price: *total_price
+      items_number: *items_number
+      notes: *notes
+      show: *show
+  # PRODUCTS
+  products:
+    new:
+      title: *new_product
+      arriving: *arriving
+      in_stock: *in_stock
+      save: *save
+    index:
+      title: *products
+      new_product_link: *new_product
+      search_placeholder: "Ricerca Prodotto: descrizione"
+      arriving: *arriving
+      in_stock: *in_stock
+      delayed: *delayed
+      initiative: *initiative
+      description: *description
+      arriving_quantity: *arriving_quantity
+      available_quantity: *available_quantity
+      local_code: *local_code
+      default_price: *default_price
+      promo_price: *promo_price
+      arriving_date: *arriving_date
+      show: *show
+      edit: *edit
+      arrived: *arrived
+      arrived_product_confirmation: *arrived_product_confirmation
+    show:
+      edit: *edit
+      delete: *delete
+      product_deletion_confirmation: *product_deletion_confirmation
+      created_by: "Inserito da"
+      initiative: *initiative
+      local_code: *local_code
+      barcode: "Codice a barre"
+      default_price: *default_price
+      promo_price: *promo_price
+      arriving_date: *arriving_date
+      available_quantity: *available_quantity
+      arrived: *arrived
+      arrived_product_confirmation: *arrived_product_confirmation
+      customers_panel_title: "clienti aspettano questo prodotto"
+      customer: *customer
+      phone: *phone
+      quantity: *quantity
+      date: *date
+      orders_panel_title: "ordini contengono questo prodotto"
+  # ORDERS
+  orders:
+    index:
+      date: "Data"
+      customer: *customer
+      phone: *phone
+      total_price: *total_price
+      items_number: *items_number
+      show: *show
+      open: *open
+      closed: *closed
+      close: *close
+      close_order_confirmation: *close_order_confirmation
+    show:
+      order: *order
+      open: *open
+      closed: *closed
+      name: *name
+      phone: *phone
+      order_details: "Dettaglio Ordine"
+      product: *product
+      quantity: *quantity
+      default_price: *default_price
+      promo_price: *promo_price
+      subtotal: "Totale parziale"
+      total: "Totale"
+      add_items_section_title: "Aggiungi prodotti all'ordine:"
+      select_product: "Seleziona un prodotto:"
+      availability: "disponibilità"
+      add_item: "Aggiungi Prodotto"
+      pieces:
+        zero: ""
+        one: "pezzo"
+        other: "pezzi"
+      remove: "Rimuovi"
+      remove_item_confirmation: "Sicuro di voler rimuovere '%{item}' dall'ordine?"
+  # ADMIN
+  admin:
+    dashboard:
+      index:
+        title: "Pannello di Controllo"
+        name: *name
+        change_password: "Cambia Password"
+  # DEVISE
+  devise:
+    sessions:
+      new:
+        title: *sign_in
+        sign_in: *sign_in
+    registrations:
+      edit:
+        title: *edit
+        back: *back
+        new_password: "Nuova Password"
+        new_password_message: "(lascia vuoto se non vuoi cambiare la password)"
+        new_password_confirmation: "Conferma Nuova Password"
+        old_password: "Password Attuale"
+        old_password_message: "(devi inserire la password attuale per confermare l'aggiornamento)"
+        update: *update
+
+# HELPERS
+  helpers:
+    placeholder:
+      customer:
+        first_name: "Inserisci Nome cliente"
+        last_name: "Inserisci Cognome cliente"
+        phone: "32x-xxxxxxx / 0521-xxxxxx"
+        email: "Inserisci Email cliente"
+        address: "Via/Piazza .... numero civico"
+        city: "Provincia di residenza"
+        postcode: "es. 43124"
+        country: "Paese relativo all'indirizzo fornito."
+      product:
+        initiative: "numero promo/aaaa oppure no promo"
+        local_code: "Inserire codice articolo"
+        description: "Inserire descrizione prodotto"
+        barcode: "Inserire codice EAN"
+        default_price: "es. 100.00"
+        promo_price: "es. 80.00"
+        quantity: "max 50 pezzi"
+        arriving_date: "gg/mm/aaaa"
+      user:
+        name: *name
+
+  # MAILERS
+  product_mailer:
+    arrived_product_notice:
+      # mail for order ready
+      order_subject: "Il tuo ordine è pronto a SHOP_NAME"
+      order_title: "Il tuo ordine n. #%{order_id} è pronto!"
+      order_p: "Ciao %{customer_first_name}, siamo felici di informarti che tutti i prodotti che hai ordinato sono arrivati e sono pronti per essere ritirati presso SHOP_NAME."
+      order_h3: "Ordine #%{order_id}:"
+      order_h4: "Dettaglio prodotti:"
+      product: *product
+      quantity: *quantity
+      # mail for product arrived
+      product_subject: "Il prodotto che hai ordinato è arrivato a SHOP_NAME"
+      product_title: "Il prodotto contenuto nell'ordine #%{id} è arrivato a SHOP_NAME."
+      product_p: "Ciao %{customer_first_name}, siamo felici di informarti che un prodotto contenuto nel tuo ordine n. #%{order_id} è arrivato ed è pronto per essere ritirato."
+      product_details: "Dettaglio Prodotto"
+      description: "Descrizione"
+      warning_title: "Attenzione! Il tuo ordine contiene altri prodotti non ancora arrivati"
+      warning_h4: "Puoi venire e ritirare il prodotto appena arrivato oppure aspettare l'arrivo dei prodotti mancanti e venirli a ritirare tutti insieme."
+      warning_h3: "Ordine n. #%{order_id}, prodotti ancora mancanti:"
+      # info and contacts
+      info_contacts: "Info e Contatti:"

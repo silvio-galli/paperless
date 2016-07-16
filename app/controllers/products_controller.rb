@@ -14,10 +14,10 @@ class ProductsController < ApplicationController
     @product.user = current_user
 
     if @product.save
-      flash[:notice] = "Product correctly saved in the database."
+      flash[:notice] = t('products.create.flash.notice')
       redirect_to product_path(@product)
     else
-      flash[:alert] = "Error! Product not saved. Plaese try again."
+      flash[:alert] = t('products.create.flash.alert')
       render :new
     end
   end
@@ -38,10 +38,10 @@ class ProductsController < ApplicationController
       if @product.is_arrived?
         SendEmailNotificationJob.set(wait: 1.seconds).perform_later(@product)
       end
-      flash[:notice] = "Product correctly updated in the database."
+      flash[:notice] = t('products.update.flash.notice')
       redirect_to request.referer
     else
-      flash[:alert] = "Error! Product not updated. Plaese try again."
+      flash[:alert] = t('products.update.flash.alert')
       render :edit
     end
   end

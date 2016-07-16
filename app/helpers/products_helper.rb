@@ -14,4 +14,12 @@ module ProductsHelper
     end
   end
 
+  def arrived_button(product)
+    if product.arriving?
+      link_to t('.arrived'), product_path(product, :product => {status: :in_stock}), method: :patch, class: 'btn btn-success btn-sm', data: { confirm: t('.arrived_product_confirmation') }
+    else
+      "&nbsp;".html_safe
+    end
+  end
+
 end

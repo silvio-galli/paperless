@@ -25,7 +25,7 @@ class Product < ActiveRecord::Base
   private
   def arriving_status_validation
     if self.status == "arriving" && self.arriving_date == nil
-      errors.add(:arriving_date, "cannot be blank if product has 'arriving' status")
+      errors.add(:arriving_date, I18n.t('activerecord.errors.models.product.arriving_date'))
     end
   end
 

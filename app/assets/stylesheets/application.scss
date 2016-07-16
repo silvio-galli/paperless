@@ -24,3 +24,14 @@
 .search-box .btn {
    float: right;
  }
+
+.table {
+  font-size: 0.95em;
+}
+.table th, .table td {
+  text-align: center;
+}
+.table .description-cell {
+  width: 30%;
+  text-align:  left;
+}

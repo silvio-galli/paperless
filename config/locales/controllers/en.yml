@@ -1,0 +1,53 @@
+en:
+  registrations:
+    new:
+      flash:
+        require_admin: "You do not have permission to do this."
+  customers:
+    create:
+      flash:
+        notice: "Customer added to database."
+        alert: "No Customer added. Please, try again."
+    update:
+      flash:
+        notice: "Customer successfully updated."
+        alert: "Customer was NOT updated. Please try again."
+  products:
+    create:
+      flash:
+        notice: "Product correctly saved in the database."
+        alert: "Error! Product not saved. Plaese try again."
+    update:
+      flash:
+        notice: "Product correctly updated in the database."
+        alert: "Error! Product NOT updated. Please try again."
+  orders:
+    create:
+      flash:
+        notice: "Order successfully created."
+        alert: "Order NOT created. Please try again."
+    update:
+      flash:
+        notice: "Order correctly updated in the database."
+        alert: "Error! Order NOT updated. Please try again."
+  order_items:
+    create:
+      flash:
+        notice: "Item successfully added to order."
+        alert: "No item added to order. Please try again."
+        closed_order_cannot_modify: "A closed order cannot be modified."
+    destroy:
+      flash:
+        notice: "Item successfully removed from order."
+        alert: "Item was NOT removed. Please try again."
+        closed_order_cannot_modify: "A closed order cannot be modified."
+  admin:
+    users:
+      update:
+        flash:
+          notice: "%{user_name} has a new password."
+          alert: "Password for %{unser_name} has NOT changed. Please try again."
+  search:
+    index:
+      flash:
+        alert: "Please, enter something to search for."

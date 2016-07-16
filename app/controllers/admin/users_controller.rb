@@ -14,10 +14,10 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      flash[:notice] = "#{@user.name} has a new password"
+      flash[:notice] = t( 'admin.users.update.flash.notice', user_name: "#{@user.name}")
       redirect_to admin_dashboard_path
     else
-      flash[:alert] = "There was an error. Please try again ."
+      flash[:alert] = t('admin.users.update.flash.alert', user_name: "#{@user.name}")
       redirect_to edit_user_path(@user)
     end
   end

@@ -12,28 +12,44 @@
     <div class="row">
       <ul class="nav nav-tabs">
         <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "About", welcome_about_path %></li>
-        <li><%= link_to "Customers", customers_path %></li>
-        <li><%= link_to "Products", products_path %></li>
-        <li><%= link_to "Orders", orders_path %></li>
+        <li><%= link_to t('.about'), about_path %></li>
+        <li><%= link_to t('.customers'), customers_path %></li>
+        <li><%= link_to t('.products'), products_path %></li>
+        <li><%= link_to t('.orders'), orders_path %></li>
         <% if current_user && current_user.admin? %>
           <li><%= link_to "Admin", admin_dashboard_path %></li>
         <% end %>
 
+        <!-- <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to t(:about), about_path %></li>
+        <li><%= link_to Customer.model_name.human(count: :many).capitalize, customers_path %></li>
+        <li><%= link_to Product.model_name.human(count: :many).capitalize, products_path %></li>
+        <li><%= link_to Order.model_name.human(count: :many).capitalize, orders_path %></li>
+        <% if current_user && current_user.admin? %>
+          <li><%= link_to "Admin", admin_dashboard_path %></li>
+        <% end %> -->
+
         <div class="pull-right user-info">
+          <div class="pull-left">
+            <%= link_to_unless I18n.locale == :en, "English", locale: :en %>
+            |
+            <%= link_to_unless I18n.locale == :it, "Italiano", locale: :it %>
+          </div>
+          <br />
     			<% if user_signed_in? %>
-    				Signed in as:
+    				<%= t '.welcome_to_user' %>
             <strong>
               <%= current_user.admin? ? "#{current_user.name} (admin)" : current_user.name %>
             </strong>
             -
-    				<%= link_to "Edit profile", edit_user_registration_path, class: 'navbar-link' %>
+    				<%= link_to t('.edit_profile'), edit_user_registration_path, class: 'navbar-link' %>
     				-
-    				<%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'navbar-link' %>
+    				<%= link_to t('.sign_out'), destroy_user_session_path, method: :delete, class: 'navbar-link' %>
     			<% else %>
-    				<%= link_to "Sign In", new_user_session_path, class: 'navbar-link' %>
+    				<%= link_to t('.sign_in'), new_user_session_path, class: 'navbar-link' %>
     			<% end %>
         </div>
+
       </ul>
       <% if flash[:notice] %>
     		<div class="alert alert-success">

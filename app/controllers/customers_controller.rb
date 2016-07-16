@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @customers = Customer.all
   end
@@ -13,10 +13,10 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
 
     if @customer.save
-      flash[:notice] = "Customer added to database."
-      redirect customers_path
+      flash[:notice] = t('customers.create.flash.notice')
+      redirect_to customer_path(@customer)
     else
-      flash[:alert] = "No customer added. Please try again."
+      flash[:alert] = t('customers.create.flash.alert')
       render :new
     end
   end
@@ -34,10 +34,10 @@ class CustomersController < ApplicationController
     @customer.assign_attributes(customer_params)
 
     if @customer.save
-      flash[:notice] = "Customer updated."
-      redirect customers_path
+      flash[:notice] = t('customers.update.flash.notice')
+      redirect_to customer_path(@customer)
     else
-      flash[:alert] = "Customer was NOT updated. Please try again."
+      flash[:alert] = t('customers.update.flash.alert')
       render :edit
     end
   end

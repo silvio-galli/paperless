@@ -1,0 +1,71 @@
+it:
+  activerecord:
+    models:
+      customer:
+        one: "cliente"
+        other: "clienti"
+      product:
+        one: "prodotto"
+        other: "prodotti"
+      order:
+        one: "ordine"
+        other: "ordini"
+      user: "utente"
+    attributes:
+      customer:
+        first_name: "Nome"
+        last_name: "Cognome"
+        phone: "Telefono"
+        address: "Indirizzo"
+        city: "Città"
+        postcode: "CAP"
+        country: "Nazione"
+      product:
+        initiative: "Iniziativa"
+        description: "Descrizione"
+        local_code: "Codice Locale"
+        barcode: "Codice a Barre"
+        default_price: "Prezzo Continuo"
+        promo_price: "Prezzo Promo"
+        quantity: "Quantità"
+        arriving_date: "Data Arrivo"
+        created_at: "creato il"
+        updated_at: "aggiornato il"
+        status: "Status"
+      order_item:
+        quantity: "Quantità"
+      user:
+        current_password: "Password Attuale"
+    # VALIDATION ERRORS
+    errors:
+      models:
+        customer:
+          attributes:
+            last_name:
+              blank: "non può essere vuoto"
+            phone:
+              blank: "non può essere vuoto"
+            email:
+              taken: "è già associata ad un altro cliente. Non possono esserci due clienti con la stessa email."
+        product:
+          arriving_date: "non può essere vuoto se il prodotto è in arrivo."
+          attributes:
+            description:
+              blank: "non può essere vuoto."
+            initiative:
+              blank: "non può essere vuoto."
+            barcode:
+              blank: "non può essere vuoto."
+            default_price:
+              blank: "non può essere vuoto."
+            promo_price:
+              blank: "non può essere vuoto."
+              not_a_number: "Sei pregato di inserire un numero."
+            quantity:
+              blank: "non può essere vuoto."
+              not_a_number: "deve essere un numero"
+              less_than: "non può essere superiore a 50."
+        user:
+          attributes:
+            current_password:
+              blank: "non può essere vuoto se vuoi confermare il cambio password"

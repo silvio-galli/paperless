@@ -1,4 +1,4 @@
-<h1>Admin Dashboard</h1>
+<h1>Admin <small><%= t '.title' %></small></h1>
 <br />
 <div class="row">
   <div class="col-md-4">
@@ -9,14 +9,14 @@
       <div class="panel-body">
         <div class="table-responsive">
           <table class="table table-striped">
-            <th>id</th>
-            <th>name</th>
+            <th>ID</th>
+            <th><%= t '.name' %></th>
             <th></th>
             <% @users.each do |user| %>
               <tr>
                 <td><%= user.id %></td>
                 <td><%= user.name %></td>
-                <td><%= link_to "Change password", edit_admin_user_path(user) %></td>
+                <td><%= link_to t('.change_password'), edit_admin_user_path(user) %></td>
               </tr>
             <% end %>
           </table>
