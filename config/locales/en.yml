@@ -44,6 +44,7 @@ en:
     address: &address "Address"
     products: &products "Products"
     new_product: &new_product "New Product"
+    product: &product "Product"
     initiative: &initiative "Initiattive"
     description: &description "Description"
     arriving_quantity: &arriving_quantity "Arriving qty."
@@ -192,7 +193,7 @@ en:
       name: *name
       phone: *phone
       order_details: "Order's Details"
-      product: "Product"
+      product: *product
       quantity: *quantity
       default_price: *default_price
       promo_price: *promo_price
@@ -238,7 +239,8 @@ en:
       customer:
         first_name: "Enter first name"
         last_name: "Enter last name"
-        email: "Enater email address"
+        phone: "Enter customer phone number"
+        email: "Enter email address"
         address: "Enter address"
         city: "Enter city"
         postcode: "Enter zip/postcode"
@@ -254,3 +256,26 @@ en:
         arriving_date: "dd/mm/yyyy"
       user:
         name: *name
+
+  # MAILERS
+  product_mailer:
+    arrived_product_notice:
+      # mail for order ready
+      order_subject: "Your order is ready at SHOP_NAME"
+      order_title: "Order #%{id} ready!"
+      order_p: "Hi %{customer}, we're glad to inform you that all products you ordered arrived and are ready to be collected at our shop."
+      order_h3: "Order #%{id}:"
+      order_h4: "Product details:"
+      product: *product
+      quantity: *quantity
+      # mail for product arrived
+      product_subject: "The product you ordered has arrived at SHOP_NAME"
+      product_title: "Product for order #%{order_id} has arrived at SHOP_NAME."
+      product_p: "Hi %{customer_first_name}, we're glad to inform you that a product contained in your order #%{order_id} arrived and is ready to be collected at our shop."
+      product_details: "Product details"
+      description: "Description"
+      warning_title: "Attention! Your order contains products not arrived yet."
+      warning_h4: "You can come and collect the product arrived or expect until all other products arrive."
+      warning_h3: "Order #%{order_id}, still missing items:"
+      # info and contacts
+      info_contacts: "Info & Contacts:"

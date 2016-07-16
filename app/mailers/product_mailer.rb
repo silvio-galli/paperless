@@ -9,9 +9,9 @@ class ProductMailer < ApplicationMailer
     @arriving_items = @order.order_items.select { |item| item.product.arriving? }
 
     if @arriving_items.empty?
-      mail(to: customer.email, subject: "Your order is ready at SHOP_NAME")
+      mail(to: customer.email, subject: t('.order_subject'))
     else
-      mail(to: customer.email, subject: "The product you ordered has arrived at SHOP_NAME")
+      mail(to: customer.email, subject: t('.product_subject'))
     end
   end
 

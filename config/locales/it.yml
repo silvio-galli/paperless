@@ -44,6 +44,7 @@ it:
     address: &address "Indirizzo"
     products: &products "Prodotti"
     new_product: &new_product "Nuovo Prodotto"
+    product: &product "Prodotto"
     initiative: &initiative "Iniziativa"
     description: &description "Descrizione"
     arriving_quantity: &arriving_quantity "Quant. in arrivo"
@@ -192,7 +193,7 @@ it:
       name: *name
       phone: *phone
       order_details: "Dettaglio Ordine"
-      product: "Prodotto"
+      product: *product
       quantity: *quantity
       default_price: *default_price
       promo_price: *promo_price
@@ -255,3 +256,26 @@ it:
         arriving_date: "gg/mm/aaaa"
       user:
         name: *name
+
+  # MAILERS
+  product_mailer:
+    arrived_product_notice:
+      # mail for order ready
+      order_subject: "Il tuo ordine è pronto a SHOP_NAME"
+      order_title: "Il tuo ordine n. #%{order_id} è pronto!"
+      order_p: "Ciao %{customer_first_name}, siamo felici di informarti che tutti i prodotti che hai ordinato sono arrivati e sono pronti per essere ritirati presso SHOP_NAME."
+      order_h3: "Ordine #%{order_id}:"
+      order_h4: "Dettaglio prodotti:"
+      product: *product
+      quantity: *quantity
+      # mail for product arrived
+      product_subject: "Il prodotto che hai ordinato è arrivato a SHOP_NAME"
+      product_title: "Il prodotto contenuto nell'ordine #%{id} è arrivato a SHOP_NAME."
+      product_p: "Ciao %{customer_first_name}, siamo felici di informarti che un prodotto contenuto nel tuo ordine n. #%{order_id} è arrivato ed è pronto per essere ritirato."
+      product_details: "Dettaglio Prodotto"
+      description: "Descrizione"
+      warning_title: "Attenzione! Il tuo ordine contiene altri prodotti non ancora arrivati"
+      warning_h4: "Puoi venire e ritirare il prodotto appena arrivato oppure aspettare l'arrivo dei prodotti mancanti e venirli a ritirare tutti insieme."
+      warning_h3: "Ordine n. #%{order_id}, prodotti ancora mancanti:"
+      # info and contacts
+      info_contacts: "Info e Contatti:"
