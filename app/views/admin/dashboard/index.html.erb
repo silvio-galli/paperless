@@ -24,4 +24,18 @@
       </div>
     </div>
   </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1 class="panel-title">Upload Products from .csv file</h1>
+      </div>
+      <div class="panel-body">
+        <p><strong>Select .csv file from your pc:</strong></p>
+      	<%= form_tag( { controller: "/products", action: "import" }, method: "post", multipart: true) do %>
+        	<%= file_field_tag :file %>
+          <%= submit_tag "Import CSV" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
