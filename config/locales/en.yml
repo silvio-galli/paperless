@@ -214,8 +214,13 @@ en:
     dashboard:
       index:
         title: "Control Panel"
+        users_list_title: "Users List"
         name: *name
         change_password: "Change Password"
+        select_csv_title: "Upload Products from .csv file"
+        select_csv: "Select .csv file from your pc:"
+        template_file_download_h4: "You can download the .csv file template with instructions to fill it in:"
+        template_file_download_link: ".csv template file + instructions"
   # DEVISE
   devise:
     sessions:
