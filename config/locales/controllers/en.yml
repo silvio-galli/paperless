@@ -21,6 +21,9 @@ en:
       flash:
         notice: "Product correctly updated in the database."
         alert: "Error! Product NOT updated. Please try again."
+    import:
+      flash:
+        notice: "%{count} new imported products."
   orders:
     create:
       flash:

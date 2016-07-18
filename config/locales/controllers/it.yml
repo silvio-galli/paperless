@@ -21,6 +21,9 @@ it:
       flash:
         notice: "Prodotto aggiornato correttamente nel databse."
         alert: "Errore! Prodotto NON aggiornato correttamente. Prova di nuovo."
+    import:
+      flash:
+        notice: "%{count} nuovi prodotti importati."
   orders:
     create:
       flash:
