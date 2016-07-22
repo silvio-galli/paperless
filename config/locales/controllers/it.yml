@@ -23,7 +23,7 @@ it:
         alert: "Errore! Prodotto NON aggiornato correttamente. Prova di nuovo."
     import:
       flash:
-        notice: "%{count} nuovi prodotti importati."
+        notice: "I nuovi prodotti saranno importati entro 10 secondi."
   orders:
     create:
       flash:

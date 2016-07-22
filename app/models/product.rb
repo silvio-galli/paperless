@@ -25,8 +25,8 @@ class Product < ActiveRecord::Base
   require 'csv'
 
   def self.import(file, current_user)
-    products_imported = 0
-    CSV.foreach(file.path, headers: true) do |row|
+    @products_imported = 0
+    CSV.foreach(file, headers: true) do |row|
       if I18n.locale == :it
         self.create(
           initiative: row["Iniziativa"],
@@ -40,13 +40,13 @@ class Product < ActiveRecord::Base
           arriving_date: row["Data Arrivo"],
           user: current_user
         )
-        products_imported += 1
+        @products_imported += 1
       elsif I18n.locale = :en
         self.create(row.to_hash)
-        products_imported += 1
+        @products_imported += 1
       end
     end
-    products_imported
+    @products_imported
   end
 
   private
