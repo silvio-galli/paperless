@@ -4,4 +4,5 @@ class ImportProductsFromCsvJob < ActiveJob::Base
   def perform(file, user)
     Product.import(file, user)
   end
+
 end

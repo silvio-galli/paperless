@@ -1,5 +1,4 @@
 class ProductsController < ApplicationController
-  require 'csv'
   before_action :authenticate_user!
 
   def index
@@ -57,7 +56,7 @@ class ProductsController < ApplicationController
       file.write(uploaded_file.read)
     end
     ImportProductsFromCsvJob.set(wait: 1.seconds).perform_later("public/import/#{file_name}", current_user)
-    flash[:notice] = t('products.import.flash.notice', count: @products_imported)
+    flash[:notice] = t('products.import.flash.notice')
     redirect_to products_path
   end
 
