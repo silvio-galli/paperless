@@ -22,6 +22,7 @@ gem 'figaro'
 gem 'pry'
 gem 'devise'
 gem 'sidekiq'
+gem 'will_paginate'
 
 group :development, :test do
 gem 'byebug'

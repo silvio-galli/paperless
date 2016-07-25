@@ -284,3 +284,9 @@ it:
       warning_h3: "Ordine n. #%{order_id}, prodotti ancora mancanti:"
       # info and contacts
       info_contacts: "Info e Contatti:"
+
+# WILL_PAGINATE
+  will_paginate:
+    previous_label: "&#8592; Precedente"
+    next_label: "Successivo &#8594;"
+    page_gap: "&hellip;"

@@ -22,6 +22,7 @@
 </div>
 <div class="row">
   <div class="col-md-12">
+    <%= will_paginate @customers, class: 'digg_pagination' %>
     <table class="table table-hover">
       <tr>
         <th><%= t '.name' %></th>
@@ -48,5 +49,6 @@
         </tr>
       <% end %>
     </table>
+    <%= will_paginate @customers, class: 'digg_pagination' %>
   </div>
 </div>

@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @customers = Customer.all
+    @customers = Customer.all.page(params[:page])
   end
 
   def new
