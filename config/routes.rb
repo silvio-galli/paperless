@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
+  root to: 'welcome#index'
+
   scope "/:locale" do
-    devise_for :users, controllers: { registrations: "registrations" }
+    devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
 
     namespace :admin do
       get 'dashboard', to: "dashboard#index"
@@ -18,7 +20,11 @@ Rails.application.routes.draw do
 
     resources :order_items, except: [:new, :create]
 
-    resources :products
+    resources :products do
+      collection do
+        post 'import'
+      end
+    end
 
     get 'search' => 'search#index', as: :search
 
@@ -26,7 +32,6 @@ Rails.application.routes.draw do
 
     get '/about', to: "welcome#about"
 
-    root to: 'welcome#index'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

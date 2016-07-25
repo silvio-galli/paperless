@@ -214,8 +214,13 @@ it:
     dashboard:
       index:
         title: "Pannello di Controllo"
+        users_list_title: "Lista Utenti"
         name: *name
         change_password: "Cambia Password"
+        select_csv_title: "Importa Prodotti da file .csv"
+        select_csv: "Seleziona il file .csv dal tuo computer:"
+        template_file_download_h4: "Puoi scaricare il modello del file .csv insieme alle istruzioni di compilazione:"
+        template_file_download_link: "Modello file .csv + istruzioni"
   # DEVISE
   devise:
     sessions:

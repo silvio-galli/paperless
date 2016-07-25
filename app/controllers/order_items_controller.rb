@@ -1,11 +1,10 @@
 class OrderItemsController < ApplicationController
-  before_action :closed_order_cannot_add_item, only: [ :create ]
-  before_action :closed_order_cannot_remove_item, only: [ :destroy ]
+  before_action :authenticate_user!
+  before_action :closed_order_cannot_modify
 
   def create
     @order = Order.find(params[:order_id])
-    @order_item = OrderItem.new
-    @order_item.order_id = @order.id
+    @order_item = @order.order_items.new
     @order_item.product_id = params[:order_item][:product_id]
     @order_item.quantity = params[:order_item][:quantity]
 
@@ -30,16 +29,12 @@ class OrderItemsController < ApplicationController
   end
 
   private
-  def closed_order_cannot_add_item
-    order = Order.find(params[:order_id])
-    if order.closed?
-      flash[:alert] = t('order_items.destroy.flash.closed_order_cannot_modify')
-      redirect_to request.referrer
+  def closed_order_cannot_modify
+    if params[:order_id]
+      order = Order.find(params[:order_id])
+    else
+      order = OrderItem.find(params[:id]).order
     end
-  end
-
-  def closed_order_cannot_remove_item
-    order = OrderItem.find(params[:id]).order
     if order.closed?
       flash[:alert] = t('order_items.destroy.flash.closed_order_cannot_modify')
       redirect_to request.referrer

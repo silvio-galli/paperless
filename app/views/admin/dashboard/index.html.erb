@@ -4,7 +4,7 @@
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h1 class="panel-title">Users List</h1>
+        <h1 class="panel-title"><%= t '.users_list_title' %></h1>
       </div>
       <div class="panel-body">
         <div class="table-responsive">
@@ -21,6 +21,29 @@
             <% end %>
           </table>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1 class="panel-title"><%= t '.select_csv_title' %></h1>
+      </div>
+      <div class="panel-body">
+        <p><strong><%= t '.select_csv' %></strong></p>
+      	<%= form_tag( { controller: "/products", action: "import" }, method: "post", multipart: true) do %>
+        	<%= file_field_tag :file %>
+          <%= submit_tag "Import CSV" %>
+        <% end %>
+        <br />
+        <h4><%= t '.template_file_download_h4' %></h4>
+        <ul>
+            <li>
+              <%= t '.template_file_download_link' %>
+              &nbsp;
+              <small><%= link_to "download", "/#{I18n.locale}_template.zip", download: '' %></small>
+            </li>
+        </ul>
       </div>
     </div>
   </div>

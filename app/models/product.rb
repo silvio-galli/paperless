@@ -22,6 +22,33 @@ class Product < ActiveRecord::Base
     previous_changes && previous_changes['status'] == ["arriving", "in_stock"]
   end
 
+  require 'csv'
+
+  def self.import(file, current_user)
+    @products_imported = 0
+    CSV.foreach(file, headers: true) do |row|
+      if I18n.locale == :it
+        self.create(
+          initiative: row["Iniziativa"],
+          local_code: row["Codice Locale"],
+          description: row["Descrizione"],
+          barcode: row["Codice a Barre"],
+          default_price: row["Prezzo Continuo"],
+          promo_price: row["Prezzo Promo"],
+          quantity: row["Quantità"],
+          status: row["Status"],
+          arriving_date: row["Data Arrivo"],
+          user: current_user
+        )
+        @products_imported += 1
+      elsif I18n.locale = :en
+        self.create(row.to_hash)
+        @products_imported += 1
+      end
+    end
+    @products_imported
+  end
+
   private
   def arriving_status_validation
     if self.status == "arriving" && self.arriving_date == nil

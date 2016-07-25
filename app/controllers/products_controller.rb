@@ -46,6 +46,20 @@ class ProductsController < ApplicationController
     end
   end
 
+  def import
+    uploaded_file = params[:file]
+    client_ip_address = request.remote_ip
+    time_stamp = Time.now.strftime("%d%m%Y%H%M%S")
+    file_name = "#{client_ip_address}_#{time_stamp}.csv"
+    file_path = Rails.root.join('public', 'import', file_name)
+    File.open(file_path, 'wb') do |file|
+      file.write(uploaded_file.read)
+    end
+    ImportProductsFromCsvJob.set(wait: 1.seconds).perform_later("public/import/#{file_name}", current_user)
+    flash[:notice] = t('products.import.flash.notice')
+    redirect_to products_path
+  end
+
   private
   def product_params
     params.require(:product).permit(:initiative, :local_code, :description, :barcode, :default_price, :promo_price, :quantity, :status, :arriving_date)
