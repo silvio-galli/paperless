@@ -284,3 +284,8 @@ en:
       warning_h3: "Order #%{order_id}, still missing items:"
       # info and contacts
       info_contacts: "Info & Contacts:"
+# WILL_PAGINATE
+  will_paginate:
+    previous_label: "&#8592; Previous"
+    next_label: "Next &#8594;"
+    page_gap: "&hellip;"

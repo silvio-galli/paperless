@@ -2,6 +2,7 @@
 <br />
 <div class="row">
   <div class="col-md-12">
+    <%= will_paginate @orders, class: 'digg_pagination' %>
     <table class="table table-hover">
       <tr>
         <th>ID</th>
@@ -31,5 +32,6 @@
         </tr>
       <% end %>
     </table>
+    <%= will_paginate @orders, class: 'digg_pagination' %>
   </div>
 </div>
