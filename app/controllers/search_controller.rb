@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
   def index
     if params[:keyword] == ""
-      flash[:alert] = "Please, enter something to search for."
+      flash[:alert] = t('search.index.flash.alert')
       redirect_to request.referer
     else
       if request.env["HTTP_REFERER"].include? "customer"

@@ -1,22 +1,30 @@
-<h1><%= @product.description %></h1>
+<h1>
+  <%= @product.description %>
+  <small><%= product_status_label(@product, @product.arriving_date) %></small>
+</h1>
+<p class="lead">
+  <%= link_to t('.edit'), edit_product_path(@product), class: 'btn btn-primary' %>
+  <% if @product.order_items.count == 0 %>
+    <%= link_to t('.delete'), @product, method: :delete, class: 'btn btn-danger', data: { confirm: t('.product_deletion_confirmation')} %>
+  <% end %>
+</p>
 <br />
 <div class="row">
   <div class="col-md-12">
     <table class="table table-hover">
       <thead>
         <tr>
-          <th>created by</th>
-          <th>Initiative</th>
-          <th>Local code</th>
-          <th>Barcode</th>
-          <th>Default price</th>
-          <th>Promo price</th>
-          <% if !@product.in_stock? %>
-            <th>Arriving date</th>
+          <th><%= t '.created_by' %></th>
+          <th><%= t '.initiative' %></th>
+          <th><%= t '.local_code' %></th>
+          <th><%= t '.barcode' %></th>
+          <th><%= t '.default_price' %></th>
+          <th><%= t '.promo_price' %></th>
+          <% if @product.arriving? %>
+            <th><%= t '.arriving_date' %></th>
           <% end %>
-          <th>Quantity</th>
-          <th>Available Quantity</th>
-          <th>Status</th>
+          <th><%= t '.quantity' %></th>
+          <th><%= t '.available_quantity' %></th>
           <th></th>
         </tr>
       </thead>
@@ -28,13 +36,12 @@
           <td><%= @product.barcode %></td>
           <td><%= @product.default_price %> &euro;</td>
           <td><%= @product.promo_price %> &euro;</td>
-          <% if !@product.in_stock? %>
+          <% if @product.arriving? %>
             <td><%= @product.arriving_date.strftime("%a, %d %b %Y") %></td>
           <% end %>
           <td><%= @product.quantity %></td>
           <td><%= check_product_availability(@product) %></td>
-          <td><%= product_status_label(@product, @product.arriving_date) %></td>
-          <%= render partial: "arrived_button", locals: { product: @product } %>
+          <td><%= arrived_button(@product) %></td>
         </tr>
       </tbody>
     </table>
@@ -44,16 +51,16 @@
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h1 class="panel-title"><%= get_label_for(@product.order_items) %> customers waiting for this product</h3>
+        <h1 class="panel-title"><%= get_label_for(@product.order_items) %> <%= t '.customers_panel_title' %></h3>
       </div>
       <div class="panel-body">
         <table class="table">
           <thead>
             <tr>
-              <th>name</th>
-              <th>phone</th>
-              <th>email</th>
-              <th>quantity</th>
+              <th><%= t('.customer') %></th>
+              <th>Email</th>
+              <th><%= t('.phone') %></th>
+              <th><%= t('.quantity') %></th>
             </tr>
           </thead>
           <tbody>
@@ -62,8 +69,8 @@
                 <td>
                   <%= link_to "#{order_item.order.customer.last_name} #{order_item.order.customer.first_name}", customer_path(order_item.order.customer.id) %>
                 </td>
-                <td><%= order_item.order.customer.phone %></td>
                 <td><%= order_item.order.customer.email %></td>
+                <td><%= order_item.order.customer.phone %></td>
                 <td><%= order_item.quantity %></td>
               </tr>
             <% end %>
@@ -75,22 +82,25 @@
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h1 class="panel-title"><%= get_label_for(@product.order_items) %> orders containing this product</h1>
+        <h1 class="panel-title">
+          <%= get_label_for(@product.order_items) %>
+          <%= t('.orders_panel_title') %>
+        </h1>
       </div>
       <div class="panel-body">
         <table class="table">
           <thead>
             <tr>
-              <th>order</th>
-              <th>date</th>
-              <th>quantity</th>
+              <th>ID</th>
+              <th><%= t('.date') %></th>
+              <th><%= t('.quantity') %></th>
             </tr>
           </thead>
           <tbody>
             <% @product.order_items.each do |order_item| %>
               <tr>
-                <td># <%= link_to order_item.order.id, order_path(order_item.order.id) %></td>
-                <td><%= order_item.order.created_at.strftime("%a, %d %b %Y") %></td>
+                <td><%= link_to "# #{order_item.order.id}", order_path(order_item.order.id) %></td>
+                <td><%= l(order_item.order.created_at, format: :long) %></td>
                 <td><%= order_item.quantity %></td>
               </tr>
             <% end %>

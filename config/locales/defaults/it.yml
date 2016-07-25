@@ -1,0 +1,24 @@
+it:
+  # DATE TIME
+  date:
+    day_names: [Domenica, Lunedì, Martedì, Mercoledì, Giovedì, Venerdì, Sabato]
+    abbr_day_names: [Dom, Lun, Mar, Mer, Gio, Ven, Sab]
+
+    # Don't forget the nil at the beginning; there's no such thing as a 0th month
+    month_names: [~, Gennaio, Febbraio, Marzo, Aprile, Maggio, Giugno, Luglio, Agosto, Settembre, Ottobre, Novembre, Dicembre]
+    abbr_month_names: [~, Gen, Feb, Mar, Apr, Mag, Giu, Lug, Ago, Set, Ott, Nov, Dic]
+  time:
+    formats:
+      # Use the strftime parameters for formats.
+      # When no format has been given, it uses default.
+      # You can provide other formats here if you like!
+      default: "%d/%m/%y"
+      short: "%d-%b"
+      long: "%a-%d/%m/'%y"
+      extra_long: "%a, %d %B %Y"
+    # am: am
+    # formats:
+    #   default: "%a %d %b %Y, %H:%M:%S %z"
+    #   long: "%d %B %Y %H:%M"
+    #   short: "%d %b %H:%M"
+    # pm: pm

@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @orders = Order.all
+    @orders = Order.all.page(params[:page])
   end
 
   def new
@@ -14,10 +14,10 @@ class OrdersController < ApplicationController
     @customer = Customer.find(params[:customer_id])
     @order = @customer.orders.build(order_params)
     if @order.save
-      flash[:notice] = "Order successfully saved."
+      flash[:notice] = t('orders.create.flash.notice')
       redirect_to order_path(@order)
     else
-      flash[:alert] = "Order NOT saved. Please try again."
+      flash[:alert] = t('orders.create.flash.alert')
       render :new
     end
   end
@@ -38,10 +38,10 @@ class OrdersController < ApplicationController
     @order.assign_attributes(order_params)
 
     if @order.save
-      flash[:notice] = "Order correctly updated in the database."
+      flash[:notice] = t('orders.update.flash.notice')
       redirect_to request.referer
     else
-      flash[:alert] = "Error! Order not updated. Plaese try again."
+      flash[:alert] = t('orders.update.flash.alert')
       render :edit
     end
   end

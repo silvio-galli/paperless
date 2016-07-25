@@ -1,7 +1,7 @@
 <h1>
   <%= "#{@customer.first_name} #{@customer.last_name}" %>
   <small class="pull-right">
-    <%= link_to "New Order", new_customer_order_path(@customer, Order.new), class: 'btn btn-primary' %>
+    <%= link_to t('.new_order_link'), new_customer_order_path(I18n.locale, @customer, Order.new), class: 'btn btn-primary' %>
   </small>
 </h1>
 <br />
@@ -10,8 +10,8 @@
     <table class="table table-hover">
       <tr>
         <th>Email</th>
-        <th>Phone</th>
-        <th>Address</th>
+        <th><%= t '.phone' %></th>
+        <th><%= t '.address' %></th>
       </tr>
       <tr>
         <td><%= @customer.email %></td>
@@ -25,24 +25,26 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <h2>Orders history</h2>
+    <h2><%= t '.orders_history' %></h2>
     <table class="table table-hover">
       <tr>
-        <th>id</th>
-        <th>date</th>
-        <th>total price</th>
-        <th>items</th>
-        <th>notes</th>
+        <th>ID</th>
+        <th>Status</th>
+        <th><%= t '.date' %></th>
+        <th><%= t '.total_price' %></th>
+        <th><%= t '.items_number' %></th>
+        <th><%= t '.notes' %></th>
         <th></th>
       </tr>
       <% @customer.orders.each do |order| %>
         <tr>
           <td><%= order.id %></td>
-          <td><%= order.created_at.strftime("%a, %d %b %Y") %></td>
+          <td><%= order_status_label(order) %></td>
+          <td><%= l(order.created_at, format: :long) %></td>
           <td><%= calculate_total_price(order) %> &euro;</td>
           <td><%= calculate_total_items(order) %></td>
           <td><%= order.notes %></td>
-          <td><%= link_to "Show", order_path(order), class: 'btn btn-primary btn-xs' %></td>
+          <td><%= link_to t('.show'), order_path(order), class: 'btn btn-primary btn-xs' %></td>
         </tr>
       <% end %>
     </table>

@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(version: 20160705143551) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "first_name"
-    t.string   "last_name"
-    t.string   "phone"
-    t.string   "email"
+    t.string   "last_name", null: false
+    t.string   "phone",     null: false, unique: true
+    t.string   "email",                  unique: true
     t.string   "address"
     t.string   "postcode"
     t.string   "city"

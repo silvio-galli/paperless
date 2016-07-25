@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @products = Product.all
+    @products = Product.all.page(params[:page])
   end
 
   def new
@@ -14,10 +14,10 @@ class ProductsController < ApplicationController
     @product.user = current_user
 
     if @product.save
-      flash[:notice] = "Product correctly saved in the database."
+      flash[:notice] = t('products.create.flash.notice')
       redirect_to product_path(@product)
     else
-      flash[:alert] = "Error! Product not saved. Plaese try again."
+      flash[:alert] = t('products.create.flash.alert')
       render :new
     end
   end
@@ -35,12 +35,29 @@ class ProductsController < ApplicationController
     @product.assign_attributes(product_params)
 
     if @product.save
-      flash[:notice] = "Product correctly updated in the database."
+      if @product.is_arrived?
+        SendEmailNotificationJob.set(wait: 1.seconds).perform_later(@product)
+      end
+      flash[:notice] = t('products.update.flash.notice')
       redirect_to request.referer
     else
-      flash[:alert] = "Error! Product not updated. Plaese try again."
+      flash[:alert] = t('products.update.flash.alert')
       render :edit
     end
+  end
+
+  def import
+    uploaded_file = params[:file]
+    client_ip_address = request.remote_ip
+    time_stamp = Time.now.strftime("%d%m%Y%H%M%S")
+    file_name = "#{client_ip_address}_#{time_stamp}.csv"
+    file_path = Rails.root.join('public', 'import', file_name)
+    File.open(file_path, 'wb') do |file|
+      file.write(uploaded_file.read)
+    end
+    ImportProductsFromCsvJob.set(wait: 1.seconds).perform_later("public/import/#{file_name}", current_user)
+    flash[:notice] = t('products.import.flash.notice')
+    redirect_to products_path
   end
 
   private

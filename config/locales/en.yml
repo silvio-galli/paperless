@@ -21,3 +21,271 @@
 
 en:
   hello: "Hello world"
+  errors:
+    zero: "No errors"
+    one: "%{count} error"
+    other: "%{count} errors"
+
+  # RECURRING EXPRESSIONS
+  recurring:
+    back: &back "Back"
+    show: &show "Show"
+    edit: &edit "Edit"
+    close: &close "Close"
+    save: &save "Save"
+    update: &update "Update"
+    delete: &delete "Delete"
+    sign_in: &sign_in "Sign In"
+    sign_out: &sign_out "Sign Out"
+    customers: &customers "Customers"
+    new_customer_link: &new_customer_link "New Customer"
+    name: &name "Name"
+    phone: &phone "Phone"
+    address: &address "Address"
+    products: &products "Products"
+    new_product: &new_product "New Product"
+    product: &product "Product"
+    initiative: &initiative "Initiattive"
+    description: &description "Description"
+    arriving_quantity: &arriving_quantity "Arriving qty."
+    available_quantity: &available_quantity "Available qty."
+    local_code: &local_code "Local Code"
+    default_price: &default_price "Default price"
+    promo_price: &promo_price "Promo price"
+    arriving_date: &arriving_date "Arriving date"
+    arrived: &arrived "Arrived"
+    arriving: &arriving "arriving"
+    in_stock: &in_stock "in stock"
+    delayed: &delayed "delayed"
+    arrived_product_confirmation: &arrived_product_confirmation "Marking the product as arrived will send emails to every customer waiting for it. Are you sure you want to continue?"
+    product_deletion_confirmation: &product_deletion_confirmation "The product is NOT present in any order. Continue?"
+    orders: &orders "Orders"
+    new_order_link: &new_order_link "New Order"
+    customer: &customer "Customer"
+    date: &date "Date"
+    total_price: &total_price "Total price"
+    items_number: &items_number "Items qty."
+    notes: &notes "Notes"
+    open: &open "open"
+    closed: &closed "closed"
+    close_order_confirmation: &close_order_confirmation "Once closed, an order cannot be modified any more. Continue?"
+    quantity: &quantity "Quantity"
+    order: &order "Order"
+
+  # ROOT
+  jumbotron_subtitle: "Manage your products, your customers and your customers' orders"
+  switch_language: "Se preferisci, puoi passare a:"
+
+# VIEWS
+  #LAYOUTS
+  layouts:
+    application:
+      about: "About"
+      customers: *customers
+      products: *products
+      orders: *orders
+      welcome_to_user: "Welcome:"
+      edit_profile: "Edit profile"
+      sign_in: *sign_in
+      sign_out: *sign_out
+  #WELCOME
+  welcome:
+    index:
+      jumbotron_subtitle: "Manage your products, your customers and your customers' orders"
+      switch_language: "Se preferisci, puoi passare a:"
+      products_report_title: "Products Summary"
+      products_index_link: "View all Products"
+      orders_report_title: "Open Orders Report"
+      orders_index_link: "View all Orders"
+      arrived: *arrived
+      arrived_product_confirmation: *arrived_product_confirmation
+      close: *close
+      close_order_confirmation: *close_order_confirmation
+  # CUSTOMERS
+  customers:
+    new:
+      title: "Add New Customer"
+      save: *save
+    index:
+      title: *customers
+      new_customer_link: *new_customer_link
+      search_placeholder: "Search Customer: last name or email or phone"
+      name: *name
+      phone: *phone
+      address: *address
+      orders: *orders
+      show: *show
+      edit: *edit
+      new_order_link: *new_order_link
+    show:
+      new_order_link: *new_order_link
+      phone: *phone
+      address: *address
+      orders_history: "Orders History"
+      date: *date
+      total_price: *total_price
+      items_number: *items_number
+      notes: *notes
+      show: *show
+  # PRODUCTS
+  products:
+    new:
+      title: *new_product
+      arriving: *arriving
+      in_stock: *in_stock
+      save: *save
+    index:
+      title: *products
+      new_product_link: *new_product
+      search_placeholder: "Search Product: description"
+      arriving: *arriving
+      in_stock: *in_stock
+      delayed: *delayed
+      initiative: *initiative
+      description: *description
+      arriving_quantity: *arriving_quantity
+      available_quantity: *available_quantity
+      local_code: *local_code
+      default_price: *default_price
+      promo_price: *promo_price
+      arriving_date: *arriving_date
+      show: *show
+      edit: *edit
+      arrived: *arrived
+      arrived_product_confirmation: *arrived_product_confirmation
+    show:
+      edit: *edit
+      delete: *delete
+      product_deletion_confirmation: *product_deletion_confirmation
+      created_by: "created by"
+      initiative: *initiative
+      local_code: *local_code
+      barcode: "Barcode"
+      default_price: *default_price
+      promo_price: *promo_price
+      arriving_date: *arriving_date
+      available_quantity: *available_quantity
+      arrived: *arrived
+      arrived_product_confirmation: *arrived_product_confirmation
+      customer_panel_title: "customers waiting for this product"
+      customer: *customer
+      phone: *phone
+      quantity: *quantity
+      date: *date
+      orders_panel_title: "orders containing this product"
+  # ORDERS
+  orders:
+    index:
+      date: "Date"
+      customer: *customer
+      phone: *phone
+      total_price: "Total"
+      items_number: "Items quant."
+      show: *show
+      open: *open
+      closed: *closed
+      close: *close
+      close_order_confirmation: *close_order_confirmation
+    show:
+      order: *order
+      open: *open
+      closed: *closed
+      name: *name
+      phone: *phone
+      order_details: "Order's Details"
+      product: *product
+      quantity: *quantity
+      default_price: *default_price
+      promo_price: *promo_price
+      subtotal: "Subtotal"
+      total: "Totale"
+      add_items_section_title: "Add Product:"
+      select_product: "Select a product:"
+      availability: "availability"
+      add_item: "Add Product"
+      pieces:
+        zero: ""
+        one: "piece"
+        other: "pieces"
+      remove: "Remove"
+      remove_item_confirmation: "Are you sure you want to remove '%{item}' from this order?"
+  # ADMIN
+  admin:
+    dashboard:
+      index:
+        title: "Control Panel"
+        users_list_title: "Users List"
+        name: *name
+        change_password: "Change Password"
+        select_csv_title: "Upload Products from .csv file"
+        select_csv: "Select .csv file from your pc:"
+        template_file_download_h4: "You can download the .csv file template with instructions to fill it in:"
+        template_file_download_link: ".csv template file + instructions"
+  # DEVISE
+  devise:
+    sessions:
+      new:
+        title: *sign_in
+        sign_in: *sign_in
+    registrations:
+      edit:
+        title: *edit
+        back: *back
+        new_password: "New Passwor"
+        new_password_message: "(leave blank if you don't want to change it)"
+        new_password_confirmation: "New Password Confirmation"
+        old_password: "Current Password"
+        old_password_message: "(we need your current password to confirm your changes)"
+        update: *update
+
+# HELPERS
+  helpers:
+    placeholder:
+      customer:
+        first_name: "Enter first name"
+        last_name: "Enter last name"
+        phone: "Enter customer phone number"
+        email: "Enter email address"
+        address: "Enter address"
+        city: "Enter city"
+        postcode: "Enter zip/postcode"
+        country: "Enter country"
+      product:
+        initiative: "promo number/aaaa or no promo"
+        local_code: "Enter local code"
+        description: "Enter description"
+        barcode: "Enter barcode"
+        default_price: "e.i. 100.00"
+        promo_price: "e.i. 80.00"
+        quantity: "max 50 items"
+        arriving_date: "dd/mm/yyyy"
+      user:
+        name: *name
+
+  # MAILERS
+  product_mailer:
+    arrived_product_notice:
+      # mail for order ready
+      order_subject: "Your order is ready at SHOP_NAME"
+      order_title: "Order #%{id} ready!"
+      order_p: "Hi %{customer}, we're glad to inform you that all products you ordered arrived and are ready to be collected at our shop."
+      order_h3: "Order #%{id}:"
+      order_h4: "Product details:"
+      product: *product
+      quantity: *quantity
+      # mail for product arrived
+      product_subject: "The product you ordered has arrived at SHOP_NAME"
+      product_title: "Product for order #%{order_id} has arrived at SHOP_NAME."
+      product_p: "Hi %{customer_first_name}, we're glad to inform you that a product contained in your order #%{order_id} arrived and is ready to be collected at our shop."
+      product_details: "Product details"
+      description: "Description"
+      warning_title: "Attention! Your order contains products not arrived yet."
+      warning_h4: "You can come and collect the product arrived or expect until all other products arrive."
+      warning_h3: "Order #%{order_id}, still missing items:"
+      # info and contacts
+      info_contacts: "Info & Contacts:"
+# WILL_PAGINATE
+  will_paginate:
+    previous_label: "&#8592; Previous"
+    next_label: "Next &#8594;"
+    page_gap: "&hellip;"

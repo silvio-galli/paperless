@@ -1,26 +1,49 @@
-<h1>Admin Dashboard</h1>
+<h1>Admin <small><%= t '.title' %></small></h1>
 <br />
 <div class="row">
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h1 class="panel-title">Users List</h1>
+        <h1 class="panel-title"><%= t '.users_list_title' %></h1>
       </div>
       <div class="panel-body">
         <div class="table-responsive">
           <table class="table table-striped">
-            <th>id</th>
-            <th>name</th>
+            <th>ID</th>
+            <th><%= t '.name' %></th>
             <th></th>
             <% @users.each do |user| %>
               <tr>
                 <td><%= user.id %></td>
                 <td><%= user.name %></td>
-                <td><%= link_to "Change password", edit_admin_user_path(user) %></td>
+                <td><%= link_to t('.change_password'), edit_admin_user_path(user) %></td>
               </tr>
             <% end %>
           </table>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1 class="panel-title"><%= t '.select_csv_title' %></h1>
+      </div>
+      <div class="panel-body">
+        <p><strong><%= t '.select_csv' %></strong></p>
+      	<%= form_tag( { controller: "/products", action: "import" }, method: "post", multipart: true) do %>
+        	<%= file_field_tag :file %>
+          <%= submit_tag "Import CSV" %>
+        <% end %>
+        <br />
+        <h4><%= t '.template_file_download_h4' %></h4>
+        <ul>
+            <li>
+              <%= t '.template_file_download_link' %>
+              &nbsp;
+              <small><%= link_to "download", "/#{I18n.locale}_template.zip", download: '' %></small>
+            </li>
+        </ul>
       </div>
     </div>
   </div>
