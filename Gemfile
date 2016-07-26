@@ -23,6 +23,7 @@ gem 'pry'
 gem 'devise'
 gem 'sidekiq'
 gem 'will_paginate'
+gem 'paper_trail'
 
 group :development, :test do
 gem 'byebug'

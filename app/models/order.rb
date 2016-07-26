@@ -1,4 +1,5 @@
 class Order < ActiveRecord::Base
+  has_paper_trail
   belongs_to :customer
   has_many :order_items
   has_many :products, through: :order_items
@@ -7,4 +8,5 @@ class Order < ActiveRecord::Base
 
   default_scope { order("created_at DESC") }
   scope :open?, -> { where( status: 0 ) }
+
 end

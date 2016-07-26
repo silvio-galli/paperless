@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
+  before_filter :set_paper_trail_whodunnit
 
   def index
     @products = Product.all.page(params[:page])

@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_filter :set_paper_trail_whodunnit
 
   def index
     @orders = Order.all.page(params[:page])
