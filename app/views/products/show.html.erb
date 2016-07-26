@@ -110,3 +110,23 @@
     </div>
   </div>
 </div>
+<% if current_user.admin? && !@versions.empty?%>
+  <div class="row">
+    <div class="col-md-12">
+      <h4>This item changed <%= @versions.length %> times</h4>
+      <table class="table">
+        <thead></thead>
+        <tbody>
+          <% @versions.each do |version| %>
+            <tr>
+              <td><%= version.id %></td>
+              <td><%= version.event %></td>
+              <td><%= get_user_for_paper_trail(version.whodunnit).name %></td>
+              <td><%= version.changeset %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>

@@ -1,5 +1,5 @@
 class Customer < ActiveRecord::Base
-  has_paper_trail
+  has_paper_trail :on => [:update, :destroy]
   has_many :orders, dependent: :destroy
 
   validates :last_name, presence: true

@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  has_paper_trail
+  has_paper_trail :on => [:update, :destroy]
   belongs_to :user
   has_many :order_items
   has_many :orders, through: :order_items

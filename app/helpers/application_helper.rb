@@ -6,4 +6,8 @@ module ApplicationHelper
       "<span class=\"label label-primary\">#{item.count}</span>".html_safe
     end
   end
+
+  def get_user_for_paper_trail(whodunnit)
+    User.find(whodunnit)
+  end
 end
