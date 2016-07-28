@@ -112,21 +112,45 @@
 </div>
 <% if current_user.admin? && !@versions.empty?%>
   <div class="row">
-    <div class="col-md-12">
-      <h4>This item changed <%= @versions.length %> times</h4>
-      <table class="table">
-        <thead></thead>
-        <tbody>
-          <% @versions.each do |version| %>
-            <tr>
-              <td><%= version.id %></td>
-              <td><%= version.event %></td>
-              <td><%= get_user_for_paper_trail(version.whodunnit).name %></td>
-              <td><%= version.changeset %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h1 class="panel-title">
+            <%= t '.versions_panel_title' %> <%= t('times', :count => @versions.length) %>.
+          </h1>
+        </div>
+        <div class="panel-body">
+          <table class="table" id="versions">
+            <thead>
+              <tr>
+                <th><%= t ".whodunnit" %></th>
+                <th class="what-changed"><%= t ".modifications" %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @versions.each do |version| %>
+                <tr>
+                  <td><%= get_user_for_paper_trail(version.whodunnit).name %></td>
+                  <td class="what-changed">
+                    <table>
+                      <% version.changeset.each do |k, v| %>
+                      <tr>
+                        <td>
+                          <strong><%= t ".#{k}" %>:</strong>
+                          <em><%= v[0].class == ActiveSupport::TimeWithZone ? l(v[0]) : v[0] %></em>
+                          &nbsp;<i class="glyphicon glyphicon-arrow-right"></i>&nbsp;
+                          <strong><%= v[1].class == ActiveSupport::TimeWithZone ? l(v[1]) : v[1] %></strong>
+                        </td>
+                      </tr>
+                      <% end %>
+                    </table>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 <% end %>
