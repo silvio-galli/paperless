@@ -1,4 +1,4 @@
-<h1>Edit <%= @product.description %></h1>
+<h1><small><%= t '.edit' %></small> <%= @product.description %></h1>
 <div class="row">
   <div class="col-md-4">
     <%= form_for @product do |f| %>
@@ -31,11 +31,17 @@
         <%= f.number_field :quantity, class: 'form-control' %>
       </div>
       <div class="form-group">
+        <%= f.radio_button(:status, "arriving") %>
+        <%= f.label(:status, t('.arriving')) %>
+        <%= f.radio_button(:status, "in_stock") %>
+        <%= f.label(:status, t('.in_stock')) %>
+      </div>
+      <div class="form-group">
         <%= f.label :arriving_date %>
         <%= f.datetime_field :arriving_date, class: 'form-control' %>
       </div>
       <div class="form-group">
-        <%= f.submit "Update", class: 'btn btn-success' %>
+        <%= f.submit t('.update'), class: 'btn btn-success' %>
       </div>
     <% end %>
   </div>

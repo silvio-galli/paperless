@@ -184,6 +184,11 @@ en:
       whodunnit: *whodunnit
       modifications: "Changes made"
       updated_at: *updated_at
+    edit:
+      edit: *edit
+      update: *update
+      arriving: *arriving
+      in_stock: *in_stock
   # ORDERS
   orders:
     index:
