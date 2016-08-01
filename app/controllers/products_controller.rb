@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @versions = PaperTrail::Version.where(item_id: @product.id).order('id desc')
+    @versions = PaperTrail::Version.where(item_id: @product.id, event: "update").order('id desc')
   end
 
   def edit

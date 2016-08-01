@@ -1,5 +1,4 @@
 class Product < ActiveRecord::Base
-  has_paper_trail :on => [:update, :destroy]
   belongs_to :user
   has_many :order_items
   has_many :orders, through: :order_items
@@ -18,6 +17,8 @@ class Product < ActiveRecord::Base
   default_scope { order('initiative DESC') }
 
   enum status: [:in_stock, :arriving]
+
+  has_paper_trail
 
   def is_arrived?
     previous_changes && previous_changes['status'] == ["arriving", "in_stock"]

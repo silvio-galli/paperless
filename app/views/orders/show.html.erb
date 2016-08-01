@@ -69,7 +69,7 @@
             <td class="buttons col-md-1">
 
                 <%= link_to t('.remove'), ordered_item, method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: t('.remove_item_confirmation', :item => ordered_item.product.description) } %>
-              
+
             </td>
           </tr>
         <% end %>
@@ -90,7 +90,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-4" id="products_list">
+  <div class="col-md-12" id="products_list">
     <h2><%= t '.add_items_section_title' %></h2>
     <%= form_for [@order, @order_item] do |f| %>
       <div class="form-group">
@@ -109,5 +109,66 @@
         <%= f.submit t('.add_item'), class: 'btn btn-success' %>
       </div>
     <% end %>
+  </div>
+</div>
+<br >
+<hr />
+<br />
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1 class="panel-title">added items</h1>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>date</th>
+              <th>user</th>
+              <th>product</th>
+              <th>qty.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @created_items_versions.each do |item_version| %>
+              <tr>
+                <td><%= item_version.changeset[:created_at][1].strftime("%d/%m/%Y") %></td>
+                <td><%= get_user_for_paper_trail(item_version.whodunnit).name %></td>
+                <td><%= get_product_for_paper_trail(item_version.changeset[:product_id][1]).description %></td>
+                <td><%= item_version.changeset[:quantity][1] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1 class="panel-title">deleted items</h1>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>date</th>
+              <th>user</th>
+              <th>product</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @deleted_items_versions.each do |item_version| %>
+              <tr>
+                <td><%= item_version.object.split(" ")[8] %></td>
+                <td><%= get_user_for_paper_trail(item_version.whodunnit).name %></td>
+                <td><%= get_product_for_paper_trail(item_version.object.split(" ")[4]).description %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

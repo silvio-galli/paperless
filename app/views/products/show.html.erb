@@ -130,7 +130,7 @@
             <tbody>
               <% @versions.each do |version| %>
                 <tr>
-                  <td><%= get_user_for_paper_trail(version.whodunnit).name %></td>
+                  <td><%= get_user_for_paper_trail(version.whodunnit).name if version.whodunnit %></td>
                   <td class="what-changed">
                     <table>
                       <% version.changeset.each do |k, v| %>
