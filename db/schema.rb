@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801153957) do
+ActiveRecord::Schema.define(version: 20160810090725) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "first_name"
@@ -84,14 +84,15 @@ ActiveRecord::Schema.define(version: 20160801153957) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "versions", force: :cascade do |t|
-    t.string   "item_type",                              null: false
-    t.integer  "item_id",                                null: false
-    t.string   "event",                                  null: false
+    t.string   "item_type",                                null: false
+    t.integer  "item_id",                                  null: false
+    t.string   "event",                                    null: false
     t.string   "whodunnit"
-    t.text     "object",              limit: 1073741823
+    t.text     "object",                limit: 1073741823
     t.datetime "created_at"
     t.text     "object_changes"
     t.integer  "order_item_order_id"
+    t.integer  "order_item_product_id"
   end
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"

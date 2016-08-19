@@ -10,7 +10,8 @@ module ApplicationHelper
   def get_user_for_paper_trail(whodunnit)
     User.find(whodunnit)
   end
-   def get_product_for_paper_trail(id)
-     Product.find(id)
-   end
+
+  def get_product_for_paper_trail(id)
+    Product.find(id)
+  end
 end
