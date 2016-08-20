@@ -225,6 +225,10 @@ it:
         other: "pezzi"
       remove: "Rimuovi"
       remove_item_confirmation: "Sicuro di voler rimuovere '%{item}' dall'ordine?"
+      added_items: "Prodotti Inseriti nell'Ordine"
+      date: *date
+      user: "Utente"
+      deleted_items: "Prodotti Rimossi dall'Ordine"
   # ADMIN
   admin:
     dashboard:

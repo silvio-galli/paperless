@@ -110,7 +110,7 @@
     </div>
   </div>
 </div>
-<% if current_user.admin? && !@versions.empty?%>
+<% if current_user.admin? && !@versions.empty? %>
   <div class="row">
     <div class="col-md-6">
       <div class="panel panel-default">
@@ -130,7 +130,7 @@
             <tbody>
               <% @versions.each do |version| %>
                 <tr>
-                  <td><%= get_user_for_paper_trail(version.whodunnit).name if version.whodunnit %></td>
+                  <td><%= get_user_for_paper_trail(version.whodunnit) %></td>
                   <td class="what-changed">
                     <table>
                       <% version.changeset.each do |k, v| %>

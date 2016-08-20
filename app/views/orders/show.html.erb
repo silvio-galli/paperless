@@ -111,64 +111,68 @@
     <% end %>
   </div>
 </div>
-<br >
-<hr />
-<br />
-<div class="row">
-  <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h1 class="panel-title">added items</h1>
-      </div>
-      <div class="panel-body">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>date</th>
-              <th>user</th>
-              <th>product</th>
-              <th>qty.</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @created_items_versions.each do |item_version| %>
+<% if current_user.admin? && !@created_items_versions.empty? %>
+  <br >
+  <hr />
+  <br />
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h1 class="panel-title"><%= t '.added_items' %></h1>
+        </div>
+        <div class="panel-body">
+          <table class="table">
+            <thead>
               <tr>
-                <td><%= item_version.changeset[:created_at][1].strftime("%d/%m/%Y") %></td>
-                <td><%= get_user_for_paper_trail(item_version.whodunnit).name %></td>
-                <td><%= get_product_for_paper_trail(item_version.changeset[:product_id][1]).description %></td>
-                <td><%= item_version.changeset[:quantity][1] %></td>
+                <th><%= t '.date' %></th>
+                <th><%= t '.user' %></th>
+                <th><%= t '.product' %></th>
+                <th><%= t '.quantity' %></th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <% @created_items_versions.each do |item_version| %>
+                <tr>
+                  <td><%= l(item_version.changeset[:created_at][1], format: :long) %></td>
+                  <td><%= get_user_for_paper_trail(item_version.whodunnit) %></td>
+                  <td><%= get_product_for_paper_trail(item_version.order_item_product_id).description %></td>
+                  <td><%= item_version.changeset[:quantity][1] %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h1 class="panel-title"><%= t '.deleted_items' %></h1>
+        </div>
+        <div class="panel-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th><%= t '.date' %></th>
+                <th><%= t '.user' %></th>
+                <th><%= t '.product' %></th>
+                <th><%= t '.quantity' %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @deleted_items_versions.each do |item_version| %>
+                <tr>
+                  <td><%= l(item_version.created_at, format: :long) %></td>
+                  <td><%= get_user_for_paper_trail(item_version.whodunnit) %></td>
+                  <td><%= get_product_for_paper_trail(item_version.order_item_product_id).description %></td>
+                  <td><%= item_version.object.split(" ")[6] %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h1 class="panel-title">deleted items</h1>
-      </div>
-      <div class="panel-body">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>date</th>
-              <th>user</th>
-              <th>product</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @deleted_items_versions.each do |item_version| %>
-              <tr>
-                <td><%= item_version.object.split(" ")[8] %></td>
-                <td><%= get_user_for_paper_trail(item_version.whodunnit).name %></td>
-                <td><%= get_product_for_paper_trail(item_version.object.split(" ")[4]).description %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+<% end %>

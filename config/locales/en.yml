@@ -225,6 +225,10 @@ en:
         other: "pieces"
       remove: "Remove"
       remove_item_confirmation: "Are you sure you want to remove '%{item}' from this order?"
+      added_items: "Added Items"
+      date: *date
+      user: "User"
+      deleted_items: "Deleted Items"
   # ADMIN
   admin:
     dashboard:
