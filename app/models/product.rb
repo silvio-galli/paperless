@@ -18,6 +18,8 @@ class Product < ActiveRecord::Base
 
   enum status: [:in_stock, :arriving]
 
+  has_paper_trail
+
   def is_arrived?
     previous_changes && previous_changes['status'] == ["arriving", "in_stock"]
   end
