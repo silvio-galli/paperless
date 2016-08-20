@@ -33,6 +33,7 @@ users = User.all
   elsif status == 1
     arriving_date = Faker::Time.between(DateTime.now - 3, DateTime.now + 10)
   end
+  current_user = users.sample
   product = Product.create!(
     initiative: "#{Faker::Number.between(10, 13)}/2016",
     local_code: Faker::Number.number(7),
@@ -43,7 +44,7 @@ users = User.all
     quantity: rand(5..15),
     status: status,
     arriving_date: arriving_date,
-    user: users.sample
+    user: current_user
   )
 end
 

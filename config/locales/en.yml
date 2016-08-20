@@ -25,6 +25,10 @@ en:
     zero: "No errors"
     one: "%{count} error"
     other: "%{count} errors"
+  times:
+    zero: ""
+    one: "%{count} time"
+    other: "%{count} times"
 
   # RECURRING EXPRESSIONS
   recurring:
@@ -71,6 +75,9 @@ en:
     close_order_confirmation: &close_order_confirmation "Once closed, an order cannot be modified any more. Continue?"
     quantity: &quantity "Quantity"
     order: &order "Order"
+    event: &event "Event"
+    whodunnit: &whodunnit "User"
+    updated_at: &updated_at "Updated at"
 
   # ROOT
   jumbotron_subtitle: "Manage your products, your customers and your customers' orders"
@@ -173,6 +180,15 @@ en:
       quantity: *quantity
       date: *date
       orders_panel_title: "orders containing this product"
+      versions_panel_title: "This product was modified"
+      whodunnit: *whodunnit
+      modifications: "Changes made"
+      updated_at: *updated_at
+    edit:
+      edit: *edit
+      update: *update
+      arriving: *arriving
+      in_stock: *in_stock
   # ORDERS
   orders:
     index:
@@ -209,6 +225,10 @@ en:
         other: "pieces"
       remove: "Remove"
       remove_item_confirmation: "Are you sure you want to remove '%{item}' from this order?"
+      added_items: "Added Items"
+      date: *date
+      user: "User"
+      deleted_items: "Deleted Items"
   # ADMIN
   admin:
     dashboard:

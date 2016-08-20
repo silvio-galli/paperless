@@ -1,6 +1,7 @@
 class OrderItemsController < ApplicationController
   before_action :authenticate_user!
   before_action :closed_order_cannot_modify
+  before_filter :set_paper_trail_whodunnit
 
   def create
     @order = Order.find(params[:order_id])
