@@ -57,7 +57,7 @@
             <td class="barcode-cell col-md-3">
               <img id="barcode-product-<%= ordered_item.product.id %>"/>
               <script>
-                $("#barcode-product-<%= ordered_item.product.id %>").barcode("<%= ordered_item.product.barcode %>", "ean13", { barWidth: 2, fontSize: 12 });
+                $("#barcode-product-<%= ordered_item.product.id %>").barcode("<%= ordered_item.product.barcode %>", "ean13", { barWidth: 1, fontSize: 12 });
               </script>
             </td>
             <td class="description-cell col-md-3"><%= ordered_item.product.description %></td>
@@ -115,7 +115,7 @@
   <br >
   <hr />
   <br />
-  <div class="row">
+  <div id="paper-trail" class="row">
     <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading">

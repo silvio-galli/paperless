@@ -9,8 +9,6 @@
         <th><%= t '.date' %></th>
         <th>Status</th>
         <th><%= t '.customer' %></th>
-        <th>Email</th>
-        <th><%= t '.phone' %></th>
         <th><%= t '.total_price' %></th>
         <th><%= t '.items_number' %></th>
         <th></th>
@@ -22,9 +20,7 @@
           <td><%= order.id %></td>
           <td><%= l(order.created_at, format: :long) %></td>
           <td><%= order_status_label(order) %></td>
-          <td><%= link_to order.customer.full_name, customer_path(order.customer) %></td>
-          <td><%= order.customer.email %></td>
-          <td><%= order.customer.phone %></td>
+          <td class="customer-name"><%= link_to order.customer.full_name, customer_path(order.customer) %></td>
           <td><%= calculate_total_price(order) %> &euro;</td>
           <td><%= calculate_total_items(order) %></td>
           <td><%= link_to t('.show'), order_path(order) %></td>

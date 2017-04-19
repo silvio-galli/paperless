@@ -22,6 +22,9 @@
 }
 
 @media print {
+  .buttons {
+    display: none;
+  }
   .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
     float: left;
   }
@@ -73,7 +76,10 @@
   a[href]:after {
     content: "" !important;
   }
-  span.label, span.label-warning, ul.nav, .status-label-cell, .buttons, #products_list,  {
+  span.label, span.label-warning, ul.nav, .status-label-cell, .buttons, #products_list  {
+    display: none;
+  }
+  #paper-trail {
     display: none;
   }
 }
