@@ -11,12 +11,12 @@
 				</div>
 				<div class="panel-body">
 					<%= will_paginate @products, :class => 'digg_pagination' %>
-					<table class="table table-striped">
+					<table class="table">
 						<thead>
 							<tr>
 				        <th><%= t 'products.index.initiative' %></th>
 				        <th class="description-cell"><%= t 'products.index.description' %></th>
-								<th></th>
+								<!-- <th></th> -->
 				        <th><%= t 'products.index.available_quantity' %></th>
 				        <th><%= t 'products.index.arriving_date' %></th>
 								<th>&nbsp;</th>
@@ -24,14 +24,14 @@
 						</thead>
 						<tbody>
 				      <% @products.each do |product| %>
-				        <tr>
+				        <%= product_row_tag(product) do %>
 				          <td><%= product.initiative %></td>
 				          <td class="description-cell"><%= link_to product.description, product %></td>
-									<td><%= product_status_label(product, product.arriving_date) %></td>
+									<!-- <td><%= product_status_label(product, product.arriving_date) %></td> -->
 				          <td class="quantity"><%= check_product_availability(product) %></td>
 				          <td><%= product.arriving_date ? l(product.arriving_date, format: :short) : "nil" %></td>
 									<td><%= arrived_button(product) %></td>
-				        </tr>
+				        <% end %>
 				      <% end %>
 						</tbody>
 					</table>

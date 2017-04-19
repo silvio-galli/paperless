@@ -22,7 +22,7 @@ admin = User.create!(
 
 users = User.all
 
-60.times do
+10.times do
   price = Faker::Number.decimal(3,2).to_d
   discount = rand(50..100).to_d
   promo = price - discount
@@ -50,7 +50,7 @@ end
 
 products = Product.all
 
-50.times do
+10.times do
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
   customer = Customer.create!(
@@ -67,7 +67,7 @@ end
 
 customers = Customer.all
 
-80.times do
+10.times do
   order = Order.create!(
     customer: customers.sample
   )
@@ -75,7 +75,7 @@ end
 
 orders = Order.all
 
-100.times do
+10.times do
   order_item = OrderItem.create!(
     order: orders.sample,
     product: products.sample,
