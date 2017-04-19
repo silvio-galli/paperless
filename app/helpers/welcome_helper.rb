@@ -5,7 +5,7 @@ module WelcomeHelper
       content_tag :tr, capture(&block), class: 'bg-success'
     else
       if product.arriving_date >= Time.now
-        content_tag :tr, capture(&block), class: 'bg-info'
+        content_tag :tr, capture(&block), class: 'bg-warning'
       else
         content_tag :tr, capture(&block), class: 'bg-danger'
       end
