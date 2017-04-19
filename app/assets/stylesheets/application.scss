@@ -35,6 +35,9 @@
   width: 30%;
   text-align:  left;
 }
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
 #versions td.what-changed td, #versions th.what-changed {
   text-align: left;
 }
