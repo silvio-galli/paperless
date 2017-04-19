@@ -24,16 +24,14 @@
 <div class="row">
   <div class="col-md-12">
     <%= will_paginate @products, class: 'digg_pagination' %>
-    <table class="table table-hover">
+    <table class="table table-hover table-condensed">
       <thead>
         <tr>
           <th><%= t '.initiative' %></th>
           <th class="description-cell"><%= t '.description' %></th>
           <th>Status</th>
           <th><%= t '.arriving_date' %></th>
-          <th><%= t '.arriving_quantity' %></th>
           <th><span class="text-green"><%= t '.available_quantity' %></span></th>
-          <th><%= t '.local_code' %></th>
           <th><%= t '.default_price' %></th>
           <th><%= t '.promo_price' %></th>
           <th></th>
@@ -45,18 +43,16 @@
         <% @products.each do |product| %>
           <tr>
             <td class="initiative-cell"><%= product.initiative %></td>
-            <td class="description-cell"><%= link_to product.description, product %></td>
+            <td class="description-cell product-description"><%= link_to product.description, product %></td>
             <td><%= product_status_label(product, product.arriving_date) %></td>
             <% if product.arriving_date %>
               <td><%= I18n.l product.arriving_date, format: :long %></td>
             <% else %>
               <td>nil</td>
             <% end %>
-            <td><%= product.quantity %></td>
             <td><%= check_product_availability(product) %></td>
-            <td><%= product.local_code %></td>
-            <td><%= product.default_price ? sprintf("%.2f €", product.default_price) : nil %></td>
-            <td><%= product.promo_price ? sprintf("%.2f €", product.promo_price) : nil %></td>
+            <td class="default-price"><%= product.default_price ? sprintf("%.2f €", product.default_price) : nil %></td>
+            <td class="promo-price"><%= product.promo_price ? sprintf("%.2f €", product.promo_price) : nil %></td>
             <td><%= link_to t('.show'), product_path(product) %></td>
             <td><%= link_to t('.edit'), edit_product_path(product) %></td>
             <td><%= arrived_button(product) %></td>

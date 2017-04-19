@@ -25,7 +25,7 @@
 				      <% @products.each do |product| %>
 				        <%= product_row_tag(product) do %>
 				          <!-- <td><%= product.initiative %></td> -->
-				          <td class="description-cell"><%= link_to product.description, product %></td>
+				          <td class="description-cell welcome-product-description"><%= link_to product.description, product %></td>
 				          <td class="quantity"><%= check_product_availability(product) %></td>
 				          <td><%= product.arriving_date ? l(product.arriving_date, format: :short) : "nil" %></td>
 									<td><%= arrived_button(product) %></td>
