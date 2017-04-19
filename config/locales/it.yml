@@ -25,6 +25,10 @@ it:
     zero: "Nessun errore"
     one: "%{count} errore"
     other: "%{count} errori"
+  times:
+    zero: ""
+    one: "%{count} volta"
+    other: "%{count} volte"
 
   # ESPRESSIONI RICORRENTI
   recurring:
@@ -71,6 +75,9 @@ it:
     close_order_confirmation: &close_order_confirmation "Una volta dichiarato chiuso, un ordine non può più essere modificato. Continuare?"
     quantity: &quantity "Quantità"
     order: &order "Ordine"
+    event: &event "Evento"
+    whodunnit: &whodunnit "Utente"
+    updated_at: &updated_at "Aggiornato il"
 
   # ROOT
   jumbotron_subtitle: "Gestisci i tuoi prodotti, i tuoi clienti e gli ordini dei tuoi clienti"
@@ -173,6 +180,15 @@ it:
       quantity: *quantity
       date: *date
       orders_panel_title: "ordini contengono questo prodotto"
+      versions_panel_title: "Questo prodotto è stato modificato"
+      whodunnit: *whodunnit
+      modifications: "Modifiche effettuate"
+      updated_at: *updated_at
+    edit:
+      edit: *edit
+      update: *update
+      arriving: *arriving
+      in_stock: *in_stock
   # ORDERS
   orders:
     index:
@@ -209,6 +225,10 @@ it:
         other: "pezzi"
       remove: "Rimuovi"
       remove_item_confirmation: "Sicuro di voler rimuovere '%{item}' dall'ordine?"
+      added_items: "Prodotti Inseriti nell'Ordine"
+      date: *date
+      user: "Utente"
+      deleted_items: "Prodotti Rimossi dall'Ordine"
   # ADMIN
   admin:
     dashboard:

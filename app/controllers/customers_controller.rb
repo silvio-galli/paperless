@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
   before_action :authenticate_user!
+  before_filter :set_paper_trail_whodunnit
 
   def index
     @customers = Customer.all.page(params[:page])

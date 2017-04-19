@@ -18,3 +18,9 @@
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore folder containing external libraries
+stuff/
+
+# Ignore general info on the app
+.app_info

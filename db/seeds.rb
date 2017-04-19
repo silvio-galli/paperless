@@ -5,7 +5,21 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-5.times do
+
+admin = User.create!(
+  name: "administrator",
+  email: "admin@example.com",
+  password: "helloworld",
+  admin: true
+)
+
+member = User.create!(
+  name: "member",
+  password: "helloworld",
+  admin: false
+)
+
+2.times do
   user = User.create!(
     name: "#{Faker::Name.first_name}.#{Faker::Name.last_name}",
     password: "password",
@@ -13,26 +27,16 @@
   )
 end
 
-admin = User.create!(
-  name: "silvio.galli",
-  email: "sg@example.com",
-  password: "helloworld",
-  admin: true
-)
-
 users = User.all
 
-60.times do
+# create n product in stock
+4.times do
   price = Faker::Number.decimal(3,2).to_d
   discount = rand(50..100).to_d
   promo = price - discount
-  status = rand(0..1)
-  if status == 0
-    choices = [ nil, Faker::Time.between(DateTime.now, DateTime.now - 7) ]
-    arriving_date = choices.sample
-  elsif status == 1
-    arriving_date = Faker::Time.between(DateTime.now - 3, DateTime.now + 10)
-  end
+  status = 0
+  arriving_date = [ Faker::Time.between(DateTime.now, DateTime.now - 7) ].sample
+  current_user = users.sample
   product = Product.create!(
     initiative: "#{Faker::Number.between(10, 13)}/2016",
     local_code: Faker::Number.number(7),
@@ -43,13 +47,57 @@ users = User.all
     quantity: rand(5..15),
     status: status,
     arriving_date: arriving_date,
-    user: users.sample
+    user: current_user
+  )
+end
+
+# create n arriving products (on time)
+4.times do
+  price = Faker::Number.decimal(3,2).to_d
+  discount = rand(50..100).to_d
+  promo = price - discount
+  status = 1
+  arriving_date = [ Faker::Time.between(DateTime.now, DateTime.now + 15) ].sample
+  current_user = users.sample
+  product = Product.create!(
+    initiative: "#{Faker::Number.between(10, 13)}/2016",
+    local_code: Faker::Number.number(7),
+    description: Faker::Hipster.sentence(3, false),
+    barcode: Faker::Number.number(13),
+    default_price: price,
+    promo_price: promo,
+    quantity: rand(5..15),
+    status: status,
+    arriving_date: arriving_date,
+    user: current_user
+  )
+end
+
+# create n arriving products (delay)
+4.times do
+  price = Faker::Number.decimal(3,2).to_d
+  discount = rand(50..100).to_d
+  promo = price - discount
+  status = 1
+  arriving_date = [ Faker::Time.between(DateTime.now - 15, DateTime.now) ].sample
+  current_user = users.sample
+  product = Product.create!(
+    initiative: "#{Faker::Number.between(10, 13)}/2016",
+    local_code: Faker::Number.number(7),
+    description: Faker::Hipster.sentence(3, false),
+    barcode: Faker::Number.number(13),
+    default_price: price,
+    promo_price: promo,
+    quantity: rand(5..15),
+    status: status,
+    arriving_date: arriving_date,
+    user: current_user
   )
 end
 
 products = Product.all
 
-50.times do
+10.times do
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
   customer = Customer.create!(
@@ -66,7 +114,7 @@ end
 
 customers = Customer.all
 
-80.times do
+10.times do
   order = Order.create!(
     customer: customers.sample
   )
@@ -74,7 +122,7 @@ end
 
 orders = Order.all
 
-100.times do
+10.times do
   order_item = OrderItem.create!(
     order: orders.sample,
     product: products.sample,

@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
+  before_filter :set_paper_trail_whodunnit
 
   def index
     @products = Product.all.page(params[:page])
@@ -24,6 +25,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @versions = PaperTrail::Version.where(item_id: @product.id, event: "update").order('id desc')
   end
 
   def edit
@@ -38,8 +40,12 @@ class ProductsController < ApplicationController
       if @product.is_arrived?
         SendEmailNotificationJob.set(wait: 1.seconds).perform_later(@product)
       end
-      flash[:notice] = t('products.update.flash.notice')
-      redirect_to request.referer
+    flash[:notice] =  t('products.update.flash.notice')
+      if request.referer.include? "edit"
+        redirect_to product_path(@product)
+      else
+        redirect_to request.referer
+      end
     else
       flash[:alert] = t('products.update.flash.alert')
       render :edit
