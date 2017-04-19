@@ -1,11 +1,3 @@
-<% if current_user && current_user.admin? %>
-	<br />
-	<div class="row">
-		<div class="col-md-12">
-			<%= link_to "Admin Panel", admin_dashboard_path, class: 'btn btn-primary' %>
-		</div>
-	</div>
-<% end %>
 <% if current_user %>
 	<br />
 	<div class="row">
