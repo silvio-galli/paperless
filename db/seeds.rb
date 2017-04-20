@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# create admin user
 admin = User.create!(
   name: "administrator",
   email: "admin@example.com",
@@ -13,16 +14,11 @@ admin = User.create!(
   admin: true
 )
 
-member = User.create!(
-  name: "member",
-  password: "helloworld",
-  admin: false
-)
-
-2.times do
-  user = User.create!(
-    name: "#{Faker::Name.first_name}.#{Faker::Name.last_name}",
-    password: "password",
+# create demo users
+(1..3).map do |x|
+  demo = User.create!(
+    name: "demo_#{x}",
+    password: "helloworld",
     admin: false
   )
 end
