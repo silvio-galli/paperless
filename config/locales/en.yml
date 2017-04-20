@@ -29,6 +29,10 @@ en:
     zero: ""
     one: "%{count} time"
     other: "%{count} times"
+  customers:
+    zero: "No customers"
+    one: "%{count} customer"
+    other: "%{count} customers"
 
   # RECURRING EXPRESSIONS
   recurring:
@@ -178,8 +182,8 @@ en:
       customer: *customer
       phone: *phone
       quantity: *quantity
+      order: *order
       date: *date
-      orders_panel_title: "orders containing this product"
       versions_panel_title: "This product was modified"
       whodunnit: *whodunnit
       modifications: "Changes made"

@@ -29,6 +29,10 @@ it:
     zero: ""
     one: "%{count} volta"
     other: "%{count} volte"
+  customers:
+    zero: "Nessun cliente"
+    one: "%{count} cliente"
+    other: "%{count} clienti"
 
   # ESPRESSIONI RICORRENTI
   recurring:
@@ -178,8 +182,8 @@ it:
       customer: *customer
       phone: *phone
       quantity: *quantity
+      order: *order
       date: *date
-      orders_panel_title: "ordini contengono questo prodotto"
       versions_panel_title: "Questo prodotto è stato modificato"
       whodunnit: *whodunnit
       modifications: "Modifiche effettuate"
