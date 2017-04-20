@@ -201,6 +201,7 @@ it:
   # ORDERS
   orders:
     index:
+      orders: *orders
       date: "Data"
       customer: *customer
       phone: *phone

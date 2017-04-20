@@ -202,6 +202,7 @@ en:
   # ORDERS
   orders:
     index:
+      orders: *orders
       date: "Date"
       customer: *customer
       phone: *phone
