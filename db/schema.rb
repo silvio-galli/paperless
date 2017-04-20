@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20160810090725) do
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id"
 
   create_table "products", force: :cascade do |t|
-    t.string   "initiative"
+    t.string   "initiative",    default: "no promo",    null: false
     t.string   "local_code"
     t.string   "description"
     t.string   "barcode"
