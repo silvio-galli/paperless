@@ -51,7 +51,16 @@
   <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h1 class="panel-title"><%= get_label_for(@product.order_items) %> <%= t '.customers_panel_title' %></h1>
+        <h1 class="panel-title">
+          <% orders_num = @product.order_items.count %>
+          <% if orders_num <= 0 %>
+            <%= t('misc.customers_panel_title', :count => orders_num) %>
+          <% else %>
+            <span class="label label-primary"> <%= orders_num %> </span>
+            &nbsp;
+            <%= t('misc.customers_panel_title', :count => orders_num) %>
+          <% end %>
+        </h1>
       </div>
       <div class="panel-body">
         <table class="table">

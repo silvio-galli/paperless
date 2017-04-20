@@ -29,10 +29,15 @@ it:
     zero: ""
     one: "%{count} volta"
     other: "%{count} volte"
-  customers:
-    zero: "Nessun cliente"
-    one: "%{count} cliente"
-    other: "%{count} clienti"
+  misc:
+    customers:
+      zero: "Nessun cliente"
+      one: "%{count} cliente"
+      other: "%{count} clienti"
+    customers_panel_title:
+      zero: "Nessun cliente aspetta questo prodotto"
+      one: "cliente aspetta questo prodotto"
+      other: "clienti aspettano questo prodotto"
 
   # ESPRESSIONI RICORRENTI
   recurring:
