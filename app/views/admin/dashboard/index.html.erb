@@ -16,7 +16,12 @@
               <tr>
                 <td><%= user.id %></td>
                 <td><%= user.name %></td>
-                <td><%= link_to t('.change_password'), edit_admin_user_path(user) %></td>
+                <% #FIXME manage with authorization control %>
+                <% if user.id > 4 %>
+                  <td><%= link_to t('.change_password'), edit_admin_user_path(user) %></td>
+                <% else %>
+                  <td>&nbsp;</td>
+                <% end %>
               </tr>
             <% end %>
           </table>
