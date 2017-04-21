@@ -3,13 +3,13 @@
 
 **Web based app to manage products, customers' data and customers' orders in a local shop.**
 
-Final capstone project at [Bloc](http://www.bloc.io) before graduating.
+Final capstone project at [Bloc](https://www.bloc.io/users/silvio-galli) before graduating.
 
 [Demo available here]() on Heroku platform.
 
 The source code is on [GitHub](https://github.com) at: [https://github.com/silvio-galli/paperless](https://github.com/silvio-galli/paperless)
 
-[Skip to Features](#features)
+Skip to [Features](#features) | [Users](#users) | [Welcome page](#welcome) | [Products](#products) | [Customers](#customers) | [Orders](#orders)
 
 ## Tech specs
 The project is based on **Ruby on Rails**, uses **Bootstrap** for the layout and other elements on the page.
@@ -20,10 +20,15 @@ The project makes also use of the [jquery-barcode](http://barcode-coder.com/en/b
 
 **Environment variables and keys** are managed with the help of [Figaro](https://github.com/laserlemon/figaro) gem.
 
-**Authentication** is managed through the [Devise](https://github.com/plataformatec/devise) gem.
+**Authentication** is managed through the [Devise](https://github.com/plataformatec/devise) gem.  
+The application needed to give user creation prerogative to `admin` users only and no possibility to sign up from the outside. As Devise do not allow signed in users to access `registrations#new`, I added `before_action :require_admin` and `skip_before_action :require_no_authentication` callback and `def sign_up(resource_name, resource) true end` to [`RegistrationsController`](app/controllers/registrations_controller.rb) to allow already authenticated `admin` users to access `registrations#new` in `Devise::RegistrationsController` and avoid automatic sign in after new user creation.
 
 **Authorization** is not implemented yet.  
-There's only a [`require_admin`](https://github.com/silvio-galli/paperless/blob/master/app/controllers/application_controller.rb) method in the `ApplicationController` class to prevent non admin users to access users' resources. It is called in [`Admin::UsersController`](https://github.com/silvio-galli/paperless/blob/master/app/controllers/admin/users_controller.rb) and [`Admin::DashboardController`](https://github.com/silvio-galli/paperless/blob/master/app/controllers/admin/dashboard_controller.rb) (where `admin` users can manage _standard_ users) and inside [`RegistrationsController`](https://github.com/silvio-galli/paperless/blob/master/app/controllers/registrations_controller.rb) to prevent _standard_ users to create new users (only `admin` users are allowed to).
+There's only a [`require_admin`](https://github.com/silvio-galli/paperless/blob/master/app/controllers/application_controller.rb) method in the `ApplicationController` class to prevent non admin users to access users' resources. It is called in [`Admin::UsersController`](https://github.com/silvio-galli/paperless/blob/master/app/controllers/admin/users_controller.rb) and [`Admin::DashboardController`](https://github.com/silvio-galli/paperless/blob/master/app/controllers/admin/dashboard_controller.rb) (where `admin` users can manage _standard_ users to reset their password) and inside [`RegistrationsController`](https://github.com/silvio-galli/paperless/blob/master/app/controllers/registrations_controller.rb) to prevent _standard_ users to create new users (only `admin` users are allowed to).
+
+I implemented a simple **Search** function after watching [this screencast](https://www.codeschool.com/screencasts/basecamp-search) on [CodeSchool.com](https://www.codeschool.com/).  
+The search runs on `Product` or `Customer` tables only.  
+The files involved are [search.rb](app/models/search.rb), [search_controller.rb](app/controllers/search_controller.tb) and [search/index.html.rb](app/views/search/index.html.rb).
 
 **Background jobs** are managed using the [Sidekiq](https://github.com/mperham/sidekiq) gem.  
 The applications uses two jobs:
@@ -35,7 +40,7 @@ The applications uses two jobs:
 **Changes on orders** are tracked using the [PaperTrail](https://github.com/airblade/paper_trail) gem.  
 When dealing with customers' order it is possible to encounter problems and it could be useful to understand where and why the order processing stuck. Tracking changes on orders can be useful to approach possible problems.
 
-**Localization**: English/Italian
+**Localization**: English/Italian.
 
 ---
 
@@ -51,7 +56,7 @@ When dealing with customers' order it is possible to encounter problems and it c
 
 ![sign_in_page](https://cloud.githubusercontent.com/assets/15610747/25229232/caef76e6-25cf-11e7-8b2b-5fdb70fe90cb.png)
 
-We assume that:
+The assumption is:
  1. users are employees in the shop;
  2. users can be `admin` or _standard_;
  3. users do not have email address;
@@ -91,7 +96,7 @@ On the orders table, users can find orders' progressive numbers, orders' custome
 
 ![products_new](https://cloud.githubusercontent.com/assets/15610747/25228317/419e235e-25cc-11e7-991f-4321dbae31aa.png)
 
-We assume that products are described by:
+Products are described by:
 - `initiative`, the fact that they can be included in a promo; usually, indicated by _promo number/current year_;
 - if left blank, `initiative` will default to _no promo_ value;
 - `local_code`, an numeric code that refers to the product (**required**);
@@ -140,6 +145,9 @@ It stores all data from orders; `status` is displayed through a coloured label, 
 
 ![orders_show](https://cloud.githubusercontent.com/assets/15610747/25230891/0345e5f6-25d6-11e7-9a58-0ec5212570f2.png)
 
+This page brings informations on order's customer (name, email, phone), on the shop and on order's products (barcode, description, quantity, item price and total price).  
 This is a crucial page for the application. Here users can add and remove products from customers' orders.  
-This page brings informations on customer (name, email, phone), on the shop and on order's products (barcode, description, quantity, item price and total price).  
-This is the same page users can [print as a receipt](https://cloud.githubusercontent.com/assets/15610747/25231261/876dc7f8-25d7-11e7-916b-7d60c519ceb1.png) for the customer, cleared from useless info with `@media print` css styling.
+Products can be added to order from a dropdwon menu, while they can be removed clicking on the **Remove** button on the right.  
+The dropdown menu lists the available products and their remaining quantity.  
+Once the product quantity reaches zero, it disappears from the dropdown list.  
+Users can [print this page, cleared of useless info with `@media print` css styling,](https://cloud.githubusercontent.com/assets/15610747/25231261/876dc7f8-25d7-11e7-916b-7d60c519ceb1.png) as a receipt for the customer.

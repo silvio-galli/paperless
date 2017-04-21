@@ -1,4 +1,7 @@
-<h1>Admin <small><%= t '.title' %></small></h1>
+<h1>
+  Admin <small><%= t '.title' %></small>
+  <small class="pull-right"> <%= link_to t('.new_user'), new_user_registration_path, class: 'btn btn-primary' %> </small>
+</h1>
 <br />
 <div class="row">
   <div class="col-md-4">

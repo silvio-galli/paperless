@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
 
   scope "/:locale" do
-    devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
+    devise_for :users, controllers: { registrations: "registrations" }
 
     namespace :admin do
       get 'dashboard', to: "dashboard#index"

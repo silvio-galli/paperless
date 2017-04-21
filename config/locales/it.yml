@@ -244,6 +244,7 @@ it:
     dashboard:
       index:
         title: "Pannello di Controllo"
+        new_user: "Nuovo Utente"
         users_list_title: "Lista Utenti"
         name: *name
         change_password: "Cambia Password"

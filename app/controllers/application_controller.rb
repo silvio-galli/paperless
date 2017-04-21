@@ -11,15 +11,16 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  # Redirects user to users#index if admin or orders#index if not admin after signing in
+  #FIXME Redirects user to admin/dashboard if admin or welcome/index if not admin after signing in
   def after_sign_in_path_for(resource)
     welcome_path
   end
 
   protected
-
+  # no use for email parameter in this app (users are not supposed to have an email address)
+  #FIXME Devise::ParameterSanitizer#for(sign_up) is deprecated
   def configure_permitted_parameters
-  	devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation, :remember_me) }
+  	devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :password, :password_confirmation, :remember_me) }
   end
 
   private

@@ -8,7 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
   # app/views/registrations/edit and
   # app/views/sessions/new
   # to allow admin logged in user to create new user
-  skip_before_action :require_no_authentication
+  skip_before_action :require_no_authentication, only: [:new, :create]
 
   def create
     super

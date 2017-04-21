@@ -245,6 +245,7 @@ en:
     dashboard:
       index:
         title: "Control Panel"
+        new_user: "New User"
         users_list_title: "Users List"
         name: *name
         change_password: "Change Password"
