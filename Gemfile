@@ -24,6 +24,7 @@ gem 'devise'
 gem 'sidekiq'
 gem 'will_paginate'
 gem 'paper_trail'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug'
@@ -31,6 +32,5 @@ group :development, :test do
   gem 'spring'
   gem 'rspec-rails'
   gem 'shoulda'
-  gem 'faker'
   gem 'factory_girl_rails'
 end

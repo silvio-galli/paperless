@@ -29,6 +29,15 @@ it:
     zero: ""
     one: "%{count} volta"
     other: "%{count} volte"
+  misc:
+    customers:
+      zero: "Nessun cliente"
+      one: "%{count} cliente"
+      other: "%{count} clienti"
+    customers_panel_title:
+      zero: "Nessun cliente aspetta questo prodotto"
+      one: "cliente aspetta questo prodotto"
+      other: "clienti aspettano questo prodotto"
 
   # ESPRESSIONI RICORRENTI
   recurring:
@@ -178,8 +187,8 @@ it:
       customer: *customer
       phone: *phone
       quantity: *quantity
+      order: *order
       date: *date
-      orders_panel_title: "ordini contengono questo prodotto"
       versions_panel_title: "Questo prodotto è stato modificato"
       whodunnit: *whodunnit
       modifications: "Modifiche effettuate"
@@ -192,6 +201,7 @@ it:
   # ORDERS
   orders:
     index:
+      orders: *orders
       date: "Data"
       customer: *customer
       phone: *phone
@@ -234,6 +244,7 @@ it:
     dashboard:
       index:
         title: "Pannello di Controllo"
+        new_user: "Nuovo Utente"
         users_list_title: "Lista Utenti"
         name: *name
         change_password: "Cambia Password"

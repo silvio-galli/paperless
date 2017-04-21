@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# create admin user
 admin = User.create!(
   name: "administrator",
   email: "admin@example.com",
@@ -13,16 +14,11 @@ admin = User.create!(
   admin: true
 )
 
-member = User.create!(
-  name: "member",
-  password: "helloworld",
-  admin: false
-)
-
-2.times do
-  user = User.create!(
-    name: "#{Faker::Name.first_name}.#{Faker::Name.last_name}",
-    password: "password",
+# create demo users
+(1..3).map do |x|
+  demo = User.create!(
+    name: "demo_#{x}",
+    password: "helloworld",
     admin: false
   )
 end
@@ -83,6 +79,27 @@ end
   current_user = users.sample
   product = Product.create!(
     initiative: "#{Faker::Number.between(10, 13)}/2016",
+    local_code: Faker::Number.number(7),
+    description: Faker::Hipster.sentence(3, false),
+    barcode: Faker::Number.number(13),
+    default_price: price,
+    promo_price: promo,
+    quantity: rand(5..15),
+    status: status,
+    arriving_date: arriving_date,
+    user: current_user
+  )
+end
+
+# create n product in stock no promo
+4.times do
+  price = Faker::Number.decimal(3,2).to_d
+  discount = rand(50..100).to_d
+  promo = price - discount
+  status = 0
+  arriving_date = [ Faker::Time.between(DateTime.now, DateTime.now - 7) ].sample
+  current_user = users.sample
+  product = Product.create!(
     local_code: Faker::Number.number(7),
     description: Faker::Hipster.sentence(3, false),
     barcode: Faker::Number.number(13),

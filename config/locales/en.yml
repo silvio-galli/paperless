@@ -29,6 +29,16 @@ en:
     zero: ""
     one: "%{count} time"
     other: "%{count} times"
+  misc:
+    customers:
+      zero: "No customers"
+      one: "%{count} customer"
+      other: "%{count} customers"
+    customers_panel_title:
+      zero: "No customers waiting for this product"
+      one: "customer waiting for this product"
+      other: "customers waiting for this product"
+
 
   # RECURRING EXPRESSIONS
   recurring:
@@ -178,8 +188,8 @@ en:
       customer: *customer
       phone: *phone
       quantity: *quantity
+      order: *order
       date: *date
-      orders_panel_title: "orders containing this product"
       versions_panel_title: "This product was modified"
       whodunnit: *whodunnit
       modifications: "Changes made"
@@ -192,6 +202,7 @@ en:
   # ORDERS
   orders:
     index:
+      orders: *orders
       date: "Date"
       customer: *customer
       phone: *phone
@@ -234,6 +245,7 @@ en:
     dashboard:
       index:
         title: "Control Panel"
+        new_user: "New User"
         users_list_title: "Users List"
         name: *name
         change_password: "Change Password"

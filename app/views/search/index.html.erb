@@ -2,6 +2,7 @@
 <div class="row">
   <div class="col-md-12">
     <% if @results.blank? %>
+      <% #TODO try to DRY lines 6 - 11 %>
       <% if request.env["HTTP_REFERER"].include? "customer" %>
         <h2>No Customer found</h2>
         <%= link_to "Add New Customer", new_customer_path, class: 'btn btn-primary' %>
