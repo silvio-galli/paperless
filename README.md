@@ -5,7 +5,7 @@
 
 Final capstone project at [Bloc](https://www.bloc.io/users/silvio-galli) before graduating.
 
-[Demo available here]() on Heroku platform.
+[Demo available here](https://warm-coast-71743.herokuapp.com) on Heroku platform.
 
 The source code is on [GitHub](https://github.com) at: [https://github.com/silvio-galli/paperless](https://github.com/silvio-galli/paperless)
 
