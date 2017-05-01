@@ -91,4 +91,33 @@
 		<h1>PaperLess</h1>
 		<p class="lead"><%= t :jumbotron_subtitle %></p>
 	</div>
+	<% if locale == :it %>
+	  <div class="jumbotron">
+			<h2>Puoi accedere a questa app usando le credenziali elencate qui sotto.</h2>
+	    <div class="row">
+	      <div class="col-md-6">
+          <ul>
+            <li>nome: <em>administrator</em> | password: <em>helloworld</em></li>
+            <li>nome: <em>demo_1</em> | password: <em>helloworld</em></li>
+            <li>nome: <em>demo_2</em> | password: <em>helloworld</em></li>
+            <li>nome: <em>demo_3</em> | password: <em>helloworld</em></li>
+          </ul>
+	      </div>
+	    </div>
+	  </div>
+	<% else %>
+	  <div class="jumbotron">
+			<p class="lead">You can sign into the app with the credentials listed below.</p>
+	    <div class="row">
+	      <div class="col-md-6">
+          <ul>
+            <li>name: <em>administrator</em> | password: <em>helloworld</em></li>
+            <li>name: <em>demo_1</em> | password: <em>helloworld</em></li>
+            <li>name: <em>demo_2</em> | password: <em>helloworld</em></li>
+            <li>name: <em>demo_3</em> | password: <em>helloworld</em></li>
+          </ul>
+	      </div>
+	    </div>
+	  </div>
+	<% end %>
 <% end %>
