@@ -42,6 +42,9 @@ When dealing with customers' order it is possible to encounter problems and it c
 
 **Localization**: English/Italian.
 
+**Known Issues**:
+1. [`ImportProductsFromCsvJob`](https://github.com/silvio-galli/paperless/blob/master/app/jobs/import_products_from_csv_job.rb) does not work in [demo app running on Heroku](https://warm-coast-71743.herokuapp.com). As I want the import function to run as a background job, I decided to save data on a file in public folder so that they could be reached later. This works perfectly locally, but on Heroku the filesystem is ephemeral and changes do not persist. So I will need to save data on an external storage service if I want to keep import as a background job 
+
 ---
 
 ## Features
