@@ -7,7 +7,7 @@
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h1 class="panel-title"><%= t '.users_list_title' %></h1>
+        <h1 class="panel-title"><%= t '.users_list_title' %> </h1>
       </div>
       <div class="panel-body">
         <div class="table-responsive">
@@ -18,7 +18,7 @@
             <% @users.each do |user| %>
               <tr>
                 <td><%= user.id %></td>
-                <td><%= user.name %></td>
+                <td><%= user.name %> *</td>
                 <% #FIXME manage with authorization control %>
                 <% if user.id > 4 %>
                   <td><%= link_to t('.change_password'), edit_admin_user_path(user) %></td>
@@ -29,13 +29,19 @@
             <% end %>
           </table>
         </div>
+        <% #TODO migrate this on lacalization files %>
+        <% if locale == :it %>
+        <p class="text-danger"><strong>* Gli utenti demo non possono essere modificati. Invece, ogni nuovo utente creato da te è modificabile.</strong></p>
+        <% else %>
+          <p class="text-danger"><strong>* Demo users cannot be modified. On the contrary, every new user you create is editable.</strong></p>
+        <% end %>
       </div>
     </div>
   </div>
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h1 class="panel-title"><%= t '.select_csv_title' %></h1>
+        <h1 class="panel-title"><%= t '.select_csv_title' %> *</h1>
       </div>
       <div class="panel-body">
         <p><strong><%= t '.select_csv' %></strong></p>
@@ -52,6 +58,12 @@
               <small><%= link_to "download", "/#{I18n.locale}_template.zip", download: '' %></small>
             </li>
         </ul>
+        <% #TODO migrate this on lacalization files %>
+        <% if locale == :it %>
+        <p class="text-danger"><strong>* Al momento, su Heroku questa funzionalità non è disponibile.</strong></p>
+        <% else %>
+          <p class="text-danger"><strong>* At this very moment, this function is not available on Heroku.</strong></p>
+        <% end %>
       </div>
     </div>
   </div>
