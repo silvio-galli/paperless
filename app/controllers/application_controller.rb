@@ -18,9 +18,9 @@ class ApplicationController < ActionController::Base
 
   protected
   # no use for email parameter in this app (users are not supposed to have an email address)
-  #FIXME Devise::ParameterSanitizer#for(sign_up) is deprecated
+  #Deprecation FIXED -> Devise::ParameterSanitizer#for(sign_up)
   def configure_permitted_parameters
-  	devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :password, :password_confirmation, :remember_me) }
+  	devise_parameter_sanitizer.permit( :sign_up, keys: [:name, :password, :password_confirmation, :remember_me] )
   end
 
   private
