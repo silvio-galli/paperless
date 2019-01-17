@@ -26,4 +26,4 @@ stuff/
 .app_info
 
 # ignore thid folder
-./paperless_docs
+/paperless_docs
