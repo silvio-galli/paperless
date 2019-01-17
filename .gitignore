@@ -24,3 +24,6 @@ stuff/
 
 # Ignore general info on the app
 .app_info
+
+# ignore thid folder
+./paperless_docs
